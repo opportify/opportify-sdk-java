@@ -1,0 +1,1229 @@
+openapi: 3.0.3
+info:
+  description: "## Overview\n\nThe **Opportify Insights API** provides access to a\
+    \ powerful and up-to-date platform. With advanced data warehousing and AI-driven\
+    \ capabilities, this API is designed to empower your business to make informed,\
+    \ data-driven decisions and effectively assess potential risks.\n\n### Base URL\n\
+    Use the following base URL for all API requests:\n\n```plaintext\nhttps://api.opportify.ai/insights/v1/<service>/<endpoint>\n\
+    ```\n\n### Features\n- [**Email Insights:**](/docs/api-reference/email-insights)\n\
+    \  - Validate email syntax.\n  - Identify email types (free, disposable, corporate\
+    \ or unknown).\n  - Real time verifications:\n    - Reachable: Confirms if the\
+    \ email domain has valid MX DNS records using DNS lookup.\n    - Deliverable:\
+    \ Simulates an SMTP handshake to check if the email address exists and is deliverable.\n\
+    \    - Catch-All: Detects if the domain accepts all emails (catch-all configuration).\n\
+    \  - Intelligent Error Correction: Automatically corrects well-known misspelled\
+    \ email addresses.\n  - Risk Report: Provides an AI-driven normalized score (200-1000)\
+    \ to evaluate email risk, using predefined thresholds.\n  \n  [Access Documentation\
+    \ >>](/docs/api-reference/email-insights)\n\n- [**IP Insights:**](/docs/api-reference/ip-insights)\n\
+    \  - Connection types: Detects connection types such as `wired`, `mobile`, `enterprise`,\
+    \ `satellite`, `VPN`, `cloud-provider`, `open-proxy`, or `Tor`.\n  - Geo location:\
+    \ Delivers detailed insights such as country, city, timezone, language preferences,\
+    \ and additional location-based information to enhance regional understanding.\n\
+    \  - WHOIS: Provides main details including RIR, ASN, organization, and abuse/admin/technical\
+    \ contacts.\n  - Trusted Provider Recognition: Identifies if the IP is part of\
+    \ a known trusted provider (e.g., ZTNA - Zero Trust Network Access).\n  - Blocklist\
+    \ Reports: Retrieves up-to-date blocklist statuses, active reports, and the latest\
+    \ detections.\n  - Risk Report: Delivers an AI-driven normalized score (200-1000)\
+    \ to evaluate IP risk, supported by predefined thresholds.\n\n  [Access Documentation\
+    \ >>](/docs/api-reference/ip-insights)\n\n### Authentication & Security\n- **API\
+    \ Key:** Access to the API requires an API key, which must be included in the\
+    \ request headers. Businesses can generate unlimited API keys directly from their\
+    \ account, offering flexibility and ease of use. \n- **ACL Rules:** Enhance security\
+    \ with Access Control Lists (ACL), allowing you to restrict API access from specific\
+    \ IP addresses or ranges. This feature provides an additional layer of protection\
+    \ by ensuring only authorized IPs can interact with the API.\n- **No Query Parameters:**\
+    \ As a precautionary measure, our API avoids the use of query parameters for all\
+    \ operations, including authentication and handling Personally Identifiable Information\
+    \ (PII). This approach minimizes security risks by preventing sensitive data from\
+    \ being exposed in access logs, browser history, cached URLs, debugging tools,\
+    \ or inadvertently shared URLs. All sensitive information is securely transmitted\
+    \ through headers or the request body.\n"
+  title: Opportify Insights API
+  version: 1.0.0
+  x-codegen-settings:
+    php-sdk-version: "2.0"
+    typescript-version: "4.0"
+    python-client-name: opportify_sdk
+    ruby-gem-name: opportify_sdk
+    perl-sdk-version: "1.0"
+    java:
+      groupId: ai.opportify
+      artifactId: opportify-sdk
+      packageName: ai.opportify.sdk
+    javascript:
+      moduleType: ES6
+servers:
+- description: Production server
+  url: https://api.opportify.ai/insights/v1
+tags:
+- description: |
+    **Email Insights** empower businesses to validate email addresses, verify their deliverability in real time, and correct common misspellings with precision. With advanced risk assessment powered by AI, this feature ensures secure and reliable email interactions.
+  name: Email Insights
+- description: |
+    **IP Insights** deliver comprehensive analysis of IP addresses, including geolocation details, connection identification, and blocklist status. Backed by AI-driven risk scoring, it helps your business to identify threats and make confident, data-driven decisions.
+  name: IP Insights
+paths:
+  /email/analyze:
+    post:
+      description: "The **Analyze Email** endpoint validates an email address and\
+        \ returns its deliverability status, provider details, and potential corrections.\
+        \ This endpoint is ideal for ensuring accurate email data before usage.\n\n\
+        ### Features:\n- Validate email syntax.\n- Identify email types (free, disposable,\
+        \ corporate or unknown).\n- Real time verifications:\n  - Reachable: Confirms\
+        \ if the email domain has valid MX DNS records using DNS lookup.\n  - Deliverable:\
+        \ Simulates an SMTP handshake to check if the email address exists and is\
+        \ deliverable.\n  - Catch-All: Detects if the domain accepts all emails (catch-all\
+        \ configuration).\n- Intelligent Error Correction: Automatically corrects\
+        \ well-known misspelled email addresses.\n- Risk Report: Provides an AI-driven\
+        \ normalized score (200-1000) to evaluate email risk, using predefined thresholds.\n\
+        \n### Example Request Body:\n```json\n{\n  \"email\": \"my-email@company.com\"\
+        ,\n  \"enableAI\": true,\n  \"enableAutoCorrection\": true\n}\n```\n\n###\
+        \ Authentication & Security\n- **API Key:** Access to the API requires an\
+        \ API key, which must be included in the request headers. Businesses can generate\
+        \ unlimited API keys directly from their account, offering flexibility and\
+        \ ease of use. \n- **ACL Rules:** Enhance security with Access Control Lists\
+        \ (ACL), allowing you to restrict API access from specific IP addresses or\
+        \ ranges. This feature provides an additional layer of protection by ensuring\
+        \ only authorized IPs can interact with the API.\n- **No Query Parameters:**\
+        \ As a precautionary measure, our API avoids the use of query parameters for\
+        \ all operations, including authentication and handling Personally Identifiable\
+        \ Information (PII). This approach minimizes security risks by preventing\
+        \ sensitive data from being exposed in access logs, browser history, cached\
+        \ URLs, debugging tools, or inadvertently shared URLs. All sensitive information\
+        \ is securely transmitted through headers or the request body.\n"
+      operationId: analyzeEmail
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/analyzeEmail_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/analyzeEmail_200_response'
+          description: Email validation successful.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/analyzeEmail_400_response'
+          description: "Bad Request. Either the request is improperly formatted, or\
+            \ the email is invalid."
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/analyzeEmail_500_response'
+          description: Internal server error.
+      security:
+      - opportifyToken: []
+      summary: Analyze Email
+      tags:
+      - Email Insights
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /ip/analyze:
+    post:
+      description: "The **Analyze IP** endpoint provides comprehensive insights into\
+        \ a specified IP address, leveraging AI-driven analysis to deliver actionable\
+        \ intelligence. This includes connection type identification, detailed geolocation\
+        \ data, WHOIS information, trusted provider verification, up-to-date blocklist\
+        \ reports, and a robust risk assessment. Compatible with both IPv4 and IPv6,\
+        \ this endpoint is designed to empower businesses with precise and reliable\
+        \ IP data.\n\n### Features:\n- Connection types: Detects connection types\
+        \ such as `wired`, `mobile`, `enterprise`, `satellite`, `vpn`, `cloud-provider`,\
+        \ `open-proxy`, or `Tor`.\n- Geo location: Delivers detailed insights such\
+        \ as country, city, timezone, language preferences, and additional location-based\
+        \ information to enhance regional understanding.\n- WHOIS: Provides main details\
+        \ including RIR, ASN, organization, and abuse/admin/technical contacts.\n\
+        - Trusted Provider Recognition: Identifies if the IP is part of a known trusted\
+        \ provider (e.g., ZTNA - Zero Trust Network Access).\n- Blocklist Reports:\
+        \ Retrieves up-to-date blocklist statuses, active reports, and the latest\
+        \ detections.\n- Risk Report: Delivers an AI-driven normalized score (200-1000)\
+        \ to evaluate IP risk, supported by predefined thresholds.\n\n### Example\
+        \ Request Body:\n```json\n{\n  \"ip\": \"192.168.0.1\",\n  \"enableAI\": true\n\
+        }\n```\n\n### Authentication & Security\n- **API Key:** Access to the API\
+        \ requires an API key, which must be included in the request headers. Businesses\
+        \ can generate unlimited API keys directly from their account, offering flexibility\
+        \ and ease of use. \n- **ACL Rules:** Enhance security with Access Control\
+        \ Lists (ACL), allowing you to restrict API access from specific IP addresses\
+        \ or ranges. This feature provides an additional layer of protection by ensuring\
+        \ only authorized IPs can interact with the API.\n- **No Query Parameters:**\
+        \ As a precautionary measure, our API avoids the use of query parameters for\
+        \ all operations, including authentication and handling Personally Identifiable\
+        \ Information (PII). This approach minimizes security risks by preventing\
+        \ sensitive data from being exposed in access logs, browser history, cached\
+        \ URLs, debugging tools, or inadvertently shared URLs. All sensitive information\
+        \ is securely transmitted through headers or the request body.\n"
+      operationId: analyzeIp
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/analyzeIp_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/analyzeIp_200_response'
+          description: The IP analysis is successful.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/analyzeIp_400_response'
+          description: "Bad Request. Either the request is improperly formatted, or\
+            \ the IP is invalid."
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/analyzeIp_404_response'
+          description: IP address not found in any RIR database.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/analyzeIp_500_response'
+          description: Internal server error.
+      security:
+      - opportifyToken: []
+      summary: Analyze IP
+      tags:
+      - IP Insights
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+components:
+  schemas:
+    RiskReport:
+      description: "### Risk Level Determination\nThis documentation outlines how\
+        \ the risk level is determined based on a `normalizedScore` generated by a\
+        \ **multivariate linear regression model**. The risk level provides a static\
+        \ representation of thresholds to classify the severity of risk for an entity.\n\
+        \n---\n\n> **IMPORTANT:** \n> The risk report model is not available in the\
+        \ free plan. To access this feature, you need to subscribe to a paid plan.\n\
+        \n---\n\n#### How the Score is Generated\n\nThe risk score (`normalizedScore`)\
+        \ is computed using a **multivariate linear regression model**, a machine\
+        \ learning approach that evaluates multiple input features to predict the\
+        \ risk score.\n\n##### Key Features of the Model:\n1. **Dynamic Scoring:**\
+        \ The model assigns weights to various risk factors, dynamically updating\
+        \ them based on training with new data.\n2. **Constant Training:** The model\
+        \ is continuously retrained with the latest data to improve accuracy and adapt\
+        \ to evolving risk patterns.\n3. **Scalability:** The model supports multiple\
+        \ features and their interactions, deriving a comprehensive and reliable risk\
+        \ score.\n\nThe output score is normalized to a range of **200–1000** for\
+        \ easier interpretation and alignment with industry practices.\n\n---\n\n\
+        #### Risk Level Thresholds\n\nThe risk level is a static representation of\
+        \ the `normalizedScore`, categorized into five distinct levels:\n\n| **Risk\
+        \ Level** | **Score Range**          | **Description**                   \
+        \                                              |\n|----------------|--------------------------|---------------------------------------------------------------------------------|\n\
+        | `highest`      | `normalizedScore > 800` | Represents the most critical\
+        \ level of risk. Immediate attention is required.   |\n| `high`         |\
+        \ `600 < normalizedScore <= 800` | Indicates a high level of risk. Consider\
+        \ mitigation actions promptly.          |\n| `medium`       | `400 < normalizedScore\
+        \ <= 600` | Reflects a moderate level of risk. Monitoring and possible action\
+        \ advised.     |\n| `low`          | `300 < normalizedScore <= 400` | Denotes\
+        \ a low level of risk. Regular monitoring is sufficient.                 |\n\
+        | `lowest`       | `normalizedScore <= 300` | The lowest level of risk. Risk\
+        \ is considered negligible or minimal.            |\n\n---\n\n#### Usage\n\
+        \nThis risk level determination serves as a human-readable representation\
+        \ of the machine learning model's output. It enables:\n- **Risk Monitoring:**\
+        \ Identifying entities that require immediate attention.\n- **Action Prioritization:**\
+        \ Guiding mitigation efforts based on the severity of the risk.\n- **Decision-Making:**\
+        \ Providing clear thresholds for automated and manual workflows.\n\n---\n\n\
+        #### Key Notes\n1. **Dynamic Scoring, Static Levels:**\n  - While the score\
+        \ is dynamically updated through a multivariate linear regression model, the\
+        \ risk levels remain static to maintain consistency and interpretability.\n\
+        \n2. **Customizable Thresholds:**\n  - The thresholds for the levels are configurable\
+        \ based on organizational needs or domain-specific requirements.\n\n3. **Model\
+        \ Retraining:** \n  - Regular updates to the model ensure that scores accurately\
+        \ reflect real-world risk trends, improving the reliability of level assignments.\n\
+        \n---\n\nThis approach combines the adaptability of multivariate linear regression\
+        \ with the simplicity of static thresholds, offering a robust framework for\
+        \ risk assessment and decision-making.\n\n---\n\n### Response Elements\n"
+      example:
+        score: 850
+        level: highest
+      properties:
+        score:
+          description: Risk score normalized to a range of 200–1000.
+          example: 850
+          type: integer
+        level:
+          description: Static representation of the risk level.
+          example: highest
+          type: string
+      type: object
+    Geo:
+      description: "### Geolocation Determination & Confidence Levels\nGeolocation\
+        \ details are derived by analyzing the provided IP address using data aggregated\
+        \ from a wide range of sources, both official and unofficial (such as user-generated\
+        \ data, open-source, or crowdsourced). This data is meticulously evaluated\
+        \ and ranked using a proprietary weighted reliability score that is tailored\
+        \ to the specific characteristics and trustworthiness of each data source.\n\
+        \n---\n\n#### Confidence Levels\n\nThe geolocation process assigns a confidence\
+        \ level to each level of granularity. These levels reflect the probability\
+        \ of accuracy based on the reliability of the data and analysis:\n\n- **Continent-Level\
+        \ (99%)**: The determination of the continent is highly reliable, with a near-certain\
+        \ accuracy rate of 99%.\n- **Country-Level (98%)**: Locating the specific\
+        \ country has a very high accuracy of 98%, reflecting reliable cross-verification.\n\
+        - **Region-Level (70–90%)**: Identifying regions (such as states or provinces)\
+        \ has moderate to high accuracy, depending on the data quality and density\
+        \ for the given area.\n- **City-Level (50–70%)**: Pinpointing the specific\
+        \ city is moderately accurate, influenced by factors such as ISP data resolution\
+        \ and urban vs. rural settings.\n- **Specific Area/Point (5–40%)**: Pinpointing\
+        \ a highly specific area (e.g., a neighborhood or street) has a significantly\
+        \ lower confidence level due to inherent limitations in IP-based geolocation\
+        \ technology.\n\n---\n\n#### Key Features\n\n- **Alphabetical Object Sorting**:\
+        \  \n  The keys in the returned geolocation object are consistently sorted\
+        \ alphabetically, ensuring a predictable structure for easier integration\
+        \ and parsing.\n\n---\n\n### Response Elements\n"
+      example:
+        continent: North America
+        countryShortName: United States
+        languages: "en-US, es-US, es"
+        city: San Francisco
+        timezone: America/Los_Angeles
+        latitude: 37.7749
+        postalCode: "94105"
+        countryCode: US
+        phoneIntCode: "1"
+        countryName: United States of America
+        region: California
+        currencyCode: USD
+        domainExtension: .com
+        longitude: -122.4194
+      properties:
+        continent:
+          description: Name of the continent. Normalized as "Title Case".
+          example: North America
+          type: string
+        countryCode:
+          description: ISO 3166-1 alpha-2 country code.
+          example: US
+          type: string
+        countryName:
+          description: Full name of the country. Normalized as "Title Case".
+          example: United States of America
+          type: string
+        countryShortName:
+          description: ISO 3166-1 English short version. Normalized as "Title Case".
+          example: United States
+          type: string
+        city:
+          description: Name of the city. Normalized as "Title Case".
+          example: San Francisco
+          type: string
+        currencyCode:
+          description: ISO 4217 currency code.
+          example: USD
+          type: string
+        domainExtension:
+          description: Top-level domain (TLD) for the country. 63 characters limit.
+            IANA / ICANN defined.
+          example: .com
+          type: string
+        languages:
+          description: List of languages spoken in the country separated by commas.
+            (BCP 47 (Best Current Practice 47))
+          example: "en-US, es-US, es"
+          type: string
+        latitude:
+          description: Latitude coordinate.
+          example: 37.7749
+          type: number
+        longitude:
+          description: Longitude coordinate.
+          example: -122.4194
+          type: number
+        postalCode:
+          description: Postal code. Normalized to all capital letters when applicable.
+          example: "94105"
+          type: string
+        phoneIntCode:
+          description: International dialing code.
+          example: "1"
+          type: string
+        region:
+          description: "Name of the region, province, or state. Normalized as \"Title\
+            \ Case\"."
+          example: California
+          type: string
+        timezone:
+          description: Timezone in IANA format.
+          example: America/Los_Angeles
+          type: string
+      type: object
+    BlockListed:
+      description: "### Block Listed Details\n\nThe `BlockListed` object provides\
+        \ detailed information about whether an IP address is listed in known blocklists\
+        \ and related data. \n\n---\n\n#### Key Highlights:\n- **Continuous Monitoring**:\
+        \ We constantly monitor and update blocklist sources to ensure the information\
+        \ is accurate and reflects the latest active reports.\n- **Expanding Coverage**:\
+        \ Our system incorporates a wide range of trusted sources, with continuous\
+        \ efforts to onboard additional blocklist data providers.\n\n---\n\n### Response\
+        \ Elements\n"
+      example:
+        sources: 0
+        isBlockListed: false
+        lastDetected: 2022-01-01T12:00:00Z
+        activeReports: 0
+      properties:
+        isBlockListed:
+          description: Indicates if the IP is blocklisted in some of the known blocklist
+            sources.
+          example: false
+          type: boolean
+        sources:
+          description: Number of blocklist sources.
+          example: 0
+          type: integer
+        activeReports:
+          description: Number of blocklist active reports for the given IP address.
+            We constantly monitor and update this value as new reports are detected
+            or resolved.
+          example: 0
+          type: integer
+        lastDetected:
+          description: Date and time of the last blocklist detection. ISO 8601 standard.
+          example: 2022-01-01T12:00:00Z
+          format: date-time
+          type: string
+      required:
+      - activeReports
+      - isBlockListed
+      - sources
+      type: object
+    TrustedProvider:
+      description: Details of trusted providers for an IP address.
+      example:
+        isKnownProvider: true
+        provider: ZScaler
+        description: Zero Trust Network Access for Enterprises
+        providerType: ZTNE
+      properties:
+        isKnownProvider:
+          description: Indicates if the IP belongs to a trusted provider.
+          example: true
+          type: boolean
+        provider:
+          description: Name of the trusted provider.
+          example: ZScaler
+          type: string
+        providerType:
+          description: Type of the trusted provider.
+          example: ZTNE
+          type: string
+        description:
+          description: Provider a short description.
+          example: Zero Trust Network Access for Enterprises
+          type: string
+      required:
+      - isKnownProvider
+      type: object
+    Whois:
+      description: "### WHOIS Details\nThis object provides sanitized and normalized\
+        \ WHOIS information for an IP address, including details about the Regional\
+        \ Internet Registry (RIR), Autonomous System Number (ASN), organization, and\
+        \ contact information.\n\n---\n\n> **IMPORTANT:** \n> While the WHOIS data\
+        \ we provide are publicly available and can be accessed through any Regional\
+        \ Internet Registry (RIR) by anyone, we prioritize data privacy. As such,\
+        \ details for address, phone number, and email are **not included in the free\
+        \ plan**. To access this information, you need to subscribe to a paid plan\
+        \ and comply with additional data privacy agreements.\n\n---\n\n#### Key Features:\n\
+        - **RIR Details**: Identify the Regional Internet Registry managing the IP\
+        \ address.\n- **ASN Information**: Obtain the Autonomous System Number details,\
+        \ including the ASN identifier, name, and description.\n- **Organization Data**:\
+        \ Retrieve organization details, such as the ID, name, type, description,\
+        \ address, country, and contact information.\n- **Contact Information**: Access\
+        \ contact details for abuse, admin, and tech issues, including the contact\
+        \ ID, type, name, address, phone, fax, and email.\n\n---\n\n### Response Elements\n"
+      example:
+        techContact:
+          address:
+          - 456 Tech Lane
+          contactId: TECH123
+          phone:
+          - +1-800-TECH-123
+          name: Tech Desk
+          contactType: tech
+          fax:
+          - +1-800-TECH-456
+          email:
+          - tech@organization.com
+        organization:
+          orgType: ISP
+          descr:
+          - Leading internet provider
+          - "Mountain View, CA"
+          country: US
+          orgName: Google LLC
+          address:
+          - 1600 Amphitheatre Parkway
+          phone:
+          - +1-800-555-1234
+          fax:
+          - +1-800-555-5678
+          orgId: GOOGL
+          email:
+          - support@organization.com
+        rir: ARIN
+        abuseContact:
+          address:
+          - "123 Abuse St, Suite 100"
+          contactId: ABUSE123
+          phone:
+          - +1-800-ABUSE-123
+          name: Abuse Desk
+          contactType: abuse
+          fax:
+          - +1-800-ABUSE-456
+          email:
+          - abuse@organization.com
+        adminContact:
+          address:
+          - 456 Admin Lane
+          contactId: ADMIN123
+          phone:
+          - +1-800-ADMIN-123
+          name: Admin Desk
+          contactType: admin
+          fax:
+          - +1-800-ADMIN-456
+          email:
+          - admin@organization.com
+        asn:
+          descr:
+          - Google LLC
+          - "Mountain View, CA"
+          asName: GOOGLE
+          asnId: "15169"
+          email:
+          - asn-email@somedomain.com
+      properties:
+        rir:
+          description: Regional Internet Registry managing the IP.
+          example: ARIN
+          type: string
+        asn:
+          $ref: '#/components/schemas/Asn'
+        organization:
+          $ref: '#/components/schemas/Organization'
+        abuseContact:
+          $ref: '#/components/schemas/AbuseContact'
+        adminContact:
+          $ref: '#/components/schemas/AdminContact'
+        techContact:
+          $ref: '#/components/schemas/TechContact'
+      type: object
+    Asn:
+      description: Autonomous System Number details.
+      example:
+        descr:
+        - Google LLC
+        - "Mountain View, CA"
+        asName: GOOGLE
+        asnId: "15169"
+        email:
+        - asn-email@somedomain.com
+      properties:
+        asnId:
+          description: ASN identifier.
+          example: "15169"
+          type: string
+        asName:
+          description: ASN name.
+          example: GOOGLE
+          type: string
+        descr:
+          description: "ASN description. It might return different values based on\
+            \ the data source. Some provide ownership, address, others provide a more\
+            \ abstract description. Our system tries to sanitize removing visual blocks\
+            \ special characters (+++, ---, ...)."
+          example:
+          - Google LLC
+          - "Mountain View, CA"
+          items:
+            type: string
+          type: array
+        email:
+          description: Previously sanitized and validated contact email addresses
+            always in lower case.
+          example:
+          - asn-email@somedomain.com
+          items:
+            type: string
+          type: array
+      type: object
+    Organization:
+      description: Organization details for an IP address.
+      example:
+        orgType: ISP
+        descr:
+        - Leading internet provider
+        - "Mountain View, CA"
+        country: US
+        orgName: Google LLC
+        address:
+        - 1600 Amphitheatre Parkway
+        phone:
+        - +1-800-555-1234
+        fax:
+        - +1-800-555-5678
+        orgId: GOOGL
+        email:
+        - support@organization.com
+      properties:
+        orgId:
+          description: Organization ID.
+          example: GOOGL
+          type: string
+        orgName:
+          description: Organization name.
+          example: Google LLC
+          type: string
+        orgType:
+          description: Organization type.
+          example: ISP
+          type: string
+        descr:
+          description: "Organization description. It might return different values\
+            \ based on the data source. Some provide ownership, address, others provide\
+            \ a more abstract description. Our system tries to sanitize removing visual\
+            \ blocks special characters (+++, ---, ...)."
+          example:
+          - Leading internet provider
+          - "Mountain View, CA"
+          items:
+            type: string
+          type: array
+        address:
+          description: Organization address details. No standard address format is
+            guaranteed.
+          example:
+          - 1600 Amphitheatre Parkway
+          items:
+            type: string
+          type: array
+        country:
+          description: Country code of the organization with 2 digits. (ISO 3166-1
+            alpha-2)
+          example: US
+          type: string
+        phone:
+          description: Contact phone numbers.
+          example:
+          - +1-800-555-1234
+          items:
+            type: string
+          type: array
+        fax:
+          description: Contact fax numbers.
+          example:
+          - +1-800-555-5678
+          items:
+            type: string
+          type: array
+        email:
+          description: Previously sanitized and validated contact email addresses
+            always in lower case.
+          example:
+          - support@organization.com
+          items:
+            type: string
+          type: array
+      type: object
+    AbuseContact:
+      description: Abuse contact details.
+      example:
+        address:
+        - "123 Abuse St, Suite 100"
+        contactId: ABUSE123
+        phone:
+        - +1-800-ABUSE-123
+        name: Abuse Desk
+        contactType: abuse
+        fax:
+        - +1-800-ABUSE-456
+        email:
+        - abuse@organization.com
+      properties:
+        contactId:
+          description: Unique identifier for the abuse contact.
+          example: ABUSE123
+          type: string
+        contactType:
+          description: "Type of contact (e.g., \"abuse\")."
+          example: abuse
+          type: string
+        name:
+          description: Name of the abuse contact.
+          example: Abuse Desk
+          type: string
+        address:
+          description: Abuse contact address details.
+          example:
+          - "123 Abuse St, Suite 100"
+          items:
+            type: string
+          type: array
+        phone:
+          description: Contact phone numbers for abuse issues.
+          example:
+          - +1-800-ABUSE-123
+          items:
+            type: string
+          type: array
+        fax:
+          description: Contact fax numbers for abuse issues.
+          example:
+          - +1-800-ABUSE-456
+          items:
+            type: string
+          type: array
+        email:
+          description: Contact email addresses for abuse issues.
+          example:
+          - abuse@organization.com
+          items:
+            type: string
+          type: array
+      type: object
+    AdminContact:
+      description: Admin contact details.
+      example:
+        address:
+        - 456 Admin Lane
+        contactId: ADMIN123
+        phone:
+        - +1-800-ADMIN-123
+        name: Admin Desk
+        contactType: admin
+        fax:
+        - +1-800-ADMIN-456
+        email:
+        - admin@organization.com
+      properties:
+        contactId:
+          description: Unique identifier for the admin contact.
+          example: ADMIN123
+          type: string
+        contactType:
+          description: "Type of contact (e.g., \"admin\")."
+          example: admin
+          type: string
+        name:
+          description: Name of the admin contact.
+          example: Admin Desk
+          type: string
+        address:
+          description: Admin contact address details.
+          example:
+          - 456 Admin Lane
+          items:
+            type: string
+          type: array
+        phone:
+          description: Contact phone numbers for admin issues.
+          example:
+          - +1-800-ADMIN-123
+          items:
+            type: string
+          type: array
+        fax:
+          description: Contact fax numbers for admin issues.
+          example:
+          - +1-800-ADMIN-456
+          items:
+            type: string
+          type: array
+        email:
+          description: Contact email addresses for admin issues.
+          example:
+          - admin@organization.com
+          items:
+            type: string
+          type: array
+      type: object
+    TechContact:
+      description: Tech contact details.
+      example:
+        address:
+        - 456 Tech Lane
+        contactId: TECH123
+        phone:
+        - +1-800-TECH-123
+        name: Tech Desk
+        contactType: tech
+        fax:
+        - +1-800-TECH-456
+        email:
+        - tech@organization.com
+      properties:
+        contactId:
+          description: Unique identifier for the tech contact.
+          example: TECH123
+          type: string
+        contactType:
+          description: "Type of contact (e.g., \"tech\")."
+          example: tech
+          type: string
+        name:
+          description: Name of the tech contact.
+          example: Tech Desk
+          type: string
+        address:
+          description: Tech contact address details.
+          example:
+          - 456 Tech Lane
+          items:
+            type: string
+          type: array
+        phone:
+          description: Contact phone numbers for tech issues.
+          example:
+          - +1-800-TECH-123
+          items:
+            type: string
+          type: array
+        fax:
+          description: Contact fax numbers for tech issues.
+          example:
+          - +1-800-TECH-456
+          items:
+            type: string
+          type: array
+        email:
+          description: Contact email addresses for tech issues.
+          example:
+          - tech@organization.com
+          items:
+            type: string
+          type: array
+      type: object
+    EmailDNS:
+      description: DNS details for an email address domain.
+      example:
+        mx:
+        - mx1.example.com
+        - mx2.example.com
+      properties:
+        mx:
+          description: Mail exchange records for the domain.
+          example:
+          - mx1.example.com
+          - mx2.example.com
+          items:
+            type: string
+          type: array
+      type: object
+    analyzeEmail_request:
+      properties:
+        email:
+          description: The email address to validate.
+          example: my-email@company.com
+          maxLength: 320
+          type: string
+        enableAI:
+          description: Enable AI-based analysis for insights.
+          example: true
+          type: boolean
+        enableAutoCorrection:
+          description: Suggest possible corrections for misspelled emails.
+          example: true
+          type: boolean
+      required:
+      - email
+      type: object
+    analyzeEmail_200_response:
+      example:
+        emailDNS:
+          mx:
+          - mx1.example.com
+          - mx2.example.com
+        emailAddress: some-email@domain.com
+        isReachable: true
+        emailProvider: Google
+        emailType: free
+        isFormatValid: true
+        riskReport:
+          score: 850
+          level: highest
+        emailCorrection: some-email@domain.com
+        isCatchAll: false
+        isDeliverable: true
+      properties:
+        emailAddress:
+          description: The validated email address.
+          example: some-email@domain.com
+          type: string
+        emailProvider:
+          description: The email provider or domain name.
+          example: Google
+          type: string
+        emailType:
+          description: "Type of email address (e.g., free, disposable, corporate,\
+            \ unknown)."
+          example: free
+          type: string
+        isFormatValid:
+          description: Indicates if the email address has a valid format.
+          example: true
+          type: boolean
+        emailCorrection:
+          description: "Suggested corrected email address, if applicable."
+          example: some-email@domain.com
+          type: string
+        isDeliverable:
+          description: |
+            Checks if the email address exists and is deliverable using SMTP handshake simulation. This involves connecting to the mail server and issuing commands to verify deliverability.
+          example: true
+          type: boolean
+        isCatchAll:
+          description: |
+            Determines if the email domain is configured as a catch-all, which accepts emails for all addresses within the domain. This is verified through multiple email tests.
+          example: false
+          type: boolean
+        isReachable:
+          description: Confirms if the email domain has valid MX DNS records using
+            DNS lookup.
+          example: true
+          type: boolean
+        emailDNS:
+          $ref: '#/components/schemas/EmailDNS'
+        riskReport:
+          $ref: '#/components/schemas/RiskReport'
+      required:
+      - emailAddress
+      - emailCorrection
+      - emailDNS
+      - emailProvider
+      - emailType
+      - isCatchAll
+      - isDeliverable
+      - isFormatValid
+      - isReachable
+      - riskReport
+      type: object
+    MALFORMED_REQUEST:
+      example:
+        code: MALFORMED_REQUEST
+        message: "The request is improperly formatted, email field is required."
+      properties:
+        message:
+          example: "The request is improperly formatted, email field is required."
+          type: string
+        code:
+          example: MALFORMED_REQUEST
+          type: string
+      title: MALFORMED_REQUEST
+      type: object
+    INVALID_EMAIL:
+      properties:
+        message:
+          example: "The email provided is invalid, please provide a valid email."
+          type: string
+        code:
+          example: INVALID_EMAIL
+          type: string
+      title: INVALID_EMAIL
+      type: object
+    analyzeEmail_400_response_error:
+      oneOf:
+      - $ref: '#/components/schemas/MALFORMED_REQUEST'
+      - $ref: '#/components/schemas/INVALID_EMAIL'
+      type: object
+    analyzeEmail_400_response:
+      example:
+        error:
+          code: MALFORMED_REQUEST
+          message: "The request is improperly formatted, email field is required."
+      properties:
+        error:
+          $ref: '#/components/schemas/analyzeEmail_400_response_error'
+      type: object
+    analyzeEmail_500_response_error:
+      example:
+        code: INTERNAL_ERROR
+        message: An internal error occurred while processing the request.
+      properties:
+        message:
+          example: An internal error occurred while processing the request.
+          type: string
+        code:
+          example: INTERNAL_ERROR
+          type: string
+      type: object
+    analyzeEmail_500_response:
+      example:
+        error:
+          code: INTERNAL_ERROR
+          message: An internal error occurred while processing the request.
+      properties:
+        error:
+          $ref: '#/components/schemas/analyzeEmail_500_response_error'
+      type: object
+    analyzeIp_request:
+      properties:
+        ip:
+          description: The IPv4 or IPv6 address to analyze.
+          example: 192.168.0.1
+          type: string
+        enableAI:
+          description: Enable AI-driven analysis for the IP address. Default is `false`.
+          example: true
+          type: boolean
+      required:
+      - ip
+      type: object
+    analyzeIp_200_response:
+      example:
+        geo:
+          continent: North America
+          countryShortName: United States
+          languages: "en-US, es-US, es"
+          city: San Francisco
+          timezone: America/Los_Angeles
+          latitude: 37.7749
+          postalCode: "94105"
+          countryCode: US
+          phoneIntCode: "1"
+          countryName: United States of America
+          region: California
+          currencyCode: USD
+          domainExtension: .com
+          longitude: -122.4194
+        whois:
+          techContact:
+            address:
+            - 456 Tech Lane
+            contactId: TECH123
+            phone:
+            - +1-800-TECH-123
+            name: Tech Desk
+            contactType: tech
+            fax:
+            - +1-800-TECH-456
+            email:
+            - tech@organization.com
+          organization:
+            orgType: ISP
+            descr:
+            - Leading internet provider
+            - "Mountain View, CA"
+            country: US
+            orgName: Google LLC
+            address:
+            - 1600 Amphitheatre Parkway
+            phone:
+            - +1-800-555-1234
+            fax:
+            - +1-800-555-5678
+            orgId: GOOGL
+            email:
+            - support@organization.com
+          rir: ARIN
+          abuseContact:
+            address:
+            - "123 Abuse St, Suite 100"
+            contactId: ABUSE123
+            phone:
+            - +1-800-ABUSE-123
+            name: Abuse Desk
+            contactType: abuse
+            fax:
+            - +1-800-ABUSE-456
+            email:
+            - abuse@organization.com
+          adminContact:
+            address:
+            - 456 Admin Lane
+            contactId: ADMIN123
+            phone:
+            - +1-800-ADMIN-123
+            name: Admin Desk
+            contactType: admin
+            fax:
+            - +1-800-ADMIN-456
+            email:
+            - admin@organization.com
+          asn:
+            descr:
+            - Google LLC
+            - "Mountain View, CA"
+            asName: GOOGLE
+            asnId: "15169"
+            email:
+            - asn-email@somedomain.com
+        blocklisted:
+          sources: 0
+          isBlockListed: false
+          lastDetected: 2022-01-01T12:00:00Z
+          activeReports: 0
+        hostReverse: 10.184.114.89.rev.providerhost.com
+        ipAddress: 192.168.0.1
+        riskReport:
+          score: 850
+          level: highest
+        trustedProvider:
+          isKnownProvider: true
+          provider: ZScaler
+          description: Zero Trust Network Access for Enterprises
+          providerType: ZTNE
+        ipCidr: 192.168.0.0/24
+        ipAddressNumber: 3232235521
+        connectionType: wired
+        ipType: IPv4
+      properties:
+        ipAddress:
+          description: The analyzed IP address.
+          example: 192.168.0.1
+          type: string
+        ipAddressNumber:
+          description: Numeric representation of the IP address.
+          example: 3232235521
+          type: integer
+        ipType:
+          description: Type of the IP address (IPv4 or IPv6).
+          example: IPv4
+          type: string
+        ipCidr:
+          description: CIDR notation of the IP address.
+          example: 192.168.0.0/24
+          type: string
+        connectionType:
+          description: "The **connectionType** element provides information about\
+            \ the type of connection associated with a given IP address. Our system\
+            \ employs a **dynamic and evolving approach**, leveraging multiple data\
+            \ points to identify the connection type as accurately as possible. \n\
+            - **wired**: A traditional wired connection (e.g., DSL, fiber, cable).\n\
+            - **mobile**: A mobile network connection (e.g., 4G, 5G).\n- **enterprise**:\
+            \ A connection from a known large business or corporate network.\n- **satellite**:\
+            \ A satellite internet connection.\n- **vpn**: A connection routed through\
+            \ a Virtual Private Network.\n- **cloud-provider**: A connection from\
+            \ a cloud hosting provider (e.g., AWS, Azure).\n- **open-proxy**: A connection\
+            \ using an open or public proxy.\n- **tor**: A connection routed through\
+            \ the Tor network.\n"
+          example: wired
+          type: string
+        hostReverse:
+          description: Real time reverse DNS lookup result for the IP address.
+          example: 10.184.114.89.rev.providerhost.com
+          type: string
+        geo:
+          $ref: '#/components/schemas/Geo'
+        whois:
+          $ref: '#/components/schemas/Whois'
+        trustedProvider:
+          $ref: '#/components/schemas/TrustedProvider'
+        blocklisted:
+          $ref: '#/components/schemas/BlockListed'
+        riskReport:
+          $ref: '#/components/schemas/RiskReport'
+      required:
+      - blocklisted
+      - connectionType
+      - geo
+      - hostReverse
+      - ipAddress
+      - ipAddressNumber
+      - ipCidr
+      - ipType
+      - riskReport
+      - trustedProvider
+      - whois
+      type: object
+    IP_VALIDATION_FAILED:
+      example:
+        code: IP_VALIDATION_FAILED
+        message: The input provided is not a valid IPv4 or IPv6 address.
+      properties:
+        message:
+          example: The input provided is not a valid IPv4 or IPv6 address.
+          type: string
+        code:
+          example: IP_VALIDATION_FAILED
+          type: string
+      title: IP_VALIDATION_FAILED
+      type: object
+    MALFORMED_REQUEST_1:
+      properties:
+        message:
+          example: The JSON request doesn’t seem to be correct or valid.
+          type: string
+        code:
+          example: MALFORMED_REQUEST
+          type: string
+      title: MALFORMED_REQUEST
+      type: object
+    analyzeIp_400_response_error:
+      oneOf:
+      - $ref: '#/components/schemas/IP_VALIDATION_FAILED'
+      - $ref: '#/components/schemas/MALFORMED_REQUEST_1'
+      type: object
+    analyzeIp_400_response:
+      example:
+        error:
+          code: IP_VALIDATION_FAILED
+          message: The input provided is not a valid IPv4 or IPv6 address.
+      properties:
+        error:
+          $ref: '#/components/schemas/analyzeIp_400_response_error'
+      type: object
+    NOT_FOUND:
+      example:
+        code: NOT_FOUND
+        message: The input provided doesn’t match any RIR database.
+      properties:
+        message:
+          example: The input provided doesn’t match any RIR database.
+          type: string
+        code:
+          example: NOT_FOUND
+          type: string
+      title: NOT_FOUND
+      type: object
+    analyzeIp_404_response:
+      example:
+        error:
+          code: NOT_FOUND
+          message: The input provided doesn’t match any RIR database.
+      properties:
+        error:
+          $ref: '#/components/schemas/NOT_FOUND'
+      type: object
+    INTERNAL_ERROR:
+      example:
+        code: INTERNAL_ERROR
+        message: Something went wrong on our side. We’ll investigate.
+      properties:
+        message:
+          example: Something went wrong on our side. We’ll investigate.
+          type: string
+        code:
+          example: INTERNAL_ERROR
+          type: string
+      title: INTERNAL_ERROR
+      type: object
+    analyzeIp_500_response:
+      example:
+        error:
+          code: INTERNAL_ERROR
+          message: Something went wrong on our side. We’ll investigate.
+      properties:
+        error:
+          $ref: '#/components/schemas/INTERNAL_ERROR'
+      type: object
+  securitySchemes:
+    opportifyToken:
+      in: header
+      name: x-opportify-token
+      type: apiKey
+
