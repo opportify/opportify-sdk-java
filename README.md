@@ -21,10 +21,42 @@ Building the SDK client library requires:
 
 ## Getting Started
 
-First, install Opportify via the npm package manager:
+First, install Opportify via the package manager:
 
+### Maven users
+
+Add this dependency to your project's POM:
+
+```xml
+<dependency>
+  <groupId>ai.opportify</groupId>
+  <artifactId>opportify-sdk-client</artifactId>
+  <version>1.0.0</version>
+  <scope>compile</scope>
+</dependency>
 ```
-TBD
+
+### Gradle users
+
+Add this dependency to your project's build file:
+
+```groovy
+  repositories {
+    mavenCentral()     // Needed if the 'opportify-sdk-client' jar has been published to maven central.
+    mavenLocal()       // Needed if the 'opportify-sdk-client' jar has been published to the local maven repo.
+  }
+
+  dependencies {
+     implementation "ai.opportify:opportify-sdk-client:1.0.0"
+  }
+```
+
+### Installation
+
+To install the API client library to your local Maven repository, simply execute:
+
+```shell
+mvn clean install
 ```
 
 ### Calling Email Insights
