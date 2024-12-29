@@ -78,11 +78,12 @@ public class Example {
     // Configure API key authorization: opportifyToken
     ApiKeyAuth opportifyToken = (ApiKeyAuth) defaultClient.getAuthentication("opportifyToken");
     opportifyToken.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //opportifyToken.setApiKeyPrefix("Token");
 
     EmailInsightsApi apiInstance = new EmailInsightsApi(defaultClient);
-    AnalyzeEmailRequest analyzeEmailRequest = new AnalyzeEmailRequest(); // AnalyzeEmailRequest | 
+    AnalyzeEmailRequest analyzeEmailRequest = new AnalyzeEmailRequest();
+    analyzeEmailRequest.email("email_to_validate@domain.com");
+    analyzeEmailRequest.enableAutoCorrection(true);
+    analyzeEmailRequest.enableAI(true); // only available for paid plans.
     try {
       AnalyzeEmail200Response result = apiInstance.analyzeEmail(analyzeEmailRequest);
       System.out.println(result);
@@ -116,13 +117,11 @@ public class Example {
       // Configure API key authorization: opportifyToken
       ApiKeyAuth opportifyToken = (ApiKeyAuth) defaultClient.getAuthentication("opportifyToken");
       opportifyToken.setApiKey("YOUR API KEY");
-      // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-      //opportifyToken.setApiKeyPrefix("Token");
 
       IpInsightsApi apiInstance = new IpInsightsApi(defaultClient);
       AnalyzeIpRequest analyzeIpRequest = new AnalyzeIpRequest();
-      analyzeIpRequest.ip("3.1.122.82");
-      analyzeIpRequest.enableAI(true);
+      analyzeIpRequest.ip("8.8.8.8"); 
+      analyzeIpRequest.enableAI(true); // only available for paid plans.
       try {
         AnalyzeIp200Response result = apiInstance.analyzeIp(analyzeIpRequest);
         System.out.println(result);
