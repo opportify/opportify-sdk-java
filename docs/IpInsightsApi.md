@@ -77,5 +77,6 @@ public class Example {
 | **200** | The IP analysis is successful. |  -  |
 | **400** | Bad Request. Either the request is improperly formatted, or the IP is invalid. |  -  |
 | **404** | IP address not found in any RIR database. |  -  |
+| **403** | Forbidden |  -  |
 | **500** | Internal server error. |  -  |
 

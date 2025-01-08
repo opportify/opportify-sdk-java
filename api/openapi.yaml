@@ -5,7 +5,7 @@ info:
     \ capabilities, this API is designed to empower your business to make informed,\
     \ data-driven decisions and effectively assess potential risks.\n\n### Base URL\n\
     Use the following base URL for all API requests:\n\n```plaintext\nhttps://api.opportify.ai/insights/v1/<service>/<endpoint>\n\
-    ```\n\n### Features\n- [**Email Insights:**](/docs/api-reference/email-insights)\n\
+    ```\n\n### Features\n- [**Email Insights:**](/docs/api/api-reference/email-insights)\n\
     \  - Validate email syntax.\n  - Identify email types (free, disposable, corporate\
     \ or unknown).\n  - Real time verifications:\n    - Reachable: Confirms if the\
     \ email domain has valid MX DNS records using DNS lookup.\n    - Deliverable:\
@@ -14,7 +14,7 @@ info:
     \  - Intelligent Error Correction: Automatically corrects well-known misspelled\
     \ email addresses.\n  - Risk Report: Provides an AI-driven normalized score (200-1000)\
     \ to evaluate email risk, using predefined thresholds.\n  \n  [Access Documentation\
-    \ >>](/docs/api-reference/email-insights)\n\n- [**IP Insights:**](/docs/api-reference/ip-insights)\n\
+    \ >>](/docs/api/api-reference/email-insights)\n\n- [**IP Insights:**](/docs/api/api-reference/ip-insights)\n\
     \  - Connection types: Detects connection types such as `wired`, `mobile`, `enterprise`,\
     \ `satellite`, `VPN`, `cloud-provider`, `open-proxy`, or `Tor`.\n  - Geo location:\
     \ Delivers detailed insights such as country, city, timezone, language preferences,\
@@ -25,19 +25,19 @@ info:
     \ Reports: Retrieves up-to-date blocklist statuses, active reports, and the latest\
     \ detections.\n  - Risk Report: Delivers an AI-driven normalized score (200-1000)\
     \ to evaluate IP risk, supported by predefined thresholds.\n\n  [Access Documentation\
-    \ >>](/docs/api-reference/ip-insights)\n\n### Authentication & Security\n- **API\
-    \ Key:** Access to the API requires an API key, which must be included in the\
-    \ request headers. Businesses can generate unlimited API keys directly from their\
-    \ account, offering flexibility and ease of use. \n- **ACL Rules:** Enhance security\
-    \ with Access Control Lists (ACL), allowing you to restrict API access from specific\
-    \ IP addresses or ranges. This feature provides an additional layer of protection\
-    \ by ensuring only authorized IPs can interact with the API.\n- **No Query Parameters:**\
-    \ As a precautionary measure, our API avoids the use of query parameters for all\
-    \ operations, including authentication and handling Personally Identifiable Information\
-    \ (PII). This approach minimizes security risks by preventing sensitive data from\
-    \ being exposed in access logs, browser history, cached URLs, debugging tools,\
-    \ or inadvertently shared URLs. All sensitive information is securely transmitted\
-    \ through headers or the request body.\n"
+    \ >>](/docs/api/api-reference/ip-insights)\n\n### Authentication & Security\n\
+    - **API Key:** Access to the API requires an API key, which must be included in\
+    \ the request headers. Businesses can generate unlimited API keys directly from\
+    \ their account, offering flexibility and ease of use. \n- **ACL Rules:** Enhance\
+    \ security with Access Control Lists (ACL), allowing you to restrict API access\
+    \ from specific IP addresses or ranges. This feature provides an additional layer\
+    \ of protection by ensuring only authorized IPs can interact with the API.\n-\
+    \ **No Query Parameters:** As a precautionary measure, our API avoids the use\
+    \ of query parameters for all operations, including authentication and handling\
+    \ Personally Identifiable Information (PII). This approach minimizes security\
+    \ risks by preventing sensitive data from being exposed in access logs, browser\
+    \ history, cached URLs, debugging tools, or inadvertently shared URLs. All sensitive\
+    \ information is securely transmitted through headers or the request body.\n"
   title: Opportify Insights API
   version: 1.0.0
   x-codegen-settings:
@@ -112,6 +112,12 @@ paths:
                 $ref: '#/components/schemas/analyzeEmail_400_response'
           description: "Bad Request. Either the request is improperly formatted, or\
             \ the email is invalid."
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/analyzeEmail_403_response'
+          description: Forbidden
         "500":
           content:
             application/json:
@@ -186,6 +192,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/analyzeIp_404_response'
           description: IP address not found in any RIR database.
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/analyzeEmail_403_response'
+          description: Forbidden
         "500":
           content:
             application/json:
@@ -948,6 +960,47 @@ components:
       properties:
         error:
           $ref: '#/components/schemas/analyzeEmail_400_response_error'
+      type: object
+    INVALID_PLAN:
+      example:
+        code: INVALID_PLAN
+        message: "Your plan does not support AI features, please upgrade your plan\
+          \ or set enableAI as false."
+      properties:
+        message:
+          example: "Your plan does not support AI features, please upgrade your plan\
+            \ or set enableAI as false."
+          type: string
+        code:
+          example: INVALID_PLAN
+          type: string
+      title: INVALID_PLAN
+      type: object
+    INVALID_TOKEN:
+      properties:
+        message:
+          example: "The token provided is either invalid, expired, or missing, preventing\
+            \ access to the resource."
+          type: string
+        code:
+          example: INVALID_TOKEN
+          type: string
+      title: INVALID_TOKEN
+      type: object
+    analyzeEmail_403_response_error:
+      oneOf:
+      - $ref: '#/components/schemas/INVALID_PLAN'
+      - $ref: '#/components/schemas/INVALID_TOKEN'
+      type: object
+    analyzeEmail_403_response:
+      example:
+        error:
+          code: INVALID_PLAN
+          message: "Your plan does not support AI features, please upgrade your plan\
+            \ or set enableAI as false."
+      properties:
+        error:
+          $ref: '#/components/schemas/analyzeEmail_403_response_error'
       type: object
     analyzeEmail_500_response_error:
       example:

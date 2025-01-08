@@ -1,7 +1,7 @@
 # opportify-sdk-client
 
 Opportify Insights API
-- API version: 1.0.0
+- API version: 0.1.0
   - Build date: 2024-12-26T14:40:56.270361-08:00[America/Los_Angeles]
   - Generator version: 7.10.0
 
@@ -78,8 +78,8 @@ Add this dependency to your project's POM:
 ```xml
 <dependency>
   <groupId>ai.opportify</groupId>
-  <artifactId>opportify-sdk-client</artifactId>
-  <version>1.0.0</version>
+  <artifactId>opportify-sdk-java</artifactId>
+  <version>0.1.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -90,12 +90,12 @@ Add this dependency to your project's build file:
 
 ```groovy
   repositories {
-    mavenCentral()     // Needed if the 'opportify-sdk-client' jar has been published to maven central.
-    mavenLocal()       // Needed if the 'opportify-sdk-client' jar has been published to the local maven repo.
+    mavenCentral()     // Needed if the 'opportify-sdk-java' jar has been published to maven central.
+    mavenLocal()       // Needed if the 'opportify-sdk-java' jar has been published to the local maven repo.
   }
 
   dependencies {
-     implementation "ai.opportify:opportify-sdk-client:1.0.0"
+     implementation "ai.opportify:opportify-sdk-java:0.1.0"
   }
 ```
 
@@ -109,7 +109,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/opportify-sdk-client-1.0.0.jar`
+* `target/opportify-sdk-java-0.1.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started

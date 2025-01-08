@@ -76,5 +76,6 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Email validation successful. |  -  |
 | **400** | Bad Request. Either the request is improperly formatted, or the email is invalid. |  -  |
+| **403** | Forbidden |  -  |
 | **500** | Internal server error. |  -  |
 
