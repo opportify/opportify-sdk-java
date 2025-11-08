@@ -20,7 +20,6 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
-import java.time.OffsetDateTime;
 import java.util.Arrays;
 
 import com.google.gson.Gson;
@@ -49,7 +48,7 @@ import ai.opportify.client.JSON;
 /**
  * Summary of the domain-level enrichment returned when enrichment is available and not opted out via &#x60;enableDomainEnrichment&#x60;.  The &#x60;ageYears&#x60; value is sourced from stored enrichment data to keep responses deterministic across subsequent calls. 
  */
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2025-11-08T12:20:24.871327-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2025-11-08T13:20:53.492255-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class EmailDomain {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -64,17 +63,17 @@ public class EmailDomain {
   public static final String SERIALIZED_NAME_CREATION_DATE = "creationDate";
   @SerializedName(SERIALIZED_NAME_CREATION_DATE)
   @javax.annotation.Nonnull
-  private OffsetDateTime creationDate;
+  private String creationDate;
 
   public static final String SERIALIZED_NAME_EXPIRATION_DATE = "expirationDate";
   @SerializedName(SERIALIZED_NAME_EXPIRATION_DATE)
   @javax.annotation.Nonnull
-  private OffsetDateTime expirationDate;
+  private String expirationDate;
 
   public static final String SERIALIZED_NAME_UPDATED_DATE = "updatedDate";
   @SerializedName(SERIALIZED_NAME_UPDATED_DATE)
   @javax.annotation.Nonnull
-  private OffsetDateTime updatedDate;
+  private String updatedDate;
 
   public static final String SERIALIZED_NAME_AGE_YEARS = "ageYears";
   @SerializedName(SERIALIZED_NAME_AGE_YEARS)
@@ -276,7 +275,7 @@ public class EmailDomain {
   }
 
 
-  public EmailDomain creationDate(@javax.annotation.Nonnull OffsetDateTime creationDate) {
+  public EmailDomain creationDate(@javax.annotation.Nonnull String creationDate) {
     this.creationDate = creationDate;
     return this;
   }
@@ -286,16 +285,16 @@ public class EmailDomain {
    * @return creationDate
    */
   @javax.annotation.Nonnull
-  public OffsetDateTime getCreationDate() {
+  public String getCreationDate() {
     return creationDate;
   }
 
-  public void setCreationDate(@javax.annotation.Nonnull OffsetDateTime creationDate) {
+  public void setCreationDate(@javax.annotation.Nonnull String creationDate) {
     this.creationDate = creationDate;
   }
 
 
-  public EmailDomain expirationDate(@javax.annotation.Nonnull OffsetDateTime expirationDate) {
+  public EmailDomain expirationDate(@javax.annotation.Nonnull String expirationDate) {
     this.expirationDate = expirationDate;
     return this;
   }
@@ -305,16 +304,16 @@ public class EmailDomain {
    * @return expirationDate
    */
   @javax.annotation.Nonnull
-  public OffsetDateTime getExpirationDate() {
+  public String getExpirationDate() {
     return expirationDate;
   }
 
-  public void setExpirationDate(@javax.annotation.Nonnull OffsetDateTime expirationDate) {
+  public void setExpirationDate(@javax.annotation.Nonnull String expirationDate) {
     this.expirationDate = expirationDate;
   }
 
 
-  public EmailDomain updatedDate(@javax.annotation.Nonnull OffsetDateTime updatedDate) {
+  public EmailDomain updatedDate(@javax.annotation.Nonnull String updatedDate) {
     this.updatedDate = updatedDate;
     return this;
   }
@@ -324,11 +323,11 @@ public class EmailDomain {
    * @return updatedDate
    */
   @javax.annotation.Nonnull
-  public OffsetDateTime getUpdatedDate() {
+  public String getUpdatedDate() {
     return updatedDate;
   }
 
-  public void setUpdatedDate(@javax.annotation.Nonnull OffsetDateTime updatedDate) {
+  public void setUpdatedDate(@javax.annotation.Nonnull String updatedDate) {
     this.updatedDate = updatedDate;
   }
 
@@ -638,6 +637,15 @@ public class EmailDomain {
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (!jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
+      if (!jsonObj.get("creationDate").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `creationDate` to be a primitive type in the JSON string but got `%s`", jsonObj.get("creationDate").toString()));
+      }
+      if (!jsonObj.get("expirationDate").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `expirationDate` to be a primitive type in the JSON string but got `%s`", jsonObj.get("expirationDate").toString()));
+      }
+      if (!jsonObj.get("updatedDate").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `updatedDate` to be a primitive type in the JSON string but got `%s`", jsonObj.get("updatedDate").toString()));
       }
       if (!jsonObj.get("registrar").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `registrar` to be a primitive type in the JSON string but got `%s`", jsonObj.get("registrar").toString()));

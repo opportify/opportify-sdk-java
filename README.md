@@ -2,7 +2,7 @@
 
 Opportify Insights API
 - API version: 0.6.0
-  - Build date: 2025-11-08 12:20:24 [America/Los_Angeles]
+  - Build date: 2025-11-08T13:20:53.492255-08:00[America/Los_Angeles]
   - Generator version: 7.12.0
 
 ## Overview
@@ -79,7 +79,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>ai.opportify</groupId>
   <artifactId>opportify-sdk-client</artifactId>
-  <version>0.6.0</version>
+  <version>1.0.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -95,7 +95,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "ai.opportify:opportify-sdk-client:0.6.0"
+     implementation "ai.opportify:opportify-sdk-client:1.0.0"
   }
 ```
 
@@ -109,7 +109,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/opportify-sdk-client-0.6.0.jar`
+* `target/opportify-sdk-client-1.0.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started

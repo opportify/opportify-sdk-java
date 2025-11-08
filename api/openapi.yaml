@@ -1033,19 +1033,16 @@ components:
           description: Domain creation timestamp (ISO 8601). Returns an empty string
             when enrichment data is unavailable.
           example: 2014-05-12T00:00:00Z
-          format: date-time
           type: string
         expirationDate:
           description: Domain expiration timestamp (ISO 8601). Returns an empty string
             when enrichment data is unavailable.
           example: 2026-05-11T23:59:59Z
-          format: date-time
           type: string
         updatedDate:
           description: Last WHOIS update timestamp (ISO 8601). Returns an empty string
             when enrichment data is unavailable.
           example: 2024-11-01T08:30:00Z
-          format: date-time
           type: string
         ageYears:
           default: 0
@@ -1312,7 +1309,6 @@ components:
         lastDetected:
           description: Date and time of the last blocklist detection. ISO 8601 standard.
           example: 2022-01-01T12:00:00Z
-          format: date-time
           type: string
       required:
       - activeReports
@@ -1941,13 +1937,11 @@ components:
         requestedAt:
           description: Timestamp when the export was requested (ISO 8601 format).
           example: 2025-11-07T10:30:00Z
-          format: date-time
           type: string
         updatedAt:
           description: Timestamp when the export status was last updated (ISO 8601
             format).
           example: 2025-11-07T10:32:15Z
-          format: date-time
           type: string
         downloadUrl:
           description: Pre-signed URL to download the export file. Only present when
@@ -1959,7 +1953,6 @@ components:
           description: Expiration timestamp for the download URL (ISO 8601 format).
             Only present when status is `COMPLETED`.
           example: 2025-11-07T14:32:15Z
-          format: date-time
           type: string
         resultSizeBytes:
           description: Size of the export file in bytes. Only present when status

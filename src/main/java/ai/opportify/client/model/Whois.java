@@ -53,7 +53,7 @@ import ai.opportify.client.JSON;
 /**
  * ### WHOIS Details This object provides sanitized and normalized WHOIS information for an IP address, including details about the Regional Internet Registry (RIR), Autonomous System Number (ASN), organization, and contact information.  #### Key Features: - **RIR Details**: Identify the Regional Internet Registry managing the IP address. - **ASN Information**: Obtain the Autonomous System Number details, including the ASN identifier, name, and description. - **Organization Data**: Retrieve organization details, such as the ID, name, type, description, address, country, and contact information. - **Contact Information**: Access contact details for abuse, admin, and tech issues, including the contact ID, type, name, address, phone, fax, and email.  ---  ### Response Elements 
  */
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2025-11-08T12:20:24.871327-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2025-11-08T13:20:53.492255-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class Whois {
   public static final String SERIALIZED_NAME_RIR = "rir";
   @SerializedName(SERIALIZED_NAME_RIR)

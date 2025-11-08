@@ -52,7 +52,7 @@ import ai.opportify.client.JSON;
 /**
  * Request body for creating a batch export.
  */
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2025-11-08T12:20:24.871327-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2025-11-08T13:20:53.492255-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class ExportRequest {
   /**
    * Output format for the export. If omitted, the server will use &#x60;csv&#x60; as the default format.

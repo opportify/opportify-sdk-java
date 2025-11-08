@@ -48,7 +48,7 @@ import ai.opportify.client.JSON;
 /**
  * Local-part parsing insights produced during analysis. The service always returns this payload; when a specific signal is unavailable, the corresponding value falls back to &#x60;false&#x60; or an empty string.  When &#x60;isNoReply&#x60; is &#x60;true&#x60;, the risk engine enforces a minimum &#x60;high&#x60; risk level and appends &#x60;noreply-detected&#x60; to &#x60;riskReport.baseAnalysis&#x60;. 
  */
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2025-11-08T12:20:24.871327-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2025-11-08T13:20:53.492255-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class AddressSignals {
   public static final String SERIALIZED_NAME_TAG_DETECTED = "tagDetected";
   @SerializedName(SERIALIZED_NAME_TAG_DETECTED)

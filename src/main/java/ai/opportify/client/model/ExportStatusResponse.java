@@ -21,7 +21,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.net.URI;
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -54,7 +53,7 @@ import ai.opportify.client.JSON;
 /**
  * Response containing the status and details of an export job.
  */
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2025-11-08T12:20:24.871327-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2025-11-08T13:20:53.492255-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class ExportStatusResponse {
   public static final String SERIALIZED_NAME_JOB_ID = "jobId";
   @SerializedName(SERIALIZED_NAME_JOB_ID)
@@ -197,12 +196,12 @@ public class ExportStatusResponse {
   public static final String SERIALIZED_NAME_REQUESTED_AT = "requestedAt";
   @SerializedName(SERIALIZED_NAME_REQUESTED_AT)
   @javax.annotation.Nonnull
-  private OffsetDateTime requestedAt;
+  private String requestedAt;
 
   public static final String SERIALIZED_NAME_UPDATED_AT = "updatedAt";
   @SerializedName(SERIALIZED_NAME_UPDATED_AT)
   @javax.annotation.Nonnull
-  private OffsetDateTime updatedAt;
+  private String updatedAt;
 
   public static final String SERIALIZED_NAME_DOWNLOAD_URL = "downloadUrl";
   @SerializedName(SERIALIZED_NAME_DOWNLOAD_URL)
@@ -212,7 +211,7 @@ public class ExportStatusResponse {
   public static final String SERIALIZED_NAME_EXPIRES_AT = "expiresAt";
   @SerializedName(SERIALIZED_NAME_EXPIRES_AT)
   @javax.annotation.Nullable
-  private OffsetDateTime expiresAt;
+  private String expiresAt;
 
   public static final String SERIALIZED_NAME_RESULT_SIZE_BYTES = "resultSizeBytes";
   @SerializedName(SERIALIZED_NAME_RESULT_SIZE_BYTES)
@@ -362,7 +361,7 @@ public class ExportStatusResponse {
   }
 
 
-  public ExportStatusResponse requestedAt(@javax.annotation.Nonnull OffsetDateTime requestedAt) {
+  public ExportStatusResponse requestedAt(@javax.annotation.Nonnull String requestedAt) {
     this.requestedAt = requestedAt;
     return this;
   }
@@ -372,16 +371,16 @@ public class ExportStatusResponse {
    * @return requestedAt
    */
   @javax.annotation.Nonnull
-  public OffsetDateTime getRequestedAt() {
+  public String getRequestedAt() {
     return requestedAt;
   }
 
-  public void setRequestedAt(@javax.annotation.Nonnull OffsetDateTime requestedAt) {
+  public void setRequestedAt(@javax.annotation.Nonnull String requestedAt) {
     this.requestedAt = requestedAt;
   }
 
 
-  public ExportStatusResponse updatedAt(@javax.annotation.Nonnull OffsetDateTime updatedAt) {
+  public ExportStatusResponse updatedAt(@javax.annotation.Nonnull String updatedAt) {
     this.updatedAt = updatedAt;
     return this;
   }
@@ -391,11 +390,11 @@ public class ExportStatusResponse {
    * @return updatedAt
    */
   @javax.annotation.Nonnull
-  public OffsetDateTime getUpdatedAt() {
+  public String getUpdatedAt() {
     return updatedAt;
   }
 
-  public void setUpdatedAt(@javax.annotation.Nonnull OffsetDateTime updatedAt) {
+  public void setUpdatedAt(@javax.annotation.Nonnull String updatedAt) {
     this.updatedAt = updatedAt;
   }
 
@@ -419,7 +418,7 @@ public class ExportStatusResponse {
   }
 
 
-  public ExportStatusResponse expiresAt(@javax.annotation.Nullable OffsetDateTime expiresAt) {
+  public ExportStatusResponse expiresAt(@javax.annotation.Nullable String expiresAt) {
     this.expiresAt = expiresAt;
     return this;
   }
@@ -429,11 +428,11 @@ public class ExportStatusResponse {
    * @return expiresAt
    */
   @javax.annotation.Nullable
-  public OffsetDateTime getExpiresAt() {
+  public String getExpiresAt() {
     return expiresAt;
   }
 
-  public void setExpiresAt(@javax.annotation.Nullable OffsetDateTime expiresAt) {
+  public void setExpiresAt(@javax.annotation.Nullable String expiresAt) {
     this.expiresAt = expiresAt;
   }
 
@@ -650,8 +649,17 @@ public class ExportStatusResponse {
       if (jsonObj.get("columns") != null && !jsonObj.get("columns").isJsonNull() && !jsonObj.get("columns").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `columns` to be an array in the JSON string but got `%s`", jsonObj.get("columns").toString()));
       }
+      if (!jsonObj.get("requestedAt").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `requestedAt` to be a primitive type in the JSON string but got `%s`", jsonObj.get("requestedAt").toString()));
+      }
+      if (!jsonObj.get("updatedAt").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `updatedAt` to be a primitive type in the JSON string but got `%s`", jsonObj.get("updatedAt").toString()));
+      }
       if ((jsonObj.get("downloadUrl") != null && !jsonObj.get("downloadUrl").isJsonNull()) && !jsonObj.get("downloadUrl").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `downloadUrl` to be a primitive type in the JSON string but got `%s`", jsonObj.get("downloadUrl").toString()));
+      }
+      if ((jsonObj.get("expiresAt") != null && !jsonObj.get("expiresAt").isJsonNull()) && !jsonObj.get("expiresAt").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `expiresAt` to be a primitive type in the JSON string but got `%s`", jsonObj.get("expiresAt").toString()));
       }
       if ((jsonObj.get("errorCode") != null && !jsonObj.get("errorCode").isJsonNull()) && !jsonObj.get("errorCode").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `errorCode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("errorCode").toString()));

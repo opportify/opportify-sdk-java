@@ -14,10 +14,10 @@ Response containing the status and details of an export job.
 |**format** | [**FormatEnum**](#FormatEnum) | The output format of the export. |  |
 |**filters** | [**List&lt;ExportFilter&gt;**](ExportFilter.md) | List of filters applied to the export. |  [optional] |
 |**columns** | **List&lt;String&gt;** | List of columns included in the export. |  [optional] |
-|**requestedAt** | **OffsetDateTime** | Timestamp when the export was requested (ISO 8601 format). |  |
-|**updatedAt** | **OffsetDateTime** | Timestamp when the export status was last updated (ISO 8601 format). |  |
+|**requestedAt** | **String** | Timestamp when the export was requested (ISO 8601 format). |  |
+|**updatedAt** | **String** | Timestamp when the export status was last updated (ISO 8601 format). |  |
 |**downloadUrl** | **URI** | Pre-signed URL to download the export file. Only present when status is &#x60;COMPLETED&#x60;. |  [optional] |
-|**expiresAt** | **OffsetDateTime** | Expiration timestamp for the download URL (ISO 8601 format). Only present when status is &#x60;COMPLETED&#x60;. |  [optional] |
+|**expiresAt** | **String** | Expiration timestamp for the download URL (ISO 8601 format). Only present when status is &#x60;COMPLETED&#x60;. |  [optional] |
 |**resultSizeBytes** | **Integer** | Size of the export file in bytes. Only present when status is &#x60;COMPLETED&#x60;. |  [optional] |
 |**errorCode** | **String** | Error code if the export failed. Only present when status is &#x60;FAILED&#x60;. |  [optional] |
 |**errorMessage** | **String** | Error message if the export failed. Only present when status is &#x60;FAILED&#x60;. |  [optional] |

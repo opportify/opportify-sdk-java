@@ -20,7 +20,6 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
-import java.time.OffsetDateTime;
 import java.util.Arrays;
 
 import com.google.gson.Gson;
@@ -49,7 +48,7 @@ import ai.opportify.client.JSON;
 /**
  * ### Block Listed Details  The &#x60;BlockListed&#x60; object provides detailed information about whether an IP address is listed in known blocklists and related data.   ---  #### Key Highlights: - **Continuous Monitoring**: We constantly monitor and update blocklist sources to ensure the information is accurate and reflects the latest active reports. - **Expanding Coverage**: Our system incorporates a wide range of trusted sources, with continuous efforts to onboard additional blocklist data providers.  ---  ### Response Elements 
  */
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2025-11-08T12:20:24.871327-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2025-11-08T13:20:53.492255-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class BlockListed {
   public static final String SERIALIZED_NAME_IS_BLOCK_LISTED = "isBlockListed";
   @SerializedName(SERIALIZED_NAME_IS_BLOCK_LISTED)
@@ -69,7 +68,7 @@ public class BlockListed {
   public static final String SERIALIZED_NAME_LAST_DETECTED = "lastDetected";
   @SerializedName(SERIALIZED_NAME_LAST_DETECTED)
   @javax.annotation.Nullable
-  private OffsetDateTime lastDetected;
+  private String lastDetected;
 
   public BlockListed() {
   }
@@ -131,7 +130,7 @@ public class BlockListed {
   }
 
 
-  public BlockListed lastDetected(@javax.annotation.Nullable OffsetDateTime lastDetected) {
+  public BlockListed lastDetected(@javax.annotation.Nullable String lastDetected) {
     this.lastDetected = lastDetected;
     return this;
   }
@@ -141,11 +140,11 @@ public class BlockListed {
    * @return lastDetected
    */
   @javax.annotation.Nullable
-  public OffsetDateTime getLastDetected() {
+  public String getLastDetected() {
     return lastDetected;
   }
 
-  public void setLastDetected(@javax.annotation.Nullable OffsetDateTime lastDetected) {
+  public void setLastDetected(@javax.annotation.Nullable String lastDetected) {
     this.lastDetected = lastDetected;
   }
 
@@ -241,6 +240,9 @@ public class BlockListed {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("lastDetected") != null && !jsonObj.get("lastDetected").isJsonNull()) && !jsonObj.get("lastDetected").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `lastDetected` to be a primitive type in the JSON string but got `%s`", jsonObj.get("lastDetected").toString()));
+      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

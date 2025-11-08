@@ -40,7 +40,6 @@ import ai.opportify.client.model.BatchAnalyzeEmails429Response;
 import ai.opportify.client.model.BatchAnalyzeIps202Response;
 import ai.opportify.client.model.BatchAnalyzeIps400Response;
 import ai.opportify.client.model.BatchAnalyzeIpsRequest;
-import ai.opportify.client.model.BatchAnalyzeIpsRequest1;
 import ai.opportify.client.model.CreateEmailBatchExport400Response;
 import ai.opportify.client.model.CreateEmailBatchExport403Response;
 import ai.opportify.client.model.CreateEmailBatchExport404Response;
