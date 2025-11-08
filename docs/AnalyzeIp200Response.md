@@ -17,7 +17,7 @@
 |**whois** | [**Whois**](Whois.md) |  |  |
 |**trustedProvider** | [**TrustedProvider**](TrustedProvider.md) |  |  |
 |**blocklisted** | [**BlockListed**](BlockListed.md) |  |  |
-|**riskReport** | [**RiskReport**](RiskReport.md) |  |  |
+|**riskReport** | [**RiskReportIp**](RiskReportIp.md) |  |  |
 
 
 

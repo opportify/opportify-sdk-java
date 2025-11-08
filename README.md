@@ -1,9 +1,9 @@
-# opportify-sdk-java
+# opportify-sdk-client
 
 Opportify Insights API
-- API version: 0.1.0
-  - Build date: 2025-01-07T17:36:50.096636-08:00[America/Los_Angeles]
-  - Generator version: 7.10.0
+- API version: 0.6.0
+  - Build date: 2025-11-08 12:20:24 [America/Los_Angeles]
+  - Generator version: 7.12.0
 
 ## Overview
 
@@ -19,7 +19,7 @@ https://api.opportify.ai/insights/v1/<service>/<endpoint>
 ### Features
 - [**Email Insights:**](/docs/api/api-reference/email-insights)
   - Validate email syntax.
-  - Identify email types (free, disposable, corporate or unknown).
+  - Identify email types (free, disposable, private or unknown).
   - Real time verifications:
     - Reachable: Confirms if the email domain has valid MX DNS records using DNS lookup.
     - Deliverable: Simulates an SMTP handshake to check if the email address exists and is deliverable.
@@ -78,8 +78,8 @@ Add this dependency to your project's POM:
 ```xml
 <dependency>
   <groupId>ai.opportify</groupId>
-  <artifactId>opportify-sdk-java</artifactId>
-  <version>0.1.0</version>
+  <artifactId>opportify-sdk-client</artifactId>
+  <version>0.6.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -90,12 +90,12 @@ Add this dependency to your project's build file:
 
 ```groovy
   repositories {
-    mavenCentral()     // Needed if the 'opportify-sdk-java' jar has been published to maven central.
-    mavenLocal()       // Needed if the 'opportify-sdk-java' jar has been published to the local maven repo.
+    mavenCentral()     // Needed if the 'opportify-sdk-client' jar has been published to maven central.
+    mavenLocal()       // Needed if the 'opportify-sdk-client' jar has been published to the local maven repo.
   }
 
   dependencies {
-     implementation "ai.opportify:opportify-sdk-java:0.1.0"
+     implementation "ai.opportify:opportify-sdk-client:0.6.0"
   }
 ```
 
@@ -109,7 +109,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/opportify-sdk-java-0.1.0.jar`
+* `target/opportify-sdk-client-0.6.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -161,41 +161,84 @@ All URIs are relative to *https://api.opportify.ai/insights/v1*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *EmailInsightsApi* | [**analyzeEmail**](docs/EmailInsightsApi.md#analyzeEmail) | **POST** /email/analyze | Analyze Email
+*EmailInsightsApi* | [**batchAnalyzeEmails**](docs/EmailInsightsApi.md#batchAnalyzeEmails) | **POST** /email/batch | Batch Analyze Emails
+*EmailInsightsApi* | [**createEmailBatchExport**](docs/EmailInsightsApi.md#createEmailBatchExport) | **POST** /email/batch/{jobId}/exports | Create Email Batch Export
+*EmailInsightsApi* | [**getEmailBatchExportStatus**](docs/EmailInsightsApi.md#getEmailBatchExportStatus) | **GET** /email/batch/{jobId}/exports/{exportId} | Get Email Batch Export Status
+*EmailInsightsApi* | [**getEmailBatchStatus**](docs/EmailInsightsApi.md#getEmailBatchStatus) | **GET** /email/batch/{jobId} | Get Email Batch Status
 *IpInsightsApi* | [**analyzeIp**](docs/IpInsightsApi.md#analyzeIp) | **POST** /ip/analyze | Analyze IP
+*IpInsightsApi* | [**batchAnalyzeIps**](docs/IpInsightsApi.md#batchAnalyzeIps) | **POST** /ip/batch | Batch Analyze IPs
+*IpInsightsApi* | [**createIpBatchExport**](docs/IpInsightsApi.md#createIpBatchExport) | **POST** /ip/batch/{jobId}/exports | Create IP Batch Export
+*IpInsightsApi* | [**getIpBatchExportStatus**](docs/IpInsightsApi.md#getIpBatchExportStatus) | **GET** /ip/batch/{jobId}/exports/{exportId} | Get IP Batch Export Status
+*IpInsightsApi* | [**getIpBatchStatus**](docs/IpInsightsApi.md#getIpBatchStatus) | **GET** /ip/batch/{jobId} | Get IP Batch Status
 
 
 ## Documentation for Models
 
  - [AbuseContact](docs/AbuseContact.md)
+ - [AddressSignals](docs/AddressSignals.md)
  - [AdminContact](docs/AdminContact.md)
  - [AnalyzeEmail200Response](docs/AnalyzeEmail200Response.md)
  - [AnalyzeEmail400Response](docs/AnalyzeEmail400Response.md)
- - [AnalyzeEmail400ResponseError](docs/AnalyzeEmail400ResponseError.md)
  - [AnalyzeEmail403Response](docs/AnalyzeEmail403Response.md)
- - [AnalyzeEmail403ResponseError](docs/AnalyzeEmail403ResponseError.md)
  - [AnalyzeEmail500Response](docs/AnalyzeEmail500Response.md)
- - [AnalyzeEmail500ResponseError](docs/AnalyzeEmail500ResponseError.md)
  - [AnalyzeEmailRequest](docs/AnalyzeEmailRequest.md)
  - [AnalyzeIp200Response](docs/AnalyzeIp200Response.md)
  - [AnalyzeIp400Response](docs/AnalyzeIp400Response.md)
- - [AnalyzeIp400ResponseError](docs/AnalyzeIp400ResponseError.md)
- - [AnalyzeIp404Response](docs/AnalyzeIp404Response.md)
- - [AnalyzeIp500Response](docs/AnalyzeIp500Response.md)
  - [AnalyzeIpRequest](docs/AnalyzeIpRequest.md)
  - [Asn](docs/Asn.md)
+ - [BatchAnalyzeEmails202Response](docs/BatchAnalyzeEmails202Response.md)
+ - [BatchAnalyzeEmails400Response](docs/BatchAnalyzeEmails400Response.md)
+ - [BatchAnalyzeEmails401Response](docs/BatchAnalyzeEmails401Response.md)
+ - [BatchAnalyzeEmails402Response](docs/BatchAnalyzeEmails402Response.md)
+ - [BatchAnalyzeEmails403Response](docs/BatchAnalyzeEmails403Response.md)
+ - [BatchAnalyzeEmails413Response](docs/BatchAnalyzeEmails413Response.md)
+ - [BatchAnalyzeEmails429Response](docs/BatchAnalyzeEmails429Response.md)
+ - [BatchAnalyzeEmailsRequest](docs/BatchAnalyzeEmailsRequest.md)
+ - [BatchAnalyzeIps202Response](docs/BatchAnalyzeIps202Response.md)
+ - [BatchAnalyzeIps400Response](docs/BatchAnalyzeIps400Response.md)
+ - [BatchAnalyzeIpsRequest](docs/BatchAnalyzeIpsRequest.md)
  - [BlockListed](docs/BlockListed.md)
+ - [CreateEmailBatchExport400Response](docs/CreateEmailBatchExport400Response.md)
+ - [CreateEmailBatchExport403Response](docs/CreateEmailBatchExport403Response.md)
+ - [CreateEmailBatchExport404Response](docs/CreateEmailBatchExport404Response.md)
+ - [CreateEmailBatchExport409Response](docs/CreateEmailBatchExport409Response.md)
+ - [EXPORTNOTFOUND](docs/EXPORTNOTFOUND.md)
  - [EmailDNS](docs/EmailDNS.md)
+ - [EmailDomain](docs/EmailDomain.md)
+ - [ExportCreatedResponse](docs/ExportCreatedResponse.md)
+ - [ExportFilter](docs/ExportFilter.md)
+ - [ExportRequest](docs/ExportRequest.md)
+ - [ExportStatusResponse](docs/ExportStatusResponse.md)
+ - [FORBIDDEN](docs/FORBIDDEN.md)
  - [Geo](docs/Geo.md)
+ - [GetEmailBatchExportStatus400Response](docs/GetEmailBatchExportStatus400Response.md)
+ - [GetEmailBatchExportStatus404Response](docs/GetEmailBatchExportStatus404Response.md)
+ - [GetEmailBatchStatus200Response](docs/GetEmailBatchStatus200Response.md)
+ - [GetEmailBatchStatus200ResponseDownloadUrls](docs/GetEmailBatchStatus200ResponseDownloadUrls.md)
+ - [GetEmailBatchStatus404Response](docs/GetEmailBatchStatus404Response.md)
+ - [GetIpBatchStatus200Response](docs/GetIpBatchStatus200Response.md)
  - [INTERNALERROR](docs/INTERNALERROR.md)
+ - [INTERNALERROR1](docs/INTERNALERROR1.md)
+ - [INVALIDDATA](docs/INVALIDDATA.md)
+ - [INVALIDDATA1](docs/INVALIDDATA1.md)
  - [INVALIDEMAIL](docs/INVALIDEMAIL.md)
  - [INVALIDPLAN](docs/INVALIDPLAN.md)
+ - [INVALIDPLAN1](docs/INVALIDPLAN1.md)
  - [INVALIDTOKEN](docs/INVALIDTOKEN.md)
  - [IPVALIDATIONFAILED](docs/IPVALIDATIONFAILED.md)
+ - [JOBNOTFOUND](docs/JOBNOTFOUND.md)
+ - [JOBNOTREADY](docs/JOBNOTREADY.md)
  - [MALFORMEDREQUEST](docs/MALFORMEDREQUEST.md)
  - [MALFORMEDREQUEST1](docs/MALFORMEDREQUEST1.md)
+ - [MALFORMEDREQUEST2](docs/MALFORMEDREQUEST2.md)
+ - [MALFORMEDREQUEST3](docs/MALFORMEDREQUEST3.md)
+ - [MANIFESTNOTAVAILABLE](docs/MANIFESTNOTAVAILABLE.md)
  - [NOTFOUND](docs/NOTFOUND.md)
  - [Organization](docs/Organization.md)
- - [RiskReport](docs/RiskReport.md)
+ - [QUOTAEXCEEDED](docs/QUOTAEXCEEDED.md)
+ - [RiskReportEmail](docs/RiskReportEmail.md)
+ - [RiskReportIp](docs/RiskReportIp.md)
+ - [TOOMANYREQUESTS](docs/TOOMANYREQUESTS.md)
  - [TechContact](docs/TechContact.md)
  - [TrustedProvider](docs/TrustedProvider.md)
  - [Whois](docs/Whois.md)

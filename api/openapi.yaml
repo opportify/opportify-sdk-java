@@ -6,7 +6,7 @@ info:
     \ data-driven decisions and effectively assess potential risks.\n\n### Base URL\n\
     Use the following base URL for all API requests:\n\n```plaintext\nhttps://api.opportify.ai/insights/v1/<service>/<endpoint>\n\
     ```\n\n### Features\n- [**Email Insights:**](/docs/api/api-reference/email-insights)\n\
-    \  - Validate email syntax.\n  - Identify email types (free, disposable, corporate\
+    \  - Validate email syntax.\n  - Identify email types (free, disposable, private\
     \ or unknown).\n  - Real time verifications:\n    - Reachable: Confirms if the\
     \ email domain has valid MX DNS records using DNS lookup.\n    - Deliverable:\
     \ Simulates an SMTP handshake to check if the email address exists and is deliverable.\n\
@@ -57,10 +57,10 @@ servers:
   url: https://api.opportify.ai/insights/v1
 tags:
 - description: |
-    **Email Insights** empower businesses to validate email addresses, verify their deliverability in real time, and correct common misspellings with precision. With advanced risk assessment powered by AI, this feature ensures secure and reliable email interactions.
+    **Email Insights** empower businesses to validate email addresses, verify their deliverability in real time, and correct common misspellings with precision. With advanced risk assessment powered by AI, this feature ensures secure and reliable email interactions. Email Insights supports both single email analysis and batch processing for large volumes of data.
   name: Email Insights
 - description: |
-    **IP Insights** deliver comprehensive analysis of IP addresses, including geolocation details, connection identification, and blocklist status. Backed by AI-driven risk scoring, it helps your business to identify threats and make confident, data-driven decisions.
+    **IP Insights** deliver comprehensive analysis of IP addresses, including geolocation details, connection identification, and blocklist status. Backed by AI-driven risk scoring, it helps your business to identify threats and make confident, data-driven decisions. IP Insights supports both single IP analysis and batch processing for large volumes of data.
   name: IP Insights
 paths:
   /email/analyze:
@@ -68,29 +68,31 @@ paths:
       description: "The **Analyze Email** endpoint validates an email address and\
         \ returns its deliverability status, provider details, and potential corrections.\
         \ This endpoint is ideal for ensuring accurate email data before usage.\n\n\
-        ### Features:\n- Validate email syntax.\n- Identify email types (free, disposable,\
-        \ corporate or unknown).\n- Real time verifications:\n  - Reachable: Confirms\
-        \ if the email domain has valid MX DNS records using DNS lookup.\n  - Deliverable:\
-        \ Simulates an SMTP handshake to check if the email address exists and is\
-        \ deliverable.\n  - Catch-All: Detects if the domain accepts all emails (catch-all\
-        \ configuration).\n- Intelligent Error Correction: Automatically corrects\
-        \ well-known misspelled email addresses.\n- Risk Report: Provides an AI-driven\
-        \ normalized score (200-1000) to evaluate email risk, using predefined thresholds.\n\
+        ### Features:\n- **Syntax intelligence:** Validates RFC compliance, normalizes\
+        \ casing, and suggests corrections for typo-prone domains.\n- **Provider &\
+        \ classification:** Identifies the provider slug, detects private/free/disposable\
+        \ usage, and flags role or no-reply inboxes.\n- **Live deliverability checks:**\
+        \ Performs DNS reachability, SMTP handshakes, catch-all detection, and mailbox-full\
+        \ assessments in real time.\n- **AI risk reporting:** Returns a normalized\
+        \ 200–1000 score with the top weighted reason codes and guardrails for high-risk\
+        \ findings.\n- **Domain enrichment & DNS snapshot:** Surfaces registrar, age,\
+        \ security posture, and priority-ordered MX records when enrichment is enabled.\n\
         \n### Example Request Body:\n```json\n{\n  \"email\": \"my-email@company.com\"\
-        ,\n  \"enableAI\": true,\n  \"enableAutoCorrection\": true\n}\n```\n\n###\
-        \ Authentication & Security\n- **API Key:** Access to the API requires an\
-        \ API key, which must be included in the request headers. Businesses can generate\
-        \ unlimited API keys directly from their account, offering flexibility and\
-        \ ease of use. \n- **ACL Rules:** Enhance security with Access Control Lists\
-        \ (ACL), allowing you to restrict API access from specific IP addresses or\
-        \ ranges. This feature provides an additional layer of protection by ensuring\
-        \ only authorized IPs can interact with the API.\n- **No Query Parameters:**\
-        \ As a precautionary measure, our API avoids the use of query parameters for\
-        \ all operations, including authentication and handling Personally Identifiable\
-        \ Information (PII). This approach minimizes security risks by preventing\
-        \ sensitive data from being exposed in access logs, browser history, cached\
-        \ URLs, debugging tools, or inadvertently shared URLs. All sensitive information\
-        \ is securely transmitted through headers or the request body.\n"
+        ,\n  \"enableAI\": true,\n  \"enableAutoCorrection\": true,\n  \"enableDomainEnrichment\"\
+        : true\n}\n```\n\n### Authentication & Security\n- **API Key:** Access to\
+        \ the API requires an API key, which must be included in the request headers.\
+        \ Businesses can generate unlimited API keys directly from their account,\
+        \ offering flexibility and ease of use. \n- **ACL Rules:** Enhance security\
+        \ with Access Control Lists (ACL), allowing you to restrict API access from\
+        \ specific IP addresses or ranges. This feature provides an additional layer\
+        \ of protection by ensuring only authorized IPs can interact with the API.\n\
+        - **No Query Parameters:** As a precautionary measure, our API avoids the\
+        \ use of query parameters for all operations, including authentication and\
+        \ handling Personally Identifiable Information (PII). This approach minimizes\
+        \ security risks by preventing sensitive data from being exposed in access\
+        \ logs, browser history, cached URLs, debugging tools, or inadvertently shared\
+        \ URLs. All sensitive information is securely transmitted through headers\
+        \ or the request body.\n"
       operationId: analyzeEmail
       requestBody:
         content:
@@ -117,7 +119,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/analyzeEmail_403_response'
-          description: Forbidden
+          description: Forbidden. Authorization errors from the API.
         "500":
           content:
             application/json:
@@ -190,19 +192,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/analyzeIp_404_response'
+                $ref: '#/components/schemas/NOT_FOUND'
           description: IP address not found in any RIR database.
         "403":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/analyzeEmail_403_response'
-          description: Forbidden
+          description: Forbidden. Authorization errors from the API.
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/analyzeIp_500_response'
+                $ref: '#/components/schemas/INTERNAL_ERROR_1'
           description: Internal server error.
       security:
       - opportifyToken: []
@@ -212,30 +214,934 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /email/batch:
+    post:
+      description: |
+        The **Batch Analyze Emails** endpoint enables processing of large volumes of email addresses asynchronously. This endpoint accepts various input formats and returns a job ID for tracking the analysis progress.
+
+        ### Features:
+        - **Asynchronous Processing**: Submit large lists of emails for background processing.
+        - **Multiple Input Formats**: Submit data as JSON arrays, tabular CSV/TSV/XLSX uploads, or line-separated text.
+        - **Job Tracking**: Monitor processing status using the returned job ID.
+
+        ### Example JSON Request:
+        ```json
+        {
+          "emails": [
+            "first-email@domain.com",
+            "second-email@domain.com"
+          ],
+          "name": "my list of emails",
+          "enableAI": true,
+          "enableAutoCorrection": true
+        }
+        ```
+
+        ### Authentication & Security
+        - **API Key:** Access requires an API key in the request headers.
+        - **ACL Rules:** Optional IP-based access restrictions for enhanced security.
+        - **No Query Parameters:** All data is transmitted securely through headers or request body.
+
+        ### Payload Limits
+        - Maximum payload size: 3MB
+      operationId: batchAnalyzeEmails
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/batchAnalyzeEmails_request'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/batchAnalyzeEmails_request_1'
+          text/plain:
+            schema:
+              description: Plain text (.txt) with one email address per line. For
+                text/plain the `enableAI` and `enableAutoCorrection` are set to true
+                by default.
+              type: string
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/batchAnalyzeEmails_202_response'
+          description: Batch job accepted for processing.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/batchAnalyzeEmails_400_response'
+          description: "Bad Request. Either the request is improperly formatted, or\
+            \ contains invalid data."
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/batchAnalyzeEmails_401_response'
+          description: Unauthorized. Invalid or missing authentication token.
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/batchAnalyzeEmails_402_response'
+          description: Plan limitations or quota exceeded.
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/batchAnalyzeEmails_403_response'
+          description: Forbidden. Authorization errors from the API.
+        "413":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/batchAnalyzeEmails_413_response'
+          description: Payload Too Large. The request exceeds the 3MB size limit.
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/batchAnalyzeEmails_429_response'
+          description: Too Many Requests. Rate limit exceeded.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/analyzeEmail_500_response'
+          description: Internal server error.
+      security:
+      - opportifyToken: []
+      summary: Batch Analyze Emails
+      tags:
+      - Email Insights
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /email/batch/{jobId}:
+    get:
+      description: |
+        The **Get Email Batch Status** endpoint allows you to retrieve the current status of a previously submitted batch processing job. Use this endpoint to track the progress of your batch email analysis request and retrieve results when processing is complete.
+
+        ### Response Information:
+        - When status is `QUEUED`: The job is in the processing queue waiting to be processed.
+        - When status is `PROCESSING`: The job is actively being processed.
+        - When status is `COMPLETED`: The job has finished successfully.
+        - When status is `ERROR`: An issue occurred during processing; check the statusDescription for details.
+      operationId: getEmailBatchStatus
+      parameters:
+      - description: The unique identifier of the batch job to retrieve status for.
+        example: uuid-12345-67890
+        explode: false
+        in: path
+        name: jobId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getEmailBatchStatus_200_response'
+          description: Successfully retrieved batch job status.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/batchAnalyzeEmails_401_response'
+          description: Unauthorized. Invalid or missing authentication token.
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/batchAnalyzeEmails_402_response'
+          description: Plan limitations or quota exceeded.
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/batchAnalyzeEmails_403_response'
+          description: Forbidden. Authorization errors from the API.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getEmailBatchStatus_404_response'
+          description: Job not found. The specified jobId doesn't exist or has expired.
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/batchAnalyzeEmails_429_response'
+          description: Too Many Requests. Rate limit exceeded.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/analyzeEmail_500_response'
+          description: Internal server error.
+      security:
+      - opportifyToken: []
+      summary: Get Email Batch Status
+      tags:
+      - Email Insights
+      x-accepts:
+      - application/json
+  /ip/batch:
+    post:
+      description: |
+        The **Batch Analyze IPs** endpoint enables processing of large volumes of IP addresses asynchronously. This endpoint accepts various input formats and returns a job ID for tracking the analysis progress.
+
+        ### Features:
+        - **Asynchronous Processing**: Submit large lists of IP addresses for background processing.
+        - **Multiple Input Formats**: Submit data as JSON arrays, tabular CSV/TSV/XLSX uploads, or line-separated text.
+        - **Job Tracking**: Monitor processing status using the returned job ID.
+
+        ### Example JSON Request:
+        ```json
+        {
+          "ips": [
+            "192.168.0.1",
+            "10.0.0.1",
+            "172.16.0.1"
+          ],
+          "name": "my list of IPs",
+          "enableAI": true
+        }
+        ```
+
+        ### Authentication & Security
+        - **API Key:** Access requires an API key in the request headers.
+        - **ACL Rules:** Optional IP-based access restrictions for enhanced security.
+        - **No Query Parameters:** All data is transmitted securely through headers or request body.
+
+        ### Payload Limits
+        - Maximum payload size: 3MB
+      operationId: batchAnalyzeIps
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/batchAnalyzeIps_request'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/batchAnalyzeIps_request_1'
+          text/plain:
+            schema:
+              description: Plain text (.txt) with one IP address per line. For text/plain
+                the `enableAI` is set to true by default.
+              type: string
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/batchAnalyzeIps_202_response'
+          description: Batch job accepted for processing.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/batchAnalyzeIps_400_response'
+          description: "Bad Request. Either the request is improperly formatted, or\
+            \ contains invalid IP addresses."
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/batchAnalyzeEmails_401_response'
+          description: Unauthorized. Invalid or missing authentication token.
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/batchAnalyzeEmails_402_response'
+          description: Plan limitations or quota exceeded.
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/batchAnalyzeEmails_403_response'
+          description: Forbidden. Authorization errors from the API.
+        "413":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/batchAnalyzeEmails_413_response'
+          description: Payload Too Large. The request exceeds the 3MB size limit.
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/batchAnalyzeEmails_429_response'
+          description: Too Many Requests. Rate limit exceeded.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/analyzeEmail_500_response'
+          description: Internal server error.
+      security:
+      - opportifyToken: []
+      summary: Batch Analyze IPs
+      tags:
+      - IP Insights
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /ip/batch/{jobId}:
+    get:
+      description: |
+        The **Get IP Batch Status** endpoint allows you to retrieve the current status of a previously submitted batch processing job. Use this endpoint to track the progress of your batch IP analysis request and retrieve results when processing is complete.
+
+        ### Response Information:
+        - When status is `QUEUED`: The job is in the processing queue waiting to be processed.
+        - When status is `PROCESSING`: The job is actively being processed.
+        - When status is `COMPLETED`: The job has finished successfully.
+        - When status is `ERROR`: An issue occurred during processing; check the statusDescription for details.
+      operationId: getIpBatchStatus
+      parameters:
+      - description: The unique identifier of the batch job to retrieve status for.
+        example: uuid-12345-67890
+        explode: false
+        in: path
+        name: jobId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getIpBatchStatus_200_response'
+          description: Successfully retrieved batch job status.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/batchAnalyzeEmails_401_response'
+          description: Unauthorized. Invalid or missing authentication token.
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/batchAnalyzeEmails_402_response'
+          description: Plan limitations or quota exceeded.
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/batchAnalyzeEmails_403_response'
+          description: Forbidden. Authorization errors from the API.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getEmailBatchStatus_404_response'
+          description: Job not found. The specified jobId doesn't exist or has expired.
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/batchAnalyzeEmails_429_response'
+          description: Too Many Requests. Rate limit exceeded.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/analyzeEmail_500_response'
+          description: Internal server error.
+      security:
+      - opportifyToken: []
+      summary: Get IP Batch Status
+      tags:
+      - IP Insights
+      x-accepts:
+      - application/json
+  /email/batch/{jobId}/exports:
+    post:
+      description: |
+        The **Create Email Batch Export** endpoint allows you to request a custom export of completed batch analysis results. You can apply filters, select specific columns, and choose the output format (CSV or JSON).
+
+        ### Features:
+        - **Format Options**: Export results as CSV or JSON
+        - **Filtering**: Apply filters on any field in the response data
+        - **Column Selection**: Choose specific fields to include in the export
+        - **Async Processing**: Export requests are processed asynchronously
+
+        ### Filter Syntax:
+        - **String filters**: Exact match, comma-separated values, or arrays
+        - **Numeric filters**: Exact values, arrays, or range objects with `min`/`max`
+        - **Nested fields**: Use dot notation (e.g., `riskReport.score`)
+
+        ### Example Request:
+        ```json
+        {
+          "exportType": "csv",
+          "filters": {
+            "isDeliverable": "yes",
+            "riskReport.score": { "min": 0, "max": 400 },
+            "emailProvider": ["gmail", "yahoo", "outlook"]
+          },
+          "columns": [
+            "emailAddress",
+            "emailProvider",
+            "riskReport.score",
+            "isDeliverable"
+          ]
+        }
+        ```
+      operationId: createEmailBatchExport
+      parameters:
+      - description: The unique identifier of the completed batch job.
+        example: 84d22c8b-2cb6-4606-bfb1-361244a097e4
+        explode: false
+        in: path
+        name: jobId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportRequest'
+        required: false
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportCreatedResponse'
+          description: Export request accepted for processing.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createEmailBatchExport_400_response'
+          description: Bad Request. Invalid request parameters or body.
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createEmailBatchExport_403_response'
+          description: Forbidden. Access denied to this job.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createEmailBatchExport_404_response'
+          description: Job not found.
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createEmailBatchExport_409_response'
+          description: Conflict. Job not ready for export.
+      security:
+      - opportifyToken: []
+      summary: Create Email Batch Export
+      tags:
+      - Email Insights
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /email/batch/{jobId}/exports/{exportId}:
+    get:
+      description: |
+        The **Get Email Batch Export Status** endpoint retrieves the status and download URL for a previously requested export job.
+
+        ### Export Status Values:
+        - `QUEUED`: Export request received, waiting for processing
+        - `PROCESSING`: Worker is filtering and generating the export file
+        - `COMPLETED`: Export ready, `downloadUrl` available
+        - `FAILED`: Export failed, check `errorCode` and `errorMessage`
+      operationId: getEmailBatchExportStatus
+      parameters:
+      - description: The unique identifier of the batch job.
+        example: 84d22c8b-2cb6-4606-bfb1-361244a097e4
+        explode: false
+        in: path
+        name: jobId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: The unique identifier of the export job.
+        example: 6f8d88ef-0896-4f69-90cd-7cc6ce5e6ddf
+        explode: false
+        in: path
+        name: exportId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportStatusResponse'
+          description: Successfully retrieved export status.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getEmailBatchExportStatus_400_response'
+          description: Bad Request. Invalid path parameters.
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createEmailBatchExport_403_response'
+          description: Forbidden. Access denied to this job.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getEmailBatchExportStatus_404_response'
+          description: Job or export not found.
+      security:
+      - opportifyToken: []
+      summary: Get Email Batch Export Status
+      tags:
+      - Email Insights
+      x-accepts:
+      - application/json
+  /ip/batch/{jobId}/exports:
+    post:
+      description: |
+        The **Create IP Batch Export** endpoint allows you to request a custom export of completed batch analysis results. You can apply filters, select specific columns, and choose the output format (CSV or JSON).
+
+        ### Features:
+        - **Format Options**: Export results as CSV or JSON
+        - **Filtering**: Apply filters on any field in the response data
+        - **Column Selection**: Choose specific fields to include in the export
+        - **Async Processing**: Export requests are processed asynchronously
+
+        ### Filter Syntax:
+        - **String filters**: Exact match, comma-separated values, or arrays
+        - **Numeric filters**: Exact values, arrays, or range objects with `min`/`max`
+        - **Nested fields**: Use dot notation (e.g., `result.riskReport.score`)
+
+        ### Example Request:
+        ```json
+        {
+          "exportType": "json",
+          "filters": {
+            "result.riskReport.level": "low,medium",
+            "result.riskReport.score": { "max": 500 },
+            "result.geo.countryCode": ["US", "CA", "GB"]
+          }
+        }
+        ```
+      operationId: createIpBatchExport
+      parameters:
+      - description: The unique identifier of the completed batch job.
+        example: 52b36b1f-0c21-41fa-8a4f-423d25a9a8e2
+        explode: false
+        in: path
+        name: jobId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportRequest'
+        required: false
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportCreatedResponse'
+          description: Export request accepted for processing.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createEmailBatchExport_400_response'
+          description: Bad Request. Invalid request parameters or body.
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createEmailBatchExport_403_response'
+          description: Forbidden. Access denied to this job.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createEmailBatchExport_404_response'
+          description: Job not found.
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createEmailBatchExport_409_response'
+          description: Conflict. Job not ready for export.
+      security:
+      - opportifyToken: []
+      summary: Create IP Batch Export
+      tags:
+      - IP Insights
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /ip/batch/{jobId}/exports/{exportId}:
+    get:
+      description: |
+        The **Get IP Batch Export Status** endpoint retrieves the status and download URL for a previously requested export job.
+
+        ### Export Status Values:
+        - `QUEUED`: Export request received, waiting for processing
+        - `PROCESSING`: Worker is filtering and generating the export file
+        - `COMPLETED`: Export ready, `downloadUrl` available
+        - `FAILED`: Export failed, check `errorCode` and `errorMessage`
+      operationId: getIpBatchExportStatus
+      parameters:
+      - description: The unique identifier of the batch job.
+        example: 52b36b1f-0c21-41fa-8a4f-423d25a9a8e2
+        explode: false
+        in: path
+        name: jobId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: The unique identifier of the export job.
+        example: 3b90d156-a0d8-4630-8230-f59e9a4e9e33
+        explode: false
+        in: path
+        name: exportId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportStatusResponse'
+          description: Successfully retrieved export status.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getEmailBatchExportStatus_400_response'
+          description: Bad Request. Invalid path parameters.
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createEmailBatchExport_403_response'
+          description: Forbidden. Access denied to this job.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getEmailBatchExportStatus_404_response'
+          description: Job or export not found.
+      security:
+      - opportifyToken: []
+      summary: Get IP Batch Export Status
+      tags:
+      - IP Insights
+      x-accepts:
+      - application/json
 components:
   schemas:
-    RiskReport:
+    RiskReportEmail:
+      description: "### Risk Level Determination\nThis documentation outlines how\
+        \ the risk report is determined based on a `normalizedScore` generated by\
+        \ analyzing multiple email-related parameters against predefined risk factors\
+        \ (`baseAnalysis`). The risk report encapsulates the likelihood of various\
+        \ risk scenarios, enabling effective classification and prioritization of\
+        \ risks.   \n\nThe underlying analysis evaluates the provided email information\
+        \ against key risk factors, such as the likelihood of bounces, fraud detection\
+        \ signals, and email deliverability issues. These insights are used to generate\
+        \ a comprehensive risk report, which is then mapped to static risk levels\
+        \ for easier interpretation.   \n\n#### How the Score is Generated\n\nThe\
+        \ risk score (`normalizedScore`) is derived from a multivariate analysis of\
+        \ input parameters, comparing them against risk factors included in `baseAnalysis`.\
+        \ This process involves:\n\n##### Key Features of the Model:\n1. **Dynamic\
+        \ Scoring:** The model assigns weights to various risk factors, dynamically\
+        \ updating them based on training with new data.\n2. **Constant Training:**\
+        \ The model is continuously retrained with the latest data to improve accuracy\
+        \ and adapt to evolving risk patterns.\n3. **Scalability:** The model supports\
+        \ multiple features and their interactions, deriving a comprehensive and reliable\
+        \ risk score.\n\nThe output score is normalized to a range of **200–1000**\
+        \ for easier interpretation and alignment with industry practices.\n\n---\n\
+        \n#### Risk Level Thresholds\n\nThe risk level is a static representation\
+        \ of the `normalizedScore`, categorized into five distinct levels:\n\n| **Risk\
+        \ Level** | **Score Range**          | **Description**                   \
+        \                                              |\n|----------------|--------------------------|---------------------------------------------------------------------------------|\n\
+        | `highest`      | `normalizedScore > 800` | Represents the most critical\
+        \ level of risk. Immediate attention is required.   |\n| `high`         |\
+        \ `600 < normalizedScore <= 800` | Indicates a high level of risk. Consider\
+        \ mitigation actions promptly.          |\n| `medium`       | `400 < normalizedScore\
+        \ <= 600` | Reflects a moderate level of risk. Monitoring and possible action\
+        \ advised.     |\n| `low`          | `300 < normalizedScore <= 400` | Denotes\
+        \ a low level of risk. Regular monitoring is sufficient.                 |\n\
+        | `lowest`       | `normalizedScore <= 300` | The lowest level of risk. Risk\
+        \ is considered negligible or minimal.            |\n\n---\n\n#### Usage\n\
+        \nThis risk level determination serves as a human-readable representation\
+        \ of the machine learning model's output. It enables:\n- **Risk Monitoring:**\
+        \ Identifying entities that require immediate attention.\n- **Action Prioritization:**\
+        \ Guiding mitigation efforts based on the severity of the risk.\n- **Decision-Making:**\
+        \ Providing clear thresholds for automated and manual workflows.\n\n---\n\n\
+        #### Key Notes\n1. **Dynamic Scoring, Static Levels:**\n  - While the score\
+        \ is dynamically updated through a multivariate linear regression model, the\
+        \ risk levels remain static to maintain consistency and interpretability.\n\
+        \n2. **Customizable Thresholds:**\n  - The thresholds for the levels are configurable\
+        \ based on organizational needs or domain-specific requirements.\n\n3. **Model\
+        \ Retraining:** \n  - Regular updates to the model ensure that scores accurately\
+        \ reflect real-world risk trends, improving the reliability of level assignments.\n\
+        \n4. **Risk Bucket Floors:**\n  - Certain high-risk conditions enforce minimum\
+        \ scores and levels. Disposable domains, undeliverable states, missing MX\
+        \ records, and no-reply detections (flagged as `noreply-detected`) cannot\
+        \ be downgraded below `high`.\n\n---\n\nThis approach combines the adaptability\
+        \ of multivariate linear regression with the simplicity of static thresholds,\
+        \ offering a robust framework for risk assessment and decision-making.\n\n\
+        ---\n\n### Response Elements\n"
+      properties:
+        score:
+          description: Risk score normalized and clamped to the 200–1000 range.
+          example: 850
+          maximum: 1000
+          minimum: 200
+          type: integer
+        level:
+          description: Static representation of the risk level bucket aligned to the
+            score range.
+          enum:
+          - highest
+          - high
+          - medium
+          - low
+          - lowest
+          example: highest
+          type: string
+        baseAnalysis:
+          description: Provide the breakdown of the highest-weight risk factors used
+            in the analysis. Additional lower-weight signals may exist outside this
+            array.
+          example:
+          - instant-bounce
+          - mailbox-full
+          - spoofing-risk
+          - noreply-detected
+          - new-domain
+          items:
+            description: "Reason code explaining one of the highest-weight contributors\
+              \ behind the score (e.g., `noreply-detected`, `catch-all-domain`, `invalid-format`).\
+              \ Additional keys may be introduced without notice."
+            type: string
+          type: array
+      type: object
+    AddressSignals:
+      description: |
+        Local-part parsing insights produced during analysis. The service always returns this payload; when a specific signal is unavailable, the corresponding value falls back to `false` or an empty string.
+
+        When `isNoReply` is `true`, the risk engine enforces a minimum `high` risk level and appends `noreply-detected` to `riskReport.baseAnalysis`.
+      properties:
+        tagDetected:
+          default: false
+          description: Indicates whether the local-part contains `+tag` sub-addressing.
+          example: true
+          type: boolean
+        tagValue:
+          default: ""
+          description: Raw tag contents following the plus sign. Empty string when
+            a tag is not present or has no suffix.
+          example: campaign-123
+          type: string
+        normalizedAddress:
+          default: ""
+          description: Email rebuilt without the tag. Always lower-case.
+          example: noreply@company.com
+          type: string
+        isRoleAddress:
+          default: false
+          description: "True when the local-part maps to a catalogued role inbox (e.g.,\
+            \ support, sales, billing)."
+          example: true
+          type: boolean
+        roleType:
+          default: ""
+          description: Role category slug. Empty string when `isRoleAddress` is false.
+          example: support
+          type: string
+        isNoReply:
+          default: false
+          description: True when the local-part matches no-reply or do-not-reply patterns
+            (multi-language aware).
+          example: true
+          type: boolean
+        noReplyPattern:
+          default: ""
+          description: "Canonical pattern matched when `isNoReply` is true (for example\
+            \ `noreply`, `no-responder`, `mailer-daemon`). Empty string when no pattern\
+            \ applies."
+          example: noreply
+          type: string
+      required:
+      - isNoReply
+      - isRoleAddress
+      - noReplyPattern
+      - normalizedAddress
+      - roleType
+      - tagDetected
+      - tagValue
+      type: object
+    EmailDomain:
+      description: |
+        Summary of the domain-level enrichment returned when enrichment is available and not opted out via `enableDomainEnrichment`.
+
+        The `ageYears` value is sourced from stored enrichment data to keep responses deterministic across subsequent calls.
+      properties:
+        name:
+          default: ""
+          description: Fully qualified domain name associated with the email.
+          example: company.com
+          type: string
+        enrichmentAvailable:
+          default: false
+          description: |
+            Indicates whether enrichment data was available at analysis time.
+
+            When this is `false`, all enrichment fields (except `name`) represent safe defaults and must not be used for decision-making. Only the `name` field (the queried domain) and the default values of boolean and enum fields are meaningful; all other fields should be treated as informational only and ignored for any logic or risk assessment.
+          example: true
+          type: boolean
+        creationDate:
+          description: Domain creation timestamp (ISO 8601). Returns an empty string
+            when enrichment data is unavailable.
+          example: 2014-05-12T00:00:00Z
+          format: date-time
+          type: string
+        expirationDate:
+          description: Domain expiration timestamp (ISO 8601). Returns an empty string
+            when enrichment data is unavailable.
+          example: 2026-05-11T23:59:59Z
+          format: date-time
+          type: string
+        updatedDate:
+          description: Last WHOIS update timestamp (ISO 8601). Returns an empty string
+            when enrichment data is unavailable.
+          example: 2024-11-01T08:30:00Z
+          format: date-time
+          type: string
+        ageYears:
+          default: 0
+          description: Domain age in whole years based on stored enrichment data.
+            Returns 0 for domains younger than one year.
+          example: 11
+          type: integer
+        registrar:
+          default: ""
+          description: Registrar recorded for the domain.
+          example: "Namecheap, Inc."
+          type: string
+        isBlockListed:
+          default: false
+          description: Indicates whether the domain appears in monitored blocklists.
+          example: false
+          type: boolean
+        mtaStsStatus:
+          default: unknown
+          description: Status of the domain's MTA-STS configuration.
+          enum:
+          - present
+          - invalid
+          - absent
+          - unknown
+          example: present
+          type: string
+        bimiStatus:
+          default: unknown
+          description: BIMI (Brand Indicators for Message Identification) status.
+          enum:
+          - present
+          - present-no-vmc
+          - invalid
+          - absent
+          - unknown
+          example: present-no-vmc
+          type: string
+        hasVMC:
+          default: false
+          description: Indicates whether a Verified Mark Certificate is associated
+            with the domain.
+          example: false
+          type: boolean
+        aRecordValid:
+          default: false
+          description: Indicates whether the domain has valid A records.
+          example: true
+          type: boolean
+        aRecordReverseHost:
+          default: ""
+          description: Reverse hostname observed for the A record when available.
+            Empty string when no reverse mapping is returned.
+          example: reverse.company.com
+          type: string
+        sslValid:
+          default: false
+          description: Indicates whether the domain serves a valid SSL certificate
+            on common endpoints.
+          example: true
+          type: boolean
+      required:
+      - aRecordReverseHost
+      - aRecordValid
+      - ageYears
+      - bimiStatus
+      - creationDate
+      - enrichmentAvailable
+      - expirationDate
+      - hasVMC
+      - isBlockListed
+      - mtaStsStatus
+      - name
+      - registrar
+      - sslValid
+      - updatedDate
+      type: object
+    RiskReportIp:
       description: "### Risk Level Determination\nThis documentation outlines how\
         \ the risk level is determined based on a `normalizedScore` generated by a\
         \ **multivariate linear regression model**. The risk level provides a static\
         \ representation of thresholds to classify the severity of risk for an entity.\n\
-        \n---\n\n> **IMPORTANT:** \n> The risk report model is not available in the\
-        \ free plan. To access this feature, you need to subscribe to a paid plan.\n\
-        \n---\n\n#### How the Score is Generated\n\nThe risk score (`normalizedScore`)\
-        \ is computed using a **multivariate linear regression model**, a machine\
-        \ learning approach that evaluates multiple input features to predict the\
-        \ risk score.\n\n##### Key Features of the Model:\n1. **Dynamic Scoring:**\
-        \ The model assigns weights to various risk factors, dynamically updating\
-        \ them based on training with new data.\n2. **Constant Training:** The model\
-        \ is continuously retrained with the latest data to improve accuracy and adapt\
-        \ to evolving risk patterns.\n3. **Scalability:** The model supports multiple\
-        \ features and their interactions, deriving a comprehensive and reliable risk\
-        \ score.\n\nThe output score is normalized to a range of **200–1000** for\
-        \ easier interpretation and alignment with industry practices.\n\n---\n\n\
-        #### Risk Level Thresholds\n\nThe risk level is a static representation of\
-        \ the `normalizedScore`, categorized into five distinct levels:\n\n| **Risk\
-        \ Level** | **Score Range**          | **Description**                   \
-        \                                              |\n|----------------|--------------------------|---------------------------------------------------------------------------------|\n\
+        \n#### How the Score is Generated\n\nThe risk score (`normalizedScore`) is\
+        \ computed using a **multivariate linear regression model**, a machine learning\
+        \ approach that evaluates multiple input features to predict the risk score.\n\
+        \n##### Key Features of the Model:\n1. **Dynamic Scoring:** The model assigns\
+        \ weights to various risk factors, dynamically updating them based on training\
+        \ with new data.\n2. **Constant Training:** The model is continuously retrained\
+        \ with the latest data to improve accuracy and adapt to evolving risk patterns.\n\
+        3. **Scalability:** The model supports multiple features and their interactions,\
+        \ deriving a comprehensive and reliable risk score.\n\nThe output score is\
+        \ normalized to a range of **200–1000** for easier interpretation and alignment\
+        \ with industry practices.\n\n---\n\n#### Risk Level Thresholds\n\nThe risk\
+        \ level is a static representation of the `normalizedScore`, categorized into\
+        \ five distinct levels:\n\n| **Risk Level** | **Score Range**          | **Description**\
+        \                                                                 |\n|----------------|--------------------------|---------------------------------------------------------------------------------|\n\
         | `highest`      | `normalizedScore > 800` | Represents the most critical\
         \ level of risk. Immediate attention is required.   |\n| `high`         |\
         \ `600 < normalizedScore <= 800` | Indicates a high level of risk. Consider\
@@ -441,22 +1347,19 @@ components:
       - isKnownProvider
       type: object
     Whois:
-      description: "### WHOIS Details\nThis object provides sanitized and normalized\
-        \ WHOIS information for an IP address, including details about the Regional\
-        \ Internet Registry (RIR), Autonomous System Number (ASN), organization, and\
-        \ contact information.\n\n---\n\n> **IMPORTANT:** \n> While the WHOIS data\
-        \ we provide are publicly available and can be accessed through any Regional\
-        \ Internet Registry (RIR) by anyone, we prioritize data privacy. As such,\
-        \ details for address, phone number, and email are **not included in the free\
-        \ plan**. To access this information, you need to subscribe to a paid plan\
-        \ and comply with additional data privacy agreements.\n\n---\n\n#### Key Features:\n\
-        - **RIR Details**: Identify the Regional Internet Registry managing the IP\
-        \ address.\n- **ASN Information**: Obtain the Autonomous System Number details,\
-        \ including the ASN identifier, name, and description.\n- **Organization Data**:\
-        \ Retrieve organization details, such as the ID, name, type, description,\
-        \ address, country, and contact information.\n- **Contact Information**: Access\
-        \ contact details for abuse, admin, and tech issues, including the contact\
-        \ ID, type, name, address, phone, fax, and email.\n\n---\n\n### Response Elements\n"
+      description: |
+        ### WHOIS Details
+        This object provides sanitized and normalized WHOIS information for an IP address, including details about the Regional Internet Registry (RIR), Autonomous System Number (ASN), organization, and contact information.
+
+        #### Key Features:
+        - **RIR Details**: Identify the Regional Internet Registry managing the IP address.
+        - **ASN Information**: Obtain the Autonomous System Number details, including the ASN identifier, name, and description.
+        - **Organization Data**: Retrieve organization details, such as the ID, name, type, description, address, country, and contact information.
+        - **Contact Information**: Access contact details for abuse, admin, and tech issues, including the contact ID, type, name, address, phone, fax, and email.
+
+        ---
+
+        ### Response Elements
       example:
         techContact:
           address:
@@ -823,18 +1726,305 @@ components:
     EmailDNS:
       description: DNS details for an email address domain.
       example:
+        mxRelayCategory: google
+        dmarcValid: false
+        mxRelay: mx1.example.com
+        spfValid: true
         mx:
-        - mx1.example.com
-        - mx2.example.com
+        - 0 mx1.example.com
+        - 10 mx2.example.com
+        dkimConfigured: true
       properties:
         mx:
-          description: Mail exchange records for the domain.
+          default: []
+          description: Mail exchange records for the domain formatted as "<priority>
+            <hostname>". Records are sorted ascending by numeric priority before responding.
           example:
-          - mx1.example.com
-          - mx2.example.com
+          - 0 mx1.example.com
+          - 10 mx2.example.com
           items:
             type: string
           type: array
+        spfValid:
+          default: false
+          description: Indicates whether SPF validation succeeded for the domain.
+          example: true
+          type: boolean
+        dkimConfigured:
+          default: false
+          description: Indicates whether DKIM selectors are configured for the domain.
+          example: true
+          type: boolean
+        dmarcValid:
+          default: false
+          description: Indicates whether a valid DMARC policy is present for the domain.
+          example: false
+          type: boolean
+        mxRelay:
+          default: ""
+          description: Primary MX relay hostname identified during analysis.
+          example: mx1.example.com
+          type: string
+        mxRelayCategory:
+          default: ""
+          description: Categorization of the MX relay (provider slug or classification
+            when available).
+          example: google
+          type: string
+      required:
+      - dkimConfigured
+      - dmarcValid
+      - mx
+      - mxRelay
+      - mxRelayCategory
+      - spfValid
+      type: object
+    ExportRequest:
+      description: Request body for creating a batch export.
+      example:
+        exportType: csv
+        columns:
+        - emailAddress
+        - emailProvider
+        - riskReport.score
+        - isDeliverable
+        filters:
+          isDeliverable: "yes"
+          riskReport.score:
+            min: 0
+            max: 400
+          emailProvider:
+          - gmail
+          - yahoo
+          - outlook
+      properties:
+        exportType:
+          description: "Output format for the export. If omitted, the server will\
+            \ use `csv` as the default format."
+          enum:
+          - csv
+          - json
+          example: csv
+          type: string
+        filters:
+          additionalProperties: true
+          description: |
+            Field-level filters to apply to the export. Supports string filters (exact match, comma-separated, or arrays), numeric filters (exact values, arrays, or range objects with min/max), and nested field access using dot notation.
+
+            - Maximum 25 filters
+            - Maximum 50 values per filter
+          example:
+            isDeliverable: "yes"
+            riskReport.score:
+              min: 0
+              max: 400
+            emailProvider:
+            - gmail
+            - yahoo
+            - outlook
+          type: object
+        columns:
+          description: "Array of field paths to include in the export. If omitted,\
+            \ all fields are included. Maximum 100 columns."
+          example:
+          - emailAddress
+          - emailProvider
+          - riskReport.score
+          - isDeliverable
+          items:
+            type: string
+          maxItems: 100
+          type: array
+      type: object
+    ExportCreatedResponse:
+      description: Response when an export request is accepted.
+      example:
+        jobId: 84d22c8b-2cb6-4606-bfb1-361244a097e4
+        exportId: 6f8d88ef-0896-4f69-90cd-7cc6ce5e6ddf
+        status: QUEUED
+      properties:
+        jobId:
+          description: The batch job identifier.
+          example: 84d22c8b-2cb6-4606-bfb1-361244a097e4
+          format: uuid
+          type: string
+        exportId:
+          description: The unique identifier for the export job.
+          example: 6f8d88ef-0896-4f69-90cd-7cc6ce5e6ddf
+          format: uuid
+          type: string
+        status:
+          description: Initial status of the export job.
+          enum:
+          - QUEUED
+          example: QUEUED
+          type: string
+      required:
+      - exportId
+      - jobId
+      - status
+      type: object
+    ExportStatusResponse:
+      description: Response containing the status and details of an export job.
+      example:
+        columns:
+        - emailAddress
+        - emailProvider
+        - riskReport.score
+        format: csv
+        downloadUrl: https://opportify-batch-analysis.s3.amazonaws.com/...
+        errorMessage: errorMessage
+        errorCode: errorCode
+        filters:
+        - min: 400
+          field: riskReport.score
+          max: 800
+          kind: number-range
+          values:
+          - "yes"
+          - "no"
+        - min: 400
+          field: riskReport.score
+          max: 800
+          kind: number-range
+          values:
+          - "yes"
+          - "no"
+        expiresAt: 2025-11-07T14:32:15Z
+        jobId: 84d22c8b-2cb6-4606-bfb1-361244a097e4
+        resultSizeBytes: 45120
+        requestedAt: 2025-11-07T10:30:00Z
+        exportId: 6f8d88ef-0896-4f69-90cd-7cc6ce5e6ddf
+        status: COMPLETED
+        updatedAt: 2025-11-07T10:32:15Z
+      properties:
+        jobId:
+          description: The batch job identifier.
+          example: 84d22c8b-2cb6-4606-bfb1-361244a097e4
+          format: uuid
+          type: string
+        exportId:
+          description: The unique identifier for the export job.
+          example: 6f8d88ef-0896-4f69-90cd-7cc6ce5e6ddf
+          format: uuid
+          type: string
+        status:
+          description: Current status of the export job.
+          enum:
+          - QUEUED
+          - PROCESSING
+          - COMPLETED
+          - FAILED
+          example: COMPLETED
+          type: string
+        format:
+          description: The output format of the export.
+          enum:
+          - csv
+          - json
+          example: csv
+          type: string
+        filters:
+          description: List of filters applied to the export.
+          items:
+            $ref: '#/components/schemas/ExportFilter'
+          type: array
+        columns:
+          description: List of columns included in the export.
+          example:
+          - emailAddress
+          - emailProvider
+          - riskReport.score
+          items:
+            type: string
+          type: array
+        requestedAt:
+          description: Timestamp when the export was requested (ISO 8601 format).
+          example: 2025-11-07T10:30:00Z
+          format: date-time
+          type: string
+        updatedAt:
+          description: Timestamp when the export status was last updated (ISO 8601
+            format).
+          example: 2025-11-07T10:32:15Z
+          format: date-time
+          type: string
+        downloadUrl:
+          description: Pre-signed URL to download the export file. Only present when
+            status is `COMPLETED`.
+          example: https://opportify-batch-analysis.s3.amazonaws.com/...
+          format: uri
+          type: string
+        expiresAt:
+          description: Expiration timestamp for the download URL (ISO 8601 format).
+            Only present when status is `COMPLETED`.
+          example: 2025-11-07T14:32:15Z
+          format: date-time
+          type: string
+        resultSizeBytes:
+          description: Size of the export file in bytes. Only present when status
+            is `COMPLETED`.
+          example: 45120
+          type: integer
+        errorCode:
+          description: Error code if the export failed. Only present when status is
+            `FAILED`.
+          type: string
+        errorMessage:
+          description: Error message if the export failed. Only present when status
+            is `FAILED`.
+          type: string
+      required:
+      - exportId
+      - format
+      - jobId
+      - requestedAt
+      - status
+      - updatedAt
+      type: object
+    ExportFilter:
+      description: Describes a filter applied to an export.
+      example:
+        min: 400
+        field: riskReport.score
+        max: 800
+        kind: number-range
+        values:
+        - "yes"
+        - "no"
+      properties:
+        field:
+          description: The field path that was filtered (supports dot notation for
+            nested fields).
+          example: riskReport.score
+          type: string
+        kind:
+          description: The type of filter applied.
+          enum:
+          - string
+          - number-range
+          - number
+          example: number-range
+          type: string
+        values:
+          description: Array of values for string filters.
+          example:
+          - "yes"
+          - "no"
+          items:
+            type: string
+          type: array
+        min:
+          description: Minimum value for numeric range filters.
+          example: 400
+          type: number
+        max:
+          description: Maximum value for numeric range filters.
+          example: 800
+          type: number
+      required:
+      - field
+      - kind
       type: object
     analyzeEmail_request:
       properties:
@@ -844,11 +2034,21 @@ components:
           maxLength: 320
           type: string
         enableAI:
-          description: Enable AI-based analysis for insights.
+          default: true
+          description: Enable AI-driven risk analysis. Optional; defaults to `true`.
           example: true
           type: boolean
         enableAutoCorrection:
-          description: Suggest possible corrections for misspelled emails.
+          default: true
+          description: Attempt typo correction and return `emailCorrection` when confident.
+            Optional; defaults to `true`.
+          example: true
+          type: boolean
+        enableDomainEnrichment:
+          default: true
+          description: Include domain-level enrichment details. Optional; defaults
+            to `true`. Set to `false` to omit the `domain` block even when the data
+            exists.
           example: true
           type: boolean
       required:
@@ -856,172 +2056,235 @@ components:
       type: object
     analyzeEmail_200_response:
       example:
-        emailDNS:
-          mx:
-          - mx1.example.com
-          - mx2.example.com
-        emailAddress: some-email@domain.com
         isReachable: true
-        emailProvider: Google
-        emailType: free
         isFormatValid: true
-        riskReport:
-          score: 850
-          level: highest
         emailCorrection: some-email@domain.com
         isCatchAll: false
-        isDeliverable: true
+        emailDNS:
+          mxRelayCategory: google
+          dmarcValid: false
+          mxRelay: mx1.example.com
+          spfValid: true
+          mx:
+          - 0 mx1.example.com
+          - 10 mx2.example.com
+          dkimConfigured: true
+        emailAddress: some-email@domain.com
+        emailProvider: google
+        addressSignals: ""
+        emailType: free
+        domain: ""
+        riskReport: ""
+        isMailboxFull: true
+        isDeliverable: "yes"
       properties:
         emailAddress:
-          description: The validated email address.
+          description: Normalized email address returned by the service (always lower-case).
           example: some-email@domain.com
           type: string
         emailProvider:
-          description: The email provider or domain name.
-          example: Google
+          description: "Provider slug derived from the domain, or `unknown` when not\
+            \ classified."
+          example: google
           type: string
         emailType:
-          description: "Type of email address (e.g., free, disposable, corporate,\
-            \ unknown)."
+          description: Email classification based on provider and enrichment signals.
+          enum:
+          - private
+          - free
+          - disposable
+          - unknown
           example: free
-          type: string
-        isFormatValid:
-          description: Indicates if the email address has a valid format.
-          example: true
-          type: boolean
-        emailCorrection:
-          description: "Suggested corrected email address, if applicable."
-          example: some-email@domain.com
           type: string
         isDeliverable:
           description: |
-            Checks if the email address exists and is deliverable using SMTP handshake simulation. This involves connecting to the mail server and issuing commands to verify deliverability.
-          example: true
-          type: boolean
+            Checks if the email address exists and is deliverable using SMTP handshake simulation. This involves connecting to the mail server and issuing commands to verify deliverability. The possible answers are `yes`, `no`, or `unknown`. We guarantee a high confidence level on this parameter since this is a real time verification.
+          enum:
+          - "true"
+          - "false"
+          - unknown
+          example: "yes"
+          type: string
         isCatchAll:
           description: |
             Determines if the email domain is configured as a catch-all, which accepts emails for all addresses within the domain. This is verified through multiple email tests.
           example: false
+          type: boolean
+        isMailboxFull:
+          description: |
+            Determines if the mailbox associated with the email is full, in association with isDeliverable field, it can give a reason why the email is not deliverable.
+          example: true
           type: boolean
         isReachable:
           description: Confirms if the email domain has valid MX DNS records using
             DNS lookup.
           example: true
           type: boolean
+        isFormatValid:
+          description: Indicates if the email address meets syntax validation rules.
+          example: true
+          type: boolean
+        emailCorrection:
+          description: Suggested corrected email address when auto-correction is confident.
+            Present only when `enableAutoCorrection` is true and a correction exists.
+          example: some-email@domain.com
+          type: string
+        addressSignals:
+          allOf:
+          - $ref: '#/components/schemas/AddressSignals'
+          description: Local-part parsing details for the analyzed address. Always
+            present; fields default to empty strings when a signal is not applicable.
         emailDNS:
           $ref: '#/components/schemas/EmailDNS'
         riskReport:
-          $ref: '#/components/schemas/RiskReport'
+          allOf:
+          - $ref: '#/components/schemas/RiskReportEmail'
+          description: AI-generated risk report detailing the evaluated risk bucket.
+            Returned only when `enableAI` is true.
+        domain:
+          allOf:
+          - $ref: '#/components/schemas/EmailDomain'
+          description: Domain summary derived from enrichment providers. Omitted when
+            enrichment is unavailable or `enableDomainEnrichment` is set to `false`.
       required:
+      - addressSignals
       - emailAddress
-      - emailCorrection
       - emailDNS
       - emailProvider
       - emailType
       - isCatchAll
       - isDeliverable
       - isFormatValid
+      - isMailboxFull
       - isReachable
-      - riskReport
       type: object
     MALFORMED_REQUEST:
       example:
-        code: MALFORMED_REQUEST
-        message: "The request is improperly formatted, email field is required."
+        errorMessage: "The request is improperly formatted, email field is required."
+        errorCode: MALFORMED_REQUEST
       properties:
-        message:
+        errorMessage:
           example: "The request is improperly formatted, email field is required."
           type: string
-        code:
+        errorCode:
           example: MALFORMED_REQUEST
           type: string
       title: MALFORMED_REQUEST
       type: object
     INVALID_EMAIL:
       properties:
-        message:
+        errorMessage:
           example: "The email provided is invalid, please provide a valid email."
           type: string
-        code:
+        errorCode:
           example: INVALID_EMAIL
           type: string
       title: INVALID_EMAIL
       type: object
-    analyzeEmail_400_response_error:
+    analyzeEmail_400_response:
       oneOf:
       - $ref: '#/components/schemas/MALFORMED_REQUEST'
       - $ref: '#/components/schemas/INVALID_EMAIL'
-      type: object
-    analyzeEmail_400_response:
+    MALFORMED_REQUEST_1:
       example:
-        error:
-          code: MALFORMED_REQUEST
-          message: "The request is improperly formatted, email field is required."
+        errorMessage: "The request is improperly formatted, such as a missing or incorrect\
+          \ JSON body or headers."
+        errorCode: MALFORMED_REQUEST
       properties:
-        error:
-          $ref: '#/components/schemas/analyzeEmail_400_response_error'
-      type: object
-    INVALID_PLAN:
-      example:
-        code: INVALID_PLAN
-        message: "Your plan does not support AI features, please upgrade your plan\
-          \ or set enableAI as false."
-      properties:
-        message:
-          example: "Your plan does not support AI features, please upgrade your plan\
-            \ or set enableAI as false."
+        errorMessage:
+          example: "The request is improperly formatted, such as a missing or incorrect\
+            \ JSON body or headers."
           type: string
-        code:
-          example: INVALID_PLAN
+        errorCode:
+          example: MALFORMED_REQUEST
           type: string
-      title: INVALID_PLAN
+      title: MALFORMED_REQUEST
       type: object
     INVALID_TOKEN:
       properties:
-        message:
+        errorMessage:
           example: "The token provided is either invalid, expired, or missing, preventing\
             \ access to the resource."
           type: string
-        code:
+        errorCode:
           example: INVALID_TOKEN
           type: string
       title: INVALID_TOKEN
       type: object
-    analyzeEmail_403_response_error:
-      oneOf:
-      - $ref: '#/components/schemas/INVALID_PLAN'
-      - $ref: '#/components/schemas/INVALID_TOKEN'
-      type: object
-    analyzeEmail_403_response:
-      example:
-        error:
-          code: INVALID_PLAN
-          message: "Your plan does not support AI features, please upgrade your plan\
-            \ or set enableAI as false."
+    INVALID_PLAN:
       properties:
-        error:
-          $ref: '#/components/schemas/analyzeEmail_403_response_error'
+        errorMessage:
+          example: The account does not have a valid plan to access the requested
+            resource.
+          type: string
+        errorCode:
+          example: INVALID_PLAN
+          type: string
+      title: INVALID_PLAN
       type: object
-    analyzeEmail_500_response_error:
-      example:
-        code: INTERNAL_ERROR
-        message: An internal error occurred while processing the request.
+    FORBIDDEN:
       properties:
-        message:
+        errorMessage:
+          example: "The request does not have permission to access the requested resource,\
+            \ even with valid credentials."
+          type: string
+        errorCode:
+          example: FORBIDDEN
+          type: string
+      title: FORBIDDEN
+      type: object
+    TOO_MANY_REQUESTS:
+      properties:
+        errorMessage:
+          example: The account has exceeded the rate limit or usage quota for API
+            requests.
+          type: string
+        errorCode:
+          example: TOO_MANY_REQUESTS
+          type: string
+      title: TOO_MANY_REQUESTS
+      type: object
+    INTERNAL_ERROR:
+      properties:
+        errorMessage:
           example: An internal error occurred while processing the request.
           type: string
-        code:
+        errorCode:
           example: INTERNAL_ERROR
           type: string
+      title: INTERNAL_ERROR
       type: object
+    QUOTA_EXCEEDED:
+      properties:
+        errorMessage:
+          example: Your quota has been exceeded. Please upgrade your plan or wait
+            for the quota to reset.
+          type: string
+        errorCode:
+          example: QUOTA_EXCEEDED
+          type: string
+      title: QUOTA_EXCEEDED
+      type: object
+    analyzeEmail_403_response:
+      oneOf:
+      - $ref: '#/components/schemas/MALFORMED_REQUEST_1'
+      - $ref: '#/components/schemas/INVALID_TOKEN'
+      - $ref: '#/components/schemas/INVALID_PLAN'
+      - $ref: '#/components/schemas/FORBIDDEN'
+      - $ref: '#/components/schemas/TOO_MANY_REQUESTS'
+      - $ref: '#/components/schemas/INTERNAL_ERROR'
+      - $ref: '#/components/schemas/QUOTA_EXCEEDED'
     analyzeEmail_500_response:
       example:
-        error:
-          code: INTERNAL_ERROR
-          message: An internal error occurred while processing the request.
+        errorMessage: An internal error occurred while processing the request.
+        errorCode: INTERNAL_ERROR
       properties:
-        error:
-          $ref: '#/components/schemas/analyzeEmail_500_response_error'
+        errorMessage:
+          example: An internal error occurred while processing the request.
+          type: string
+        errorCode:
+          example: INTERNAL_ERROR
+          type: string
       type: object
     analyzeIp_request:
       properties:
@@ -1179,7 +2442,7 @@ components:
         blocklisted:
           $ref: '#/components/schemas/BlockListed'
         riskReport:
-          $ref: '#/components/schemas/RiskReport'
+          $ref: '#/components/schemas/RiskReportIp'
       required:
       - blocklisted
       - connectionType
@@ -1195,85 +2458,529 @@ components:
       type: object
     IP_VALIDATION_FAILED:
       example:
-        code: IP_VALIDATION_FAILED
-        message: The input provided is not a valid IPv4 or IPv6 address.
+        errorMessage: The input provided is not a valid IPv4 or IPv6 address.
+        errorCode: IP_VALIDATION_FAILED
       properties:
-        message:
+        errorMessage:
           example: The input provided is not a valid IPv4 or IPv6 address.
           type: string
-        code:
+        errorCode:
           example: IP_VALIDATION_FAILED
           type: string
       title: IP_VALIDATION_FAILED
       type: object
-    MALFORMED_REQUEST_1:
+    MALFORMED_REQUEST_2:
       properties:
-        message:
+        errorMessage:
           example: The JSON request doesn’t seem to be correct or valid.
           type: string
-        code:
+        errorCode:
           example: MALFORMED_REQUEST
           type: string
       title: MALFORMED_REQUEST
       type: object
-    analyzeIp_400_response_error:
+    analyzeIp_400_response:
       oneOf:
       - $ref: '#/components/schemas/IP_VALIDATION_FAILED'
-      - $ref: '#/components/schemas/MALFORMED_REQUEST_1'
-      type: object
-    analyzeIp_400_response:
-      example:
-        error:
-          code: IP_VALIDATION_FAILED
-          message: The input provided is not a valid IPv4 or IPv6 address.
-      properties:
-        error:
-          $ref: '#/components/schemas/analyzeIp_400_response_error'
-      type: object
+      - $ref: '#/components/schemas/MALFORMED_REQUEST_2'
     NOT_FOUND:
       example:
-        code: NOT_FOUND
-        message: The input provided doesn’t match any RIR database.
+        errorMessage: The input provided doesn’t match any RIR database.
+        errorCode: NOT_FOUND
       properties:
-        message:
+        errorMessage:
           example: The input provided doesn’t match any RIR database.
           type: string
-        code:
+        errorCode:
           example: NOT_FOUND
           type: string
       title: NOT_FOUND
       type: object
-    analyzeIp_404_response:
+    INTERNAL_ERROR_1:
       example:
-        error:
-          code: NOT_FOUND
-          message: The input provided doesn’t match any RIR database.
+        errorMessage: Something went wrong on our side. We'll investigate.
+        errorCode: INTERNAL_ERROR
       properties:
-        error:
-          $ref: '#/components/schemas/NOT_FOUND'
-      type: object
-    INTERNAL_ERROR:
-      example:
-        code: INTERNAL_ERROR
-        message: Something went wrong on our side. We’ll investigate.
-      properties:
-        message:
-          example: Something went wrong on our side. We’ll investigate.
+        errorMessage:
+          example: Something went wrong on our side. We'll investigate.
           type: string
-        code:
+        errorCode:
           example: INTERNAL_ERROR
           type: string
       title: INTERNAL_ERROR
       type: object
-    analyzeIp_500_response:
-      example:
-        error:
-          code: INTERNAL_ERROR
-          message: Something went wrong on our side. We’ll investigate.
+    batchAnalyzeEmails_request:
       properties:
-        error:
-          $ref: '#/components/schemas/INTERNAL_ERROR'
+        emails:
+          description: Array of email addresses to analyze.
+          example:
+          - first-email@domain.com
+          - second-email@domain.com
+          items:
+            type: string
+          type: array
+        name:
+          description: Optional name for the batch job.
+          example: my list of emails
+          type: string
+        enableAI:
+          description: Enable AI-based analysis for insights.
+          example: true
+          type: boolean
+        enableAutoCorrection:
+          description: Suggest possible corrections for misspelled emails.
+          example: true
+          type: boolean
+      required:
+      - emails
       type: object
+    batchAnalyzeEmails_request_1:
+      properties:
+        file:
+          description: "CSV, TSV, or XLSX file. Multiple columns are accepted—the\
+            \ service auto-detects the email column (first worksheet used for XLSX\
+            \ files)."
+          format: binary
+          type: string
+        name:
+          description: Optional name for the batch job.
+          example: my list of emails
+          type: string
+        enableAI:
+          description: Enable AI-based analysis for insights.
+          type: boolean
+        enableAutoCorrection:
+          description: Suggest possible corrections for misspelled emails.
+          type: boolean
+      type: object
+    batchAnalyzeEmails_202_response:
+      example:
+        jobId: uuid-12345-67890
+        statusDescription: ""
+        name: my list of emails
+        status: QUEUED
+      properties:
+        jobId:
+          description: Unique identifier for the batch job.
+          example: uuid-12345-67890
+          type: string
+        name:
+          description: "Name of the batch job, if provided."
+          example: my list of emails
+          type: string
+        status:
+          description: Current status of the batch job.
+          enum:
+          - QUEUED
+          - PROCESSING
+          - COMPLETED
+          - ERROR
+          example: QUEUED
+          type: string
+        statusDescription:
+          description: "Description of the status, particularly useful when status\
+            \ is ERROR."
+          example: ""
+          type: string
+      type: object
+    MALFORMED_REQUEST_3:
+      example:
+        errorMessage: The request is improperly formatted or missing required data.
+        errorCode: MALFORMED_REQUEST
+      properties:
+        errorMessage:
+          example: The request is improperly formatted or missing required data.
+          type: string
+        errorCode:
+          example: MALFORMED_REQUEST
+          type: string
+      title: MALFORMED_REQUEST
+      type: object
+    INVALID_DATA:
+      properties:
+        errorMessage:
+          example: The submitted data contains invalid entries.
+          type: string
+        errorCode:
+          example: INVALID_DATA
+          type: string
+      title: INVALID_DATA
+      type: object
+    batchAnalyzeEmails_400_response:
+      oneOf:
+      - $ref: '#/components/schemas/MALFORMED_REQUEST_3'
+      - $ref: '#/components/schemas/INVALID_DATA'
+    batchAnalyzeEmails_401_response:
+      example:
+        errorMessage: "The token provided is either invalid, expired, or missing,\
+          \ preventing access to the resource."
+        errorCode: INVALID_TOKEN
+      properties:
+        errorMessage:
+          example: "The token provided is either invalid, expired, or missing, preventing\
+            \ access to the resource."
+          type: string
+        errorCode:
+          example: INVALID_TOKEN
+          type: string
+      type: object
+    INVALID_PLAN_1:
+      example:
+        errorMessage: "Your plan does not support this feature, please upgrade your\
+          \ plan."
+        errorCode: INVALID_PLAN
+      properties:
+        errorMessage:
+          example: "Your plan does not support this feature, please upgrade your plan."
+          type: string
+        errorCode:
+          example: INVALID_PLAN
+          type: string
+      title: INVALID_PLAN
+      type: object
+    batchAnalyzeEmails_402_response:
+      oneOf:
+      - $ref: '#/components/schemas/INVALID_PLAN_1'
+      - $ref: '#/components/schemas/QUOTA_EXCEEDED'
+    batchAnalyzeEmails_403_response:
+      oneOf:
+      - $ref: '#/components/schemas/MALFORMED_REQUEST_1'
+      - $ref: '#/components/schemas/INVALID_TOKEN'
+      - $ref: '#/components/schemas/INVALID_PLAN'
+      - $ref: '#/components/schemas/FORBIDDEN'
+      - $ref: '#/components/schemas/TOO_MANY_REQUESTS'
+      - $ref: '#/components/schemas/INTERNAL_ERROR'
+    batchAnalyzeEmails_413_response:
+      example:
+        errorMessage: The submitted payload exceeds the 3MB size limit.
+        errorCode: PAYLOAD_TOO_LARGE
+      properties:
+        errorMessage:
+          example: The submitted payload exceeds the 3MB size limit.
+          type: string
+        errorCode:
+          example: PAYLOAD_TOO_LARGE
+          type: string
+      type: object
+    batchAnalyzeEmails_429_response:
+      example:
+        errorMessage: Too many requests. Please slow down and try again later.
+        errorCode: TOO_MANY_REQUESTS
+      properties:
+        errorMessage:
+          example: Too many requests. Please slow down and try again later.
+          type: string
+        errorCode:
+          example: TOO_MANY_REQUESTS
+          type: string
+      type: object
+    getEmailBatchStatus_200_response_downloadUrls:
+      description: Available download URLs for the batch job results. Only present
+        when status is "COMPLETED".
+      example:
+        jsonCompressed: https://batch-object.opportify.ai/output/job-id.json.gz?X-Amz-Algorithm=...
+        csv: https://batch-object.opportify.ai/output/job-id.csv?X-Amz-Algorithm=...
+        csvCompressed: https://batch-object.opportify.ai/output/job-id.csv.gz?X-Amz-Algorithm=...
+        json: https://batch-object.opportify.ai/output/job-id.json?X-Amz-Algorithm=...
+      properties:
+        csv:
+          description: Pre-signed URL to download results in CSV format.
+          example: https://batch-object.opportify.ai/output/job-id.csv?X-Amz-Algorithm=...
+          type: string
+        json:
+          description: Pre-signed URL to download results in JSON format.
+          example: https://batch-object.opportify.ai/output/job-id.json?X-Amz-Algorithm=...
+          type: string
+        csvCompressed:
+          description: Pre-signed URL to download compressed results in CSV format
+            (gzip).
+          example: https://batch-object.opportify.ai/output/job-id.csv.gz?X-Amz-Algorithm=...
+          type: string
+        jsonCompressed:
+          description: Pre-signed URL to download compressed results in JSON format
+            (gzip).
+          example: https://batch-object.opportify.ai/output/job-id.json.gz?X-Amz-Algorithm=...
+          type: string
+      type: object
+    getEmailBatchStatus_200_response:
+      example:
+        jobId: uuid-12345-67890
+        statusDescription: ""
+        downloadUrls:
+          jsonCompressed: https://batch-object.opportify.ai/output/job-id.json.gz?X-Amz-Algorithm=...
+          csv: https://batch-object.opportify.ai/output/job-id.csv?X-Amz-Algorithm=...
+          csvCompressed: https://batch-object.opportify.ai/output/job-id.csv.gz?X-Amz-Algorithm=...
+          json: https://batch-object.opportify.ai/output/job-id.json?X-Amz-Algorithm=...
+        name: my list of emails
+        progress: 100
+        status: COMPLETED
+      properties:
+        jobId:
+          description: Unique identifier for the batch job.
+          example: uuid-12345-67890
+          type: string
+        name:
+          description: "Name of the batch job, if provided."
+          example: my list of emails
+          type: string
+        status:
+          description: Current status of the batch job.
+          enum:
+          - QUEUED
+          - PROCESSING
+          - COMPLETED
+          - ERROR
+          example: COMPLETED
+          type: string
+        statusDescription:
+          description: "Description of the status, particularly useful when status\
+            \ is ERROR."
+          example: ""
+          type: string
+        progress:
+          description: Percentage of completion for the batch job (0-100).
+          example: 100
+          type: integer
+        downloadUrls:
+          $ref: '#/components/schemas/getEmailBatchStatus_200_response_downloadUrls'
+      type: object
+    getEmailBatchStatus_404_response:
+      example:
+        errorMessage: The requested job ID was not found or has expired.
+        errorCode: JOB_NOT_FOUND
+      properties:
+        errorMessage:
+          example: The requested job ID was not found or has expired.
+          type: string
+        errorCode:
+          example: JOB_NOT_FOUND
+          type: string
+      type: object
+    batchAnalyzeIps_request:
+      properties:
+        ips:
+          description: Array of IP addresses to analyze.
+          example:
+          - 192.168.0.1
+          - 10.0.0.1
+          - 172.16.0.1
+          items:
+            type: string
+          type: array
+        name:
+          description: Optional name for the batch job.
+          example: my list of IPs
+          type: string
+        enableAI:
+          description: Enable AI-based analysis for insights.
+          example: true
+          type: boolean
+      required:
+      - ips
+      type: object
+    batchAnalyzeIps_request_1:
+      properties:
+        file:
+          description: "CSV, TSV, or XLSX file. Multiple columns are accepted—the\
+            \ service auto-detects the IP column (first worksheet used for XLSX files)."
+          format: binary
+          type: string
+        name:
+          description: Optional name for the batch job.
+          example: my list of IPs
+          type: string
+        enableAI:
+          description: Enable AI-based analysis for insights.
+          type: boolean
+      type: object
+    batchAnalyzeIps_202_response:
+      example:
+        jobId: uuid-12345-67890
+        statusDescription: ""
+        name: my list of IPs
+        status: QUEUED
+      properties:
+        jobId:
+          description: Unique identifier for the batch job.
+          example: uuid-12345-67890
+          type: string
+        name:
+          description: "Name of the batch job, if provided."
+          example: my list of IPs
+          type: string
+        status:
+          description: Current status of the batch job.
+          enum:
+          - QUEUED
+          - PROCESSING
+          - COMPLETED
+          - ERROR
+          example: QUEUED
+          type: string
+        statusDescription:
+          description: "Description of the status, particularly useful when status\
+            \ is ERROR."
+          example: ""
+          type: string
+      type: object
+    INVALID_DATA_1:
+      properties:
+        errorMessage:
+          example: The submitted data contains invalid IP addresses.
+          type: string
+        errorCode:
+          example: INVALID_DATA
+          type: string
+      title: INVALID_DATA
+      type: object
+    batchAnalyzeIps_400_response:
+      oneOf:
+      - $ref: '#/components/schemas/MALFORMED_REQUEST_3'
+      - $ref: '#/components/schemas/INVALID_DATA_1'
+    getIpBatchStatus_200_response:
+      example:
+        jobId: uuid-12345-67890
+        statusDescription: ""
+        downloadUrls:
+          jsonCompressed: https://batch-object.opportify.ai/output/job-id.json.gz?X-Amz-Algorithm=...
+          csv: https://batch-object.opportify.ai/output/job-id.csv?X-Amz-Algorithm=...
+          csvCompressed: https://batch-object.opportify.ai/output/job-id.csv.gz?X-Amz-Algorithm=...
+          json: https://batch-object.opportify.ai/output/job-id.json?X-Amz-Algorithm=...
+        name: my list of IPs
+        progress: 100
+        status: COMPLETED
+      properties:
+        jobId:
+          description: Unique identifier for the batch job.
+          example: uuid-12345-67890
+          type: string
+        name:
+          description: "Name of the batch job, if provided."
+          example: my list of IPs
+          type: string
+        status:
+          description: Current status of the batch job.
+          enum:
+          - QUEUED
+          - PROCESSING
+          - COMPLETED
+          - ERROR
+          example: COMPLETED
+          type: string
+        statusDescription:
+          description: "Description of the status, particularly useful when status\
+            \ is ERROR."
+          example: ""
+          type: string
+        progress:
+          description: Percentage of completion for the batch job (0-100).
+          example: 100
+          type: integer
+        downloadUrls:
+          $ref: '#/components/schemas/getEmailBatchStatus_200_response_downloadUrls'
+      type: object
+    createEmailBatchExport_400_response:
+      example:
+        errorMessage: Invalid request parameters or body.
+        errorCode: INVALID_REQUEST
+      properties:
+        errorMessage:
+          example: Invalid request parameters or body.
+          type: string
+        errorCode:
+          example: INVALID_REQUEST
+          type: string
+      type: object
+    createEmailBatchExport_403_response:
+      example:
+        errorMessage: Access denied to this job.
+        errorCode: FORBIDDEN
+      properties:
+        errorMessage:
+          example: Access denied to this job.
+          type: string
+        errorCode:
+          example: FORBIDDEN
+          type: string
+      type: object
+    createEmailBatchExport_404_response:
+      example:
+        errorMessage: The requested job ID was not found.
+        errorCode: JOB_NOT_FOUND
+      properties:
+        errorMessage:
+          example: The requested job ID was not found.
+          type: string
+        errorCode:
+          example: JOB_NOT_FOUND
+          type: string
+      type: object
+    JOB_NOT_READY:
+      example:
+        errorMessage: Batch job has not completed yet.
+        errorCode: JOB_NOT_READY
+      properties:
+        errorMessage:
+          example: Batch job has not completed yet.
+          type: string
+        errorCode:
+          example: JOB_NOT_READY
+          type: string
+      title: JOB_NOT_READY
+      type: object
+    MANIFEST_NOT_AVAILABLE:
+      properties:
+        errorMessage:
+          example: Job manifest is not available.
+          type: string
+        errorCode:
+          example: MANIFEST_NOT_AVAILABLE
+          type: string
+      title: MANIFEST_NOT_AVAILABLE
+      type: object
+    createEmailBatchExport_409_response:
+      oneOf:
+      - $ref: '#/components/schemas/JOB_NOT_READY'
+      - $ref: '#/components/schemas/MANIFEST_NOT_AVAILABLE'
+    getEmailBatchExportStatus_400_response:
+      example:
+        errorMessage: Invalid path parameters.
+        errorCode: INVALID_REQUEST
+      properties:
+        errorMessage:
+          example: Invalid path parameters.
+          type: string
+        errorCode:
+          example: INVALID_REQUEST
+          type: string
+      type: object
+    JOB_NOT_FOUND:
+      example:
+        errorMessage: The requested job ID was not found.
+        errorCode: JOB_NOT_FOUND
+      properties:
+        errorMessage:
+          example: The requested job ID was not found.
+          type: string
+        errorCode:
+          example: JOB_NOT_FOUND
+          type: string
+      title: JOB_NOT_FOUND
+      type: object
+    EXPORT_NOT_FOUND:
+      properties:
+        errorMessage:
+          example: The requested export ID was not found.
+          type: string
+        errorCode:
+          example: EXPORT_NOT_FOUND
+          type: string
+      title: EXPORT_NOT_FOUND
+      type: object
+    getEmailBatchExportStatus_404_response:
+      oneOf:
+      - $ref: '#/components/schemas/JOB_NOT_FOUND'
+      - $ref: '#/components/schemas/EXPORT_NOT_FOUND'
   securitySchemes:
     opportifyToken:
       in: header

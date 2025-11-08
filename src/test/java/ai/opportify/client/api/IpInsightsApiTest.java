@@ -1,6 +1,6 @@
 /*
  * Opportify Insights API
- * ## Overview  The **Opportify Insights API** provides access to a powerful and up-to-date platform. With advanced data warehousing and AI-driven capabilities, this API is designed to empower your business to make informed, data-driven decisions and effectively assess potential risks.  ### Base URL Use the following base URL for all API requests:  ```plaintext https://api.opportify.ai/insights/v1/<service>/<endpoint> ```  ### Features - [**Email Insights:**](/docs/api/api-reference/email-insights)   - Validate email syntax.   - Identify email types (free, disposable, corporate or unknown).   - Real time verifications:     - Reachable: Confirms if the email domain has valid MX DNS records using DNS lookup.     - Deliverable: Simulates an SMTP handshake to check if the email address exists and is deliverable.     - Catch-All: Detects if the domain accepts all emails (catch-all configuration).   - Intelligent Error Correction: Automatically corrects well-known misspelled email addresses.   - Risk Report: Provides an AI-driven normalized score (200-1000) to evaluate email risk, using predefined thresholds.      [Access Documentation >>](/docs/api/api-reference/email-insights)  - [**IP Insights:**](/docs/api/api-reference/ip-insights)   - Connection types: Detects connection types such as `wired`, `mobile`, `enterprise`, `satellite`, `VPN`, `cloud-provider`, `open-proxy`, or `Tor`.   - Geo location: Delivers detailed insights such as country, city, timezone, language preferences, and additional location-based information to enhance regional understanding.   - WHOIS: Provides main details including RIR, ASN, organization, and abuse/admin/technical contacts.   - Trusted Provider Recognition: Identifies if the IP is part of a known trusted provider (e.g., ZTNA - Zero Trust Network Access).   - Blocklist Reports: Retrieves up-to-date blocklist statuses, active reports, and the latest detections.   - Risk Report: Delivers an AI-driven normalized score (200-1000) to evaluate IP risk, supported by predefined thresholds.    [Access Documentation >>](/docs/api/api-reference/ip-insights)  ### Authentication & Security - **API Key:** Access to the API requires an API key, which must be included in the request headers. Businesses can generate unlimited API keys directly from their account, offering flexibility and ease of use.  - **ACL Rules:** Enhance security with Access Control Lists (ACL), allowing you to restrict API access from specific IP addresses or ranges. This feature provides an additional layer of protection by ensuring only authorized IPs can interact with the API. - **No Query Parameters:** As a precautionary measure, our API avoids the use of query parameters for all operations, including authentication and handling Personally Identifiable Information (PII). This approach minimizes security risks by preventing sensitive data from being exposed in access logs, browser history, cached URLs, debugging tools, or inadvertently shared URLs. All sensitive information is securely transmitted through headers or the request body. 
+ * ## Overview  The **Opportify Insights API** provides access to a powerful and up-to-date platform. With advanced data warehousing and AI-driven capabilities, this API is designed to empower your business to make informed, data-driven decisions and effectively assess potential risks.  ### Base URL Use the following base URL for all API requests:  ```plaintext https://api.opportify.ai/insights/v1/<service>/<endpoint> ```  ### Features - [**Email Insights:**](/docs/api/api-reference/email-insights)   - Validate email syntax.   - Identify email types (free, disposable, private or unknown).   - Real time verifications:     - Reachable: Confirms if the email domain has valid MX DNS records using DNS lookup.     - Deliverable: Simulates an SMTP handshake to check if the email address exists and is deliverable.     - Catch-All: Detects if the domain accepts all emails (catch-all configuration).   - Intelligent Error Correction: Automatically corrects well-known misspelled email addresses.   - Risk Report: Provides an AI-driven normalized score (200-1000) to evaluate email risk, using predefined thresholds.      [Access Documentation >>](/docs/api/api-reference/email-insights)  - [**IP Insights:**](/docs/api/api-reference/ip-insights)   - Connection types: Detects connection types such as `wired`, `mobile`, `enterprise`, `satellite`, `VPN`, `cloud-provider`, `open-proxy`, or `Tor`.   - Geo location: Delivers detailed insights such as country, city, timezone, language preferences, and additional location-based information to enhance regional understanding.   - WHOIS: Provides main details including RIR, ASN, organization, and abuse/admin/technical contacts.   - Trusted Provider Recognition: Identifies if the IP is part of a known trusted provider (e.g., ZTNA - Zero Trust Network Access).   - Blocklist Reports: Retrieves up-to-date blocklist statuses, active reports, and the latest detections.   - Risk Report: Delivers an AI-driven normalized score (200-1000) to evaluate IP risk, supported by predefined thresholds.    [Access Documentation >>](/docs/api/api-reference/ip-insights)  ### Authentication & Security - **API Key:** Access to the API requires an API key, which must be included in the request headers. Businesses can generate unlimited API keys directly from their account, offering flexibility and ease of use.  - **ACL Rules:** Enhance security with Access Control Lists (ACL), allowing you to restrict API access from specific IP addresses or ranges. This feature provides an additional layer of protection by ensuring only authorized IPs can interact with the API. - **No Query Parameters:** As a precautionary measure, our API avoids the use of query parameters for all operations, including authentication and handling Personally Identifiable Information (PII). This approach minimizes security risks by preventing sensitive data from being exposed in access logs, browser history, cached URLs, debugging tools, or inadvertently shared URLs. All sensitive information is securely transmitted through headers or the request body. 
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -15,11 +15,33 @@ package ai.opportify.client.api;
 
 import ai.opportify.client.ApiException;
 import ai.opportify.client.model.AnalyzeEmail403Response;
+import ai.opportify.client.model.AnalyzeEmail500Response;
 import ai.opportify.client.model.AnalyzeIp200Response;
 import ai.opportify.client.model.AnalyzeIp400Response;
-import ai.opportify.client.model.AnalyzeIp404Response;
-import ai.opportify.client.model.AnalyzeIp500Response;
 import ai.opportify.client.model.AnalyzeIpRequest;
+import ai.opportify.client.model.BatchAnalyzeEmails401Response;
+import ai.opportify.client.model.BatchAnalyzeEmails402Response;
+import ai.opportify.client.model.BatchAnalyzeEmails403Response;
+import ai.opportify.client.model.BatchAnalyzeEmails413Response;
+import ai.opportify.client.model.BatchAnalyzeEmails429Response;
+import ai.opportify.client.model.BatchAnalyzeIps202Response;
+import ai.opportify.client.model.BatchAnalyzeIps400Response;
+import ai.opportify.client.model.BatchAnalyzeIpsRequest;
+import ai.opportify.client.model.BatchAnalyzeIpsRequest1;
+import ai.opportify.client.model.CreateEmailBatchExport400Response;
+import ai.opportify.client.model.CreateEmailBatchExport403Response;
+import ai.opportify.client.model.CreateEmailBatchExport404Response;
+import ai.opportify.client.model.CreateEmailBatchExport409Response;
+import ai.opportify.client.model.ExportCreatedResponse;
+import ai.opportify.client.model.ExportRequest;
+import ai.opportify.client.model.ExportStatusResponse;
+import ai.opportify.client.model.GetEmailBatchExportStatus400Response;
+import ai.opportify.client.model.GetEmailBatchExportStatus404Response;
+import ai.opportify.client.model.GetEmailBatchStatus404Response;
+import ai.opportify.client.model.GetIpBatchStatus200Response;
+import ai.opportify.client.model.INTERNALERROR1;
+import ai.opportify.client.model.NOTFOUND;
+import java.util.UUID;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -47,6 +69,64 @@ public class IpInsightsApiTest {
     public void analyzeIpTest() throws ApiException {
         AnalyzeIpRequest analyzeIpRequest = null;
         AnalyzeIp200Response response = api.analyzeIp(analyzeIpRequest);
+        // TODO: test validations
+    }
+
+    /**
+     * Batch Analyze IPs
+     *
+     * The **Batch Analyze IPs** endpoint enables processing of large volumes of IP addresses asynchronously. This endpoint accepts various input formats and returns a job ID for tracking the analysis progress.  ### Features: - **Asynchronous Processing**: Submit large lists of IP addresses for background processing. - **Multiple Input Formats**: Submit data as JSON arrays, tabular CSV/TSV/XLSX uploads, or line-separated text. - **Job Tracking**: Monitor processing status using the returned job ID.  ### Example JSON Request: &#x60;&#x60;&#x60;json {   \&quot;ips\&quot;: [     \&quot;192.168.0.1\&quot;,     \&quot;10.0.0.1\&quot;,     \&quot;172.16.0.1\&quot;   ],   \&quot;name\&quot;: \&quot;my list of IPs\&quot;,   \&quot;enableAI\&quot;: true } &#x60;&#x60;&#x60;  ### Authentication &amp; Security - **API Key:** Access requires an API key in the request headers. - **ACL Rules:** Optional IP-based access restrictions for enhanced security. - **No Query Parameters:** All data is transmitted securely through headers or request body.  ### Payload Limits - Maximum payload size: 3MB 
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void batchAnalyzeIpsTest() throws ApiException {
+        BatchAnalyzeIpsRequest batchAnalyzeIpsRequest = null;
+        BatchAnalyzeIps202Response response = api.batchAnalyzeIps(batchAnalyzeIpsRequest);
+        // TODO: test validations
+    }
+
+    /**
+     * Create IP Batch Export
+     *
+     * The **Create IP Batch Export** endpoint allows you to request a custom export of completed batch analysis results. You can apply filters, select specific columns, and choose the output format (CSV or JSON).  ### Features: - **Format Options**: Export results as CSV or JSON - **Filtering**: Apply filters on any field in the response data - **Column Selection**: Choose specific fields to include in the export - **Async Processing**: Export requests are processed asynchronously  ### Filter Syntax: - **String filters**: Exact match, comma-separated values, or arrays - **Numeric filters**: Exact values, arrays, or range objects with &#x60;min&#x60;/&#x60;max&#x60; - **Nested fields**: Use dot notation (e.g., &#x60;result.riskReport.score&#x60;)  ### Example Request: &#x60;&#x60;&#x60;json {   \&quot;exportType\&quot;: \&quot;json\&quot;,   \&quot;filters\&quot;: {     \&quot;result.riskReport.level\&quot;: \&quot;low,medium\&quot;,     \&quot;result.riskReport.score\&quot;: { \&quot;max\&quot;: 500 },     \&quot;result.geo.countryCode\&quot;: [\&quot;US\&quot;, \&quot;CA\&quot;, \&quot;GB\&quot;]   } } &#x60;&#x60;&#x60; 
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void createIpBatchExportTest() throws ApiException {
+        UUID jobId = null;
+        ExportRequest exportRequest = null;
+        ExportCreatedResponse response = api.createIpBatchExport(jobId, exportRequest);
+        // TODO: test validations
+    }
+
+    /**
+     * Get IP Batch Export Status
+     *
+     * The **Get IP Batch Export Status** endpoint retrieves the status and download URL for a previously requested export job.  ### Export Status Values: - &#x60;QUEUED&#x60;: Export request received, waiting for processing - &#x60;PROCESSING&#x60;: Worker is filtering and generating the export file - &#x60;COMPLETED&#x60;: Export ready, &#x60;downloadUrl&#x60; available - &#x60;FAILED&#x60;: Export failed, check &#x60;errorCode&#x60; and &#x60;errorMessage&#x60; 
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getIpBatchExportStatusTest() throws ApiException {
+        UUID jobId = null;
+        UUID exportId = null;
+        ExportStatusResponse response = api.getIpBatchExportStatus(jobId, exportId);
+        // TODO: test validations
+    }
+
+    /**
+     * Get IP Batch Status
+     *
+     * The **Get IP Batch Status** endpoint allows you to retrieve the current status of a previously submitted batch processing job. Use this endpoint to track the progress of your batch IP analysis request and retrieve results when processing is complete.  ### Response Information: - When status is &#x60;QUEUED&#x60;: The job is in the processing queue waiting to be processed. - When status is &#x60;PROCESSING&#x60;: The job is actively being processed. - When status is &#x60;COMPLETED&#x60;: The job has finished successfully. - When status is &#x60;ERROR&#x60;: An issue occurred during processing; check the statusDescription for details. 
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getIpBatchStatusTest() throws ApiException {
+        String jobId = null;
+        GetIpBatchStatus200Response response = api.getIpBatchStatus(jobId);
         // TODO: test validations
     }
 

@@ -7,7 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**error** | [**AnalyzeEmail500ResponseError**](AnalyzeEmail500ResponseError.md) |  |  [optional] |
+|**errorMessage** | **String** |  |  [optional] |
+|**errorCode** | **String** |  |  [optional] |
 
 
 

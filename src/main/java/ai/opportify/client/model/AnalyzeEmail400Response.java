@@ -1,6 +1,6 @@
 /*
  * Opportify Insights API
- * ## Overview  The **Opportify Insights API** provides access to a powerful and up-to-date platform. With advanced data warehousing and AI-driven capabilities, this API is designed to empower your business to make informed, data-driven decisions and effectively assess potential risks.  ### Base URL Use the following base URL for all API requests:  ```plaintext https://api.opportify.ai/insights/v1/<service>/<endpoint> ```  ### Features - [**Email Insights:**](/docs/api/api-reference/email-insights)   - Validate email syntax.   - Identify email types (free, disposable, corporate or unknown).   - Real time verifications:     - Reachable: Confirms if the email domain has valid MX DNS records using DNS lookup.     - Deliverable: Simulates an SMTP handshake to check if the email address exists and is deliverable.     - Catch-All: Detects if the domain accepts all emails (catch-all configuration).   - Intelligent Error Correction: Automatically corrects well-known misspelled email addresses.   - Risk Report: Provides an AI-driven normalized score (200-1000) to evaluate email risk, using predefined thresholds.      [Access Documentation >>](/docs/api/api-reference/email-insights)  - [**IP Insights:**](/docs/api/api-reference/ip-insights)   - Connection types: Detects connection types such as `wired`, `mobile`, `enterprise`, `satellite`, `VPN`, `cloud-provider`, `open-proxy`, or `Tor`.   - Geo location: Delivers detailed insights such as country, city, timezone, language preferences, and additional location-based information to enhance regional understanding.   - WHOIS: Provides main details including RIR, ASN, organization, and abuse/admin/technical contacts.   - Trusted Provider Recognition: Identifies if the IP is part of a known trusted provider (e.g., ZTNA - Zero Trust Network Access).   - Blocklist Reports: Retrieves up-to-date blocklist statuses, active reports, and the latest detections.   - Risk Report: Delivers an AI-driven normalized score (200-1000) to evaluate IP risk, supported by predefined thresholds.    [Access Documentation >>](/docs/api/api-reference/ip-insights)  ### Authentication & Security - **API Key:** Access to the API requires an API key, which must be included in the request headers. Businesses can generate unlimited API keys directly from their account, offering flexibility and ease of use.  - **ACL Rules:** Enhance security with Access Control Lists (ACL), allowing you to restrict API access from specific IP addresses or ranges. This feature provides an additional layer of protection by ensuring only authorized IPs can interact with the API. - **No Query Parameters:** As a precautionary measure, our API avoids the use of query parameters for all operations, including authentication and handling Personally Identifiable Information (PII). This approach minimizes security risks by preventing sensitive data from being exposed in access logs, browser history, cached URLs, debugging tools, or inadvertently shared URLs. All sensitive information is securely transmitted through headers or the request body. 
+ * ## Overview  The **Opportify Insights API** provides access to a powerful and up-to-date platform. With advanced data warehousing and AI-driven capabilities, this API is designed to empower your business to make informed, data-driven decisions and effectively assess potential risks.  ### Base URL Use the following base URL for all API requests:  ```plaintext https://api.opportify.ai/insights/v1/<service>/<endpoint> ```  ### Features - [**Email Insights:**](/docs/api/api-reference/email-insights)   - Validate email syntax.   - Identify email types (free, disposable, private or unknown).   - Real time verifications:     - Reachable: Confirms if the email domain has valid MX DNS records using DNS lookup.     - Deliverable: Simulates an SMTP handshake to check if the email address exists and is deliverable.     - Catch-All: Detects if the domain accepts all emails (catch-all configuration).   - Intelligent Error Correction: Automatically corrects well-known misspelled email addresses.   - Risk Report: Provides an AI-driven normalized score (200-1000) to evaluate email risk, using predefined thresholds.      [Access Documentation >>](/docs/api/api-reference/email-insights)  - [**IP Insights:**](/docs/api/api-reference/ip-insights)   - Connection types: Detects connection types such as `wired`, `mobile`, `enterprise`, `satellite`, `VPN`, `cloud-provider`, `open-proxy`, or `Tor`.   - Geo location: Delivers detailed insights such as country, city, timezone, language preferences, and additional location-based information to enhance regional understanding.   - WHOIS: Provides main details including RIR, ASN, organization, and abuse/admin/technical contacts.   - Trusted Provider Recognition: Identifies if the IP is part of a known trusted provider (e.g., ZTNA - Zero Trust Network Access).   - Blocklist Reports: Retrieves up-to-date blocklist statuses, active reports, and the latest detections.   - Risk Report: Delivers an AI-driven normalized score (200-1000) to evaluate IP risk, supported by predefined thresholds.    [Access Documentation >>](/docs/api/api-reference/ip-insights)  ### Authentication & Security - **API Key:** Access to the API requires an API key, which must be included in the request headers. Businesses can generate unlimited API keys directly from their account, offering flexibility and ease of use.  - **ACL Rules:** Enhance security with Access Control Lists (ACL), allowing you to restrict API access from specific IP addresses or ranges. This feature provides an additional layer of protection by ensuring only authorized IPs can interact with the API. - **No Query Parameters:** As a precautionary measure, our API avoids the use of query parameters for all operations, including authentication and handling Personally Identifiable Information (PII). This approach minimizes security risks by preventing sensitive data from being exposed in access logs, browser history, cached URLs, debugging tools, or inadvertently shared URLs. All sensitive information is securely transmitted through headers or the request body. 
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -21,188 +21,255 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import ai.opportify.client.model.AnalyzeEmail400ResponseError;
+import ai.opportify.client.model.INVALIDEMAIL;
+import ai.opportify.client.model.MALFORMEDREQUEST;
+
+
+
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonParseException;
 
 import ai.opportify.client.JSON;
 
-/**
- * AnalyzeEmail400Response
- */
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2025-01-07T17:36:50.096636-08:00[America/Los_Angeles]", comments = "Generator version: 7.10.0")
-public class AnalyzeEmail400Response {
-  public static final String SERIALIZED_NAME_ERROR = "error";
-  @SerializedName(SERIALIZED_NAME_ERROR)
-  @javax.annotation.Nullable
-  private AnalyzeEmail400ResponseError error;
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2025-11-08T12:20:24.871327-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+public class AnalyzeEmail400Response extends AbstractOpenApiSchema {
+    private static final Logger log = Logger.getLogger(AnalyzeEmail400Response.class.getName());
 
-  public AnalyzeEmail400Response() {
-  }
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!AnalyzeEmail400Response.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'AnalyzeEmail400Response' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<MALFORMEDREQUEST> adapterMALFORMEDREQUEST = gson.getDelegateAdapter(this, TypeToken.get(MALFORMEDREQUEST.class));
+            final TypeAdapter<INVALIDEMAIL> adapterINVALIDEMAIL = gson.getDelegateAdapter(this, TypeToken.get(INVALIDEMAIL.class));
 
-  public AnalyzeEmail400Response error(@javax.annotation.Nullable AnalyzeEmail400ResponseError error) {
-    this.error = error;
-    return this;
-  }
+            return (TypeAdapter<T>) new TypeAdapter<AnalyzeEmail400Response>() {
+                @Override
+                public void write(JsonWriter out, AnalyzeEmail400Response value) throws IOException {
+                    if (value == null || value.getActualInstance() == null) {
+                        elementAdapter.write(out, null);
+                        return;
+                    }
 
-  /**
-   * Get error
-   * @return error
-   */
-  @javax.annotation.Nullable
-  public AnalyzeEmail400ResponseError getError() {
-    return error;
-  }
+                    // check if the actual instance is of the type `MALFORMEDREQUEST`
+                    if (value.getActualInstance() instanceof MALFORMEDREQUEST) {
+                        JsonElement element = adapterMALFORMEDREQUEST.toJsonTree((MALFORMEDREQUEST)value.getActualInstance());
+                        elementAdapter.write(out, element);
+                        return;
+                    }
+                    // check if the actual instance is of the type `INVALIDEMAIL`
+                    if (value.getActualInstance() instanceof INVALIDEMAIL) {
+                        JsonElement element = adapterINVALIDEMAIL.toJsonTree((INVALIDEMAIL)value.getActualInstance());
+                        elementAdapter.write(out, element);
+                        return;
+                    }
+                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: INVALIDEMAIL, MALFORMEDREQUEST");
+                }
 
-  public void setError(@javax.annotation.Nullable AnalyzeEmail400ResponseError error) {
-    this.error = error;
-  }
+                @Override
+                public AnalyzeEmail400Response read(JsonReader in) throws IOException {
+                    Object deserialized = null;
+                    JsonElement jsonElement = elementAdapter.read(in);
 
+                    int match = 0;
+                    ArrayList<String> errorMessages = new ArrayList<>();
+                    TypeAdapter actualAdapter = elementAdapter;
 
+                    // deserialize MALFORMEDREQUEST
+                    try {
+                        // validate the JSON object to see if any exception is thrown
+                        MALFORMEDREQUEST.validateJsonElement(jsonElement);
+                        actualAdapter = adapterMALFORMEDREQUEST;
+                        match++;
+                        log.log(Level.FINER, "Input data matches schema 'MALFORMEDREQUEST'");
+                    } catch (Exception e) {
+                        // deserialization failed, continue
+                        errorMessages.add(String.format("Deserialization for MALFORMEDREQUEST failed with `%s`.", e.getMessage()));
+                        log.log(Level.FINER, "Input data does not match schema 'MALFORMEDREQUEST'", e);
+                    }
+                    // deserialize INVALIDEMAIL
+                    try {
+                        // validate the JSON object to see if any exception is thrown
+                        INVALIDEMAIL.validateJsonElement(jsonElement);
+                        actualAdapter = adapterINVALIDEMAIL;
+                        match++;
+                        log.log(Level.FINER, "Input data matches schema 'INVALIDEMAIL'");
+                    } catch (Exception e) {
+                        // deserialization failed, continue
+                        errorMessages.add(String.format("Deserialization for INVALIDEMAIL failed with `%s`.", e.getMessage()));
+                        log.log(Level.FINER, "Input data does not match schema 'INVALIDEMAIL'", e);
+                    }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    AnalyzeEmail400Response analyzeEmail400Response = (AnalyzeEmail400Response) o;
-    return Objects.equals(this.error, analyzeEmail400Response.error);
-  }
+                    if (match == 1) {
+                        AnalyzeEmail400Response ret = new AnalyzeEmail400Response();
+                        ret.setActualInstance(actualAdapter.fromJsonTree(jsonElement));
+                        return ret;
+                    }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(error);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class AnalyzeEmail400Response {\n");
-    sb.append("    error: ").append(toIndentedString(error)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("error");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to AnalyzeEmail400Response
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!AnalyzeEmail400Response.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in AnalyzeEmail400Response is not found in the empty JSON string", AnalyzeEmail400Response.openapiRequiredFields.toString()));
+                    throw new IOException(String.format("Failed deserialization for AnalyzeEmail400Response: %d classes match result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", match, errorMessages, jsonElement.toString()));
+                }
+            }.nullSafe();
         }
-      }
+    }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!AnalyzeEmail400Response.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AnalyzeEmail400Response` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+    // store a list of schema names defined in oneOf
+    public static final Map<String, Class<?>> schemas = new HashMap<String, Class<?>>();
+
+    public AnalyzeEmail400Response() {
+        super("oneOf", Boolean.FALSE);
+    }
+
+    public AnalyzeEmail400Response(Object o) {
+        super("oneOf", Boolean.FALSE);
+        setActualInstance(o);
+    }
+
+    static {
+        schemas.put("MALFORMEDREQUEST", MALFORMEDREQUEST.class);
+        schemas.put("INVALIDEMAIL", INVALIDEMAIL.class);
+    }
+
+    @Override
+    public Map<String, Class<?>> getSchemas() {
+        return AnalyzeEmail400Response.schemas;
+    }
+
+    /**
+     * Set the instance that matches the oneOf child schema, check
+     * the instance parameter is valid against the oneOf child schemas:
+     * INVALIDEMAIL, MALFORMEDREQUEST
+     *
+     * It could be an instance of the 'oneOf' schemas.
+     */
+    @Override
+    public void setActualInstance(Object instance) {
+        if (instance instanceof MALFORMEDREQUEST) {
+            super.setActualInstance(instance);
+            return;
         }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the optional field `error`
-      if (jsonObj.get("error") != null && !jsonObj.get("error").isJsonNull()) {
-        AnalyzeEmail400ResponseError.validateJsonElement(jsonObj.get("error"));
-      }
-  }
 
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        if (instance instanceof INVALIDEMAIL) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        throw new RuntimeException("Invalid instance type. Must be INVALIDEMAIL, MALFORMEDREQUEST");
+    }
+
+    /**
+     * Get the actual instance, which can be the following:
+     * INVALIDEMAIL, MALFORMEDREQUEST
+     *
+     * @return The actual instance (INVALIDEMAIL, MALFORMEDREQUEST)
+     */
     @SuppressWarnings("unchecked")
     @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!AnalyzeEmail400Response.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'AnalyzeEmail400Response' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<AnalyzeEmail400Response> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(AnalyzeEmail400Response.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<AnalyzeEmail400Response>() {
-           @Override
-           public void write(JsonWriter out, AnalyzeEmail400Response value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public AnalyzeEmail400Response read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+    public Object getActualInstance() {
+        return super.getActualInstance();
     }
-  }
 
-  /**
-   * Create an instance of AnalyzeEmail400Response given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of AnalyzeEmail400Response
-   * @throws IOException if the JSON string is invalid with respect to AnalyzeEmail400Response
-   */
-  public static AnalyzeEmail400Response fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, AnalyzeEmail400Response.class);
-  }
+    /**
+     * Get the actual instance of `MALFORMEDREQUEST`. If the actual instance is not `MALFORMEDREQUEST`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `MALFORMEDREQUEST`
+     * @throws ClassCastException if the instance is not `MALFORMEDREQUEST`
+     */
+    public MALFORMEDREQUEST getMALFORMEDREQUEST() throws ClassCastException {
+        return (MALFORMEDREQUEST)super.getActualInstance();
+    }
 
-  /**
-   * Convert an instance of AnalyzeEmail400Response to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
-  }
+    /**
+     * Get the actual instance of `INVALIDEMAIL`. If the actual instance is not `INVALIDEMAIL`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `INVALIDEMAIL`
+     * @throws ClassCastException if the instance is not `INVALIDEMAIL`
+     */
+    public INVALIDEMAIL getINVALIDEMAIL() throws ClassCastException {
+        return (INVALIDEMAIL)super.getActualInstance();
+    }
+
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to AnalyzeEmail400Response
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        // validate oneOf schemas one by one
+        int validCount = 0;
+        ArrayList<String> errorMessages = new ArrayList<>();
+        // validate the json string with MALFORMEDREQUEST
+        try {
+            MALFORMEDREQUEST.validateJsonElement(jsonElement);
+            validCount++;
+        } catch (Exception e) {
+            errorMessages.add(String.format("Deserialization for MALFORMEDREQUEST failed with `%s`.", e.getMessage()));
+            // continue to the next one
+        }
+        // validate the json string with INVALIDEMAIL
+        try {
+            INVALIDEMAIL.validateJsonElement(jsonElement);
+            validCount++;
+        } catch (Exception e) {
+            errorMessages.add(String.format("Deserialization for INVALIDEMAIL failed with `%s`.", e.getMessage()));
+            // continue to the next one
+        }
+        if (validCount != 1) {
+            throw new IOException(String.format("The JSON string is invalid for AnalyzeEmail400Response with oneOf schemas: INVALIDEMAIL, MALFORMEDREQUEST. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
+        }
+    }
+
+    /**
+     * Create an instance of AnalyzeEmail400Response given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of AnalyzeEmail400Response
+     * @throws IOException if the JSON string is invalid with respect to AnalyzeEmail400Response
+     */
+    public static AnalyzeEmail400Response fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, AnalyzeEmail400Response.class);
+    }
+
+    /**
+     * Convert an instance of AnalyzeEmail400Response to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
 }
 

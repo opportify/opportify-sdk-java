@@ -1,6 +1,6 @@
 /*
  * Opportify Insights API
- * ## Overview  The **Opportify Insights API** provides access to a powerful and up-to-date platform. With advanced data warehousing and AI-driven capabilities, this API is designed to empower your business to make informed, data-driven decisions and effectively assess potential risks.  ### Base URL Use the following base URL for all API requests:  ```plaintext https://api.opportify.ai/insights/v1/<service>/<endpoint> ```  ### Features - [**Email Insights:**](/docs/api/api-reference/email-insights)   - Validate email syntax.   - Identify email types (free, disposable, corporate or unknown).   - Real time verifications:     - Reachable: Confirms if the email domain has valid MX DNS records using DNS lookup.     - Deliverable: Simulates an SMTP handshake to check if the email address exists and is deliverable.     - Catch-All: Detects if the domain accepts all emails (catch-all configuration).   - Intelligent Error Correction: Automatically corrects well-known misspelled email addresses.   - Risk Report: Provides an AI-driven normalized score (200-1000) to evaluate email risk, using predefined thresholds.      [Access Documentation >>](/docs/api/api-reference/email-insights)  - [**IP Insights:**](/docs/api/api-reference/ip-insights)   - Connection types: Detects connection types such as `wired`, `mobile`, `enterprise`, `satellite`, `VPN`, `cloud-provider`, `open-proxy`, or `Tor`.   - Geo location: Delivers detailed insights such as country, city, timezone, language preferences, and additional location-based information to enhance regional understanding.   - WHOIS: Provides main details including RIR, ASN, organization, and abuse/admin/technical contacts.   - Trusted Provider Recognition: Identifies if the IP is part of a known trusted provider (e.g., ZTNA - Zero Trust Network Access).   - Blocklist Reports: Retrieves up-to-date blocklist statuses, active reports, and the latest detections.   - Risk Report: Delivers an AI-driven normalized score (200-1000) to evaluate IP risk, supported by predefined thresholds.    [Access Documentation >>](/docs/api/api-reference/ip-insights)  ### Authentication & Security - **API Key:** Access to the API requires an API key, which must be included in the request headers. Businesses can generate unlimited API keys directly from their account, offering flexibility and ease of use.  - **ACL Rules:** Enhance security with Access Control Lists (ACL), allowing you to restrict API access from specific IP addresses or ranges. This feature provides an additional layer of protection by ensuring only authorized IPs can interact with the API. - **No Query Parameters:** As a precautionary measure, our API avoids the use of query parameters for all operations, including authentication and handling Personally Identifiable Information (PII). This approach minimizes security risks by preventing sensitive data from being exposed in access logs, browser history, cached URLs, debugging tools, or inadvertently shared URLs. All sensitive information is securely transmitted through headers or the request body. 
+ * ## Overview  The **Opportify Insights API** provides access to a powerful and up-to-date platform. With advanced data warehousing and AI-driven capabilities, this API is designed to empower your business to make informed, data-driven decisions and effectively assess potential risks.  ### Base URL Use the following base URL for all API requests:  ```plaintext https://api.opportify.ai/insights/v1/<service>/<endpoint> ```  ### Features - [**Email Insights:**](/docs/api/api-reference/email-insights)   - Validate email syntax.   - Identify email types (free, disposable, private or unknown).   - Real time verifications:     - Reachable: Confirms if the email domain has valid MX DNS records using DNS lookup.     - Deliverable: Simulates an SMTP handshake to check if the email address exists and is deliverable.     - Catch-All: Detects if the domain accepts all emails (catch-all configuration).   - Intelligent Error Correction: Automatically corrects well-known misspelled email addresses.   - Risk Report: Provides an AI-driven normalized score (200-1000) to evaluate email risk, using predefined thresholds.      [Access Documentation >>](/docs/api/api-reference/email-insights)  - [**IP Insights:**](/docs/api/api-reference/ip-insights)   - Connection types: Detects connection types such as `wired`, `mobile`, `enterprise`, `satellite`, `VPN`, `cloud-provider`, `open-proxy`, or `Tor`.   - Geo location: Delivers detailed insights such as country, city, timezone, language preferences, and additional location-based information to enhance regional understanding.   - WHOIS: Provides main details including RIR, ASN, organization, and abuse/admin/technical contacts.   - Trusted Provider Recognition: Identifies if the IP is part of a known trusted provider (e.g., ZTNA - Zero Trust Network Access).   - Blocklist Reports: Retrieves up-to-date blocklist statuses, active reports, and the latest detections.   - Risk Report: Delivers an AI-driven normalized score (200-1000) to evaluate IP risk, supported by predefined thresholds.    [Access Documentation >>](/docs/api/api-reference/ip-insights)  ### Authentication & Security - **API Key:** Access to the API requires an API key, which must be included in the request headers. Businesses can generate unlimited API keys directly from their account, offering flexibility and ease of use.  - **ACL Rules:** Enhance security with Access Control Lists (ACL), allowing you to restrict API access from specific IP addresses or ranges. This feature provides an additional layer of protection by ensuring only authorized IPs can interact with the API. - **No Query Parameters:** As a precautionary measure, our API avoids the use of query parameters for all operations, including authentication and handling Personally Identifiable Information (PII). This approach minimizes security risks by preventing sensitive data from being exposed in access logs, browser history, cached URLs, debugging tools, or inadvertently shared URLs. All sensitive information is securely transmitted through headers or the request body. 
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -48,7 +48,7 @@ import ai.opportify.client.JSON;
 /**
  * AnalyzeEmailRequest
  */
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2025-01-07T17:36:50.096636-08:00[America/Los_Angeles]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2025-11-08T12:20:24.871327-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class AnalyzeEmailRequest {
   public static final String SERIALIZED_NAME_EMAIL = "email";
   @SerializedName(SERIALIZED_NAME_EMAIL)
@@ -58,12 +58,17 @@ public class AnalyzeEmailRequest {
   public static final String SERIALIZED_NAME_ENABLE_A_I = "enableAI";
   @SerializedName(SERIALIZED_NAME_ENABLE_A_I)
   @javax.annotation.Nullable
-  private Boolean enableAI;
+  private Boolean enableAI = true;
 
   public static final String SERIALIZED_NAME_ENABLE_AUTO_CORRECTION = "enableAutoCorrection";
   @SerializedName(SERIALIZED_NAME_ENABLE_AUTO_CORRECTION)
   @javax.annotation.Nullable
-  private Boolean enableAutoCorrection;
+  private Boolean enableAutoCorrection = true;
+
+  public static final String SERIALIZED_NAME_ENABLE_DOMAIN_ENRICHMENT = "enableDomainEnrichment";
+  @SerializedName(SERIALIZED_NAME_ENABLE_DOMAIN_ENRICHMENT)
+  @javax.annotation.Nullable
+  private Boolean enableDomainEnrichment = true;
 
   public AnalyzeEmailRequest() {
   }
@@ -93,7 +98,7 @@ public class AnalyzeEmailRequest {
   }
 
   /**
-   * Enable AI-based analysis for insights.
+   * Enable AI-driven risk analysis. Optional; defaults to &#x60;true&#x60;.
    * @return enableAI
    */
   @javax.annotation.Nullable
@@ -112,7 +117,7 @@ public class AnalyzeEmailRequest {
   }
 
   /**
-   * Suggest possible corrections for misspelled emails.
+   * Attempt typo correction and return &#x60;emailCorrection&#x60; when confident. Optional; defaults to &#x60;true&#x60;.
    * @return enableAutoCorrection
    */
   @javax.annotation.Nullable
@@ -122,6 +127,25 @@ public class AnalyzeEmailRequest {
 
   public void setEnableAutoCorrection(@javax.annotation.Nullable Boolean enableAutoCorrection) {
     this.enableAutoCorrection = enableAutoCorrection;
+  }
+
+
+  public AnalyzeEmailRequest enableDomainEnrichment(@javax.annotation.Nullable Boolean enableDomainEnrichment) {
+    this.enableDomainEnrichment = enableDomainEnrichment;
+    return this;
+  }
+
+  /**
+   * Include domain-level enrichment details. Optional; defaults to &#x60;true&#x60;. Set to &#x60;false&#x60; to omit the &#x60;domain&#x60; block even when the data exists.
+   * @return enableDomainEnrichment
+   */
+  @javax.annotation.Nullable
+  public Boolean getEnableDomainEnrichment() {
+    return enableDomainEnrichment;
+  }
+
+  public void setEnableDomainEnrichment(@javax.annotation.Nullable Boolean enableDomainEnrichment) {
+    this.enableDomainEnrichment = enableDomainEnrichment;
   }
 
 
@@ -137,12 +161,13 @@ public class AnalyzeEmailRequest {
     AnalyzeEmailRequest analyzeEmailRequest = (AnalyzeEmailRequest) o;
     return Objects.equals(this.email, analyzeEmailRequest.email) &&
         Objects.equals(this.enableAI, analyzeEmailRequest.enableAI) &&
-        Objects.equals(this.enableAutoCorrection, analyzeEmailRequest.enableAutoCorrection);
+        Objects.equals(this.enableAutoCorrection, analyzeEmailRequest.enableAutoCorrection) &&
+        Objects.equals(this.enableDomainEnrichment, analyzeEmailRequest.enableDomainEnrichment);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(email, enableAI, enableAutoCorrection);
+    return Objects.hash(email, enableAI, enableAutoCorrection, enableDomainEnrichment);
   }
 
   @Override
@@ -152,6 +177,7 @@ public class AnalyzeEmailRequest {
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    enableAI: ").append(toIndentedString(enableAI)).append("\n");
     sb.append("    enableAutoCorrection: ").append(toIndentedString(enableAutoCorrection)).append("\n");
+    sb.append("    enableDomainEnrichment: ").append(toIndentedString(enableDomainEnrichment)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -177,6 +203,7 @@ public class AnalyzeEmailRequest {
     openapiFields.add("email");
     openapiFields.add("enableAI");
     openapiFields.add("enableAutoCorrection");
+    openapiFields.add("enableDomainEnrichment");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();

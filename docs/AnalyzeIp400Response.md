@@ -7,7 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**error** | [**AnalyzeIp400ResponseError**](AnalyzeIp400ResponseError.md) |  |  [optional] |
+|**errorMessage** | **String** |  |  [optional] |
+|**errorCode** | **String** |  |  [optional] |
 
 
 
