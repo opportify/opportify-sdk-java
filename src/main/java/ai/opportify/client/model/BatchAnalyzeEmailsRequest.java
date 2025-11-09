@@ -250,7 +250,7 @@ public class BatchAnalyzeEmailsRequest {
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       // ensure the required json array is present
       if (jsonObj.get("emails") == null) {
-        throw new IllegalArgumentException("Expected the field `linkedContent` to be an array in the JSON string but got `null`");
+        throw new IllegalArgumentException("Expected the field `emails` to be an array in the JSON string but got `null`");
       } else if (!jsonObj.get("emails").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `emails` to be an array in the JSON string but got `%s`", jsonObj.get("emails").toString()));
       }
