@@ -309,7 +309,7 @@ public class EmailDNS {
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       // ensure the required json array is present
       if (jsonObj.get("mx") == null) {
-        throw new IllegalArgumentException("Expected the field `linkedContent` to be an array in the JSON string but got `null`");
+        throw new IllegalArgumentException("Expected the field `mx` to be an array in the JSON string but got `null`");
       } else if (!jsonObj.get("mx").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `mx` to be an array in the JSON string but got `%s`", jsonObj.get("mx").toString()));
       }
