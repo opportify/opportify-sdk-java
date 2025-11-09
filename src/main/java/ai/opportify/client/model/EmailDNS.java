@@ -1,6 +1,6 @@
 /*
  * Opportify Insights API
- * ## Overview  The **Opportify Insights API** provides access to a powerful and up-to-date platform. With advanced data warehousing and AI-driven capabilities, this API is designed to empower your business to make informed, data-driven decisions and effectively assess potential risks.  ### Base URL Use the following base URL for all API requests:  ```plaintext https://api.opportify.ai/insights/v1/<service>/<endpoint> ```  ### Features - [**Email Insights:**](/docs/api/api-reference/email-insights)   - Validate email syntax.   - Identify email types (free, disposable, corporate or unknown).   - Real time verifications:     - Reachable: Confirms if the email domain has valid MX DNS records using DNS lookup.     - Deliverable: Simulates an SMTP handshake to check if the email address exists and is deliverable.     - Catch-All: Detects if the domain accepts all emails (catch-all configuration).   - Intelligent Error Correction: Automatically corrects well-known misspelled email addresses.   - Risk Report: Provides an AI-driven normalized score (200-1000) to evaluate email risk, using predefined thresholds.      [Access Documentation >>](/docs/api/api-reference/email-insights)  - [**IP Insights:**](/docs/api/api-reference/ip-insights)   - Connection types: Detects connection types such as `wired`, `mobile`, `enterprise`, `satellite`, `VPN`, `cloud-provider`, `open-proxy`, or `Tor`.   - Geo location: Delivers detailed insights such as country, city, timezone, language preferences, and additional location-based information to enhance regional understanding.   - WHOIS: Provides main details including RIR, ASN, organization, and abuse/admin/technical contacts.   - Trusted Provider Recognition: Identifies if the IP is part of a known trusted provider (e.g., ZTNA - Zero Trust Network Access).   - Blocklist Reports: Retrieves up-to-date blocklist statuses, active reports, and the latest detections.   - Risk Report: Delivers an AI-driven normalized score (200-1000) to evaluate IP risk, supported by predefined thresholds.    [Access Documentation >>](/docs/api/api-reference/ip-insights)  ### Authentication & Security - **API Key:** Access to the API requires an API key, which must be included in the request headers. Businesses can generate unlimited API keys directly from their account, offering flexibility and ease of use.  - **ACL Rules:** Enhance security with Access Control Lists (ACL), allowing you to restrict API access from specific IP addresses or ranges. This feature provides an additional layer of protection by ensuring only authorized IPs can interact with the API. - **No Query Parameters:** As a precautionary measure, our API avoids the use of query parameters for all operations, including authentication and handling Personally Identifiable Information (PII). This approach minimizes security risks by preventing sensitive data from being exposed in access logs, browser history, cached URLs, debugging tools, or inadvertently shared URLs. All sensitive information is securely transmitted through headers or the request body. 
+ * ## Overview  The **Opportify Insights API** provides access to a powerful and up-to-date platform. With advanced data warehousing and AI-driven capabilities, this API is designed to empower your business to make informed, data-driven decisions and effectively assess potential risks.  ### Base URL Use the following base URL for all API requests:  ```plaintext https://api.opportify.ai/insights/v1/<service>/<endpoint> ```  ### Features - [**Email Insights:**](/docs/api/api-reference/email-insights)   - Validate email syntax.   - Identify email types (free, disposable, private or unknown).   - Real time verifications:     - Reachable: Confirms if the email domain has valid MX DNS records using DNS lookup.     - Deliverable: Simulates an SMTP handshake to check if the email address exists and is deliverable.     - Catch-All: Detects if the domain accepts all emails (catch-all configuration).   - Intelligent Error Correction: Automatically corrects well-known misspelled email addresses.   - Risk Report: Provides an AI-driven normalized score (200-1000) to evaluate email risk, using predefined thresholds.      [Access Documentation >>](/docs/api/api-reference/email-insights)  - [**IP Insights:**](/docs/api/api-reference/ip-insights)   - Connection types: Detects connection types such as `wired`, `mobile`, `enterprise`, `satellite`, `VPN`, `cloud-provider`, `open-proxy`, or `Tor`.   - Geo location: Delivers detailed insights such as country, city, timezone, language preferences, and additional location-based information to enhance regional understanding.   - WHOIS: Provides main details including RIR, ASN, organization, and abuse/admin/technical contacts.   - Trusted Provider Recognition: Identifies if the IP is part of a known trusted provider (e.g., ZTNA - Zero Trust Network Access).   - Blocklist Reports: Retrieves up-to-date blocklist statuses, active reports, and the latest detections.   - Risk Report: Delivers an AI-driven normalized score (200-1000) to evaluate IP risk, supported by predefined thresholds.    [Access Documentation >>](/docs/api/api-reference/ip-insights)  ### Authentication & Security - **API Key:** Access to the API requires an API key, which must be included in the request headers. Businesses can generate unlimited API keys directly from their account, offering flexibility and ease of use.  - **ACL Rules:** Enhance security with Access Control Lists (ACL), allowing you to restrict API access from specific IP addresses or ranges. This feature provides an additional layer of protection by ensuring only authorized IPs can interact with the API. - **No Query Parameters:** As a precautionary measure, our API avoids the use of query parameters for all operations, including authentication and handling Personally Identifiable Information (PII). This approach minimizes security risks by preventing sensitive data from being exposed in access logs, browser history, cached URLs, debugging tools, or inadvertently shared URLs. All sensitive information is securely transmitted through headers or the request body. 
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -50,17 +50,42 @@ import ai.opportify.client.JSON;
 /**
  * DNS details for an email address domain.
  */
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2025-01-07T17:36:50.096636-08:00[America/Los_Angeles]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2025-11-08T13:20:53.492255-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class EmailDNS {
   public static final String SERIALIZED_NAME_MX = "mx";
   @SerializedName(SERIALIZED_NAME_MX)
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private List<String> mx = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_SPF_VALID = "spfValid";
+  @SerializedName(SERIALIZED_NAME_SPF_VALID)
+  @javax.annotation.Nonnull
+  private Boolean spfValid = false;
+
+  public static final String SERIALIZED_NAME_DKIM_CONFIGURED = "dkimConfigured";
+  @SerializedName(SERIALIZED_NAME_DKIM_CONFIGURED)
+  @javax.annotation.Nonnull
+  private Boolean dkimConfigured = false;
+
+  public static final String SERIALIZED_NAME_DMARC_VALID = "dmarcValid";
+  @SerializedName(SERIALIZED_NAME_DMARC_VALID)
+  @javax.annotation.Nonnull
+  private Boolean dmarcValid = false;
+
+  public static final String SERIALIZED_NAME_MX_RELAY = "mxRelay";
+  @SerializedName(SERIALIZED_NAME_MX_RELAY)
+  @javax.annotation.Nonnull
+  private String mxRelay = "";
+
+  public static final String SERIALIZED_NAME_MX_RELAY_CATEGORY = "mxRelayCategory";
+  @SerializedName(SERIALIZED_NAME_MX_RELAY_CATEGORY)
+  @javax.annotation.Nonnull
+  private String mxRelayCategory = "";
 
   public EmailDNS() {
   }
 
-  public EmailDNS mx(@javax.annotation.Nullable List<String> mx) {
+  public EmailDNS mx(@javax.annotation.Nonnull List<String> mx) {
     this.mx = mx;
     return this;
   }
@@ -74,16 +99,111 @@ public class EmailDNS {
   }
 
   /**
-   * Mail exchange records for the domain.
+   * Mail exchange records for the domain formatted as \&quot;&lt;priority&gt; &lt;hostname&gt;\&quot;. Records are sorted ascending by numeric priority before responding.
    * @return mx
    */
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   public List<String> getMx() {
     return mx;
   }
 
-  public void setMx(@javax.annotation.Nullable List<String> mx) {
+  public void setMx(@javax.annotation.Nonnull List<String> mx) {
     this.mx = mx;
+  }
+
+
+  public EmailDNS spfValid(@javax.annotation.Nonnull Boolean spfValid) {
+    this.spfValid = spfValid;
+    return this;
+  }
+
+  /**
+   * Indicates whether SPF validation succeeded for the domain.
+   * @return spfValid
+   */
+  @javax.annotation.Nonnull
+  public Boolean getSpfValid() {
+    return spfValid;
+  }
+
+  public void setSpfValid(@javax.annotation.Nonnull Boolean spfValid) {
+    this.spfValid = spfValid;
+  }
+
+
+  public EmailDNS dkimConfigured(@javax.annotation.Nonnull Boolean dkimConfigured) {
+    this.dkimConfigured = dkimConfigured;
+    return this;
+  }
+
+  /**
+   * Indicates whether DKIM selectors are configured for the domain.
+   * @return dkimConfigured
+   */
+  @javax.annotation.Nonnull
+  public Boolean getDkimConfigured() {
+    return dkimConfigured;
+  }
+
+  public void setDkimConfigured(@javax.annotation.Nonnull Boolean dkimConfigured) {
+    this.dkimConfigured = dkimConfigured;
+  }
+
+
+  public EmailDNS dmarcValid(@javax.annotation.Nonnull Boolean dmarcValid) {
+    this.dmarcValid = dmarcValid;
+    return this;
+  }
+
+  /**
+   * Indicates whether a valid DMARC policy is present for the domain.
+   * @return dmarcValid
+   */
+  @javax.annotation.Nonnull
+  public Boolean getDmarcValid() {
+    return dmarcValid;
+  }
+
+  public void setDmarcValid(@javax.annotation.Nonnull Boolean dmarcValid) {
+    this.dmarcValid = dmarcValid;
+  }
+
+
+  public EmailDNS mxRelay(@javax.annotation.Nonnull String mxRelay) {
+    this.mxRelay = mxRelay;
+    return this;
+  }
+
+  /**
+   * Primary MX relay hostname identified during analysis.
+   * @return mxRelay
+   */
+  @javax.annotation.Nonnull
+  public String getMxRelay() {
+    return mxRelay;
+  }
+
+  public void setMxRelay(@javax.annotation.Nonnull String mxRelay) {
+    this.mxRelay = mxRelay;
+  }
+
+
+  public EmailDNS mxRelayCategory(@javax.annotation.Nonnull String mxRelayCategory) {
+    this.mxRelayCategory = mxRelayCategory;
+    return this;
+  }
+
+  /**
+   * Categorization of the MX relay (provider slug or classification when available).
+   * @return mxRelayCategory
+   */
+  @javax.annotation.Nonnull
+  public String getMxRelayCategory() {
+    return mxRelayCategory;
+  }
+
+  public void setMxRelayCategory(@javax.annotation.Nonnull String mxRelayCategory) {
+    this.mxRelayCategory = mxRelayCategory;
   }
 
 
@@ -97,12 +217,17 @@ public class EmailDNS {
       return false;
     }
     EmailDNS emailDNS = (EmailDNS) o;
-    return Objects.equals(this.mx, emailDNS.mx);
+    return Objects.equals(this.mx, emailDNS.mx) &&
+        Objects.equals(this.spfValid, emailDNS.spfValid) &&
+        Objects.equals(this.dkimConfigured, emailDNS.dkimConfigured) &&
+        Objects.equals(this.dmarcValid, emailDNS.dmarcValid) &&
+        Objects.equals(this.mxRelay, emailDNS.mxRelay) &&
+        Objects.equals(this.mxRelayCategory, emailDNS.mxRelayCategory);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(mx);
+    return Objects.hash(mx, spfValid, dkimConfigured, dmarcValid, mxRelay, mxRelayCategory);
   }
 
   @Override
@@ -110,6 +235,11 @@ public class EmailDNS {
     StringBuilder sb = new StringBuilder();
     sb.append("class EmailDNS {\n");
     sb.append("    mx: ").append(toIndentedString(mx)).append("\n");
+    sb.append("    spfValid: ").append(toIndentedString(spfValid)).append("\n");
+    sb.append("    dkimConfigured: ").append(toIndentedString(dkimConfigured)).append("\n");
+    sb.append("    dmarcValid: ").append(toIndentedString(dmarcValid)).append("\n");
+    sb.append("    mxRelay: ").append(toIndentedString(mxRelay)).append("\n");
+    sb.append("    mxRelayCategory: ").append(toIndentedString(mxRelayCategory)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -133,9 +263,20 @@ public class EmailDNS {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("mx");
+    openapiFields.add("spfValid");
+    openapiFields.add("dkimConfigured");
+    openapiFields.add("dmarcValid");
+    openapiFields.add("mxRelay");
+    openapiFields.add("mxRelayCategory");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("mx");
+    openapiRequiredFields.add("spfValid");
+    openapiRequiredFields.add("dkimConfigured");
+    openapiRequiredFields.add("dmarcValid");
+    openapiRequiredFields.add("mxRelay");
+    openapiRequiredFields.add("mxRelayCategory");
   }
 
   /**
@@ -158,10 +299,25 @@ public class EmailDNS {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `EmailDNS` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : EmailDNS.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("mx") != null && !jsonObj.get("mx").isJsonNull() && !jsonObj.get("mx").isJsonArray()) {
+      // ensure the required json array is present
+      if (jsonObj.get("mx") == null) {
+        throw new IllegalArgumentException("Expected the field `mx` to be an array in the JSON string but got `null`");
+      } else if (!jsonObj.get("mx").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `mx` to be an array in the JSON string but got `%s`", jsonObj.get("mx").toString()));
+      }
+      if (!jsonObj.get("mxRelay").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `mxRelay` to be a primitive type in the JSON string but got `%s`", jsonObj.get("mxRelay").toString()));
+      }
+      if (!jsonObj.get("mxRelayCategory").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `mxRelayCategory` to be a primitive type in the JSON string but got `%s`", jsonObj.get("mxRelayCategory").toString()));
       }
   }
 

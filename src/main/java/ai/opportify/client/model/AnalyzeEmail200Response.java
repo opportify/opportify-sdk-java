@@ -1,6 +1,6 @@
 /*
  * Opportify Insights API
- * ## Overview  The **Opportify Insights API** provides access to a powerful and up-to-date platform. With advanced data warehousing and AI-driven capabilities, this API is designed to empower your business to make informed, data-driven decisions and effectively assess potential risks.  ### Base URL Use the following base URL for all API requests:  ```plaintext https://api.opportify.ai/insights/v1/<service>/<endpoint> ```  ### Features - [**Email Insights:**](/docs/api/api-reference/email-insights)   - Validate email syntax.   - Identify email types (free, disposable, corporate or unknown).   - Real time verifications:     - Reachable: Confirms if the email domain has valid MX DNS records using DNS lookup.     - Deliverable: Simulates an SMTP handshake to check if the email address exists and is deliverable.     - Catch-All: Detects if the domain accepts all emails (catch-all configuration).   - Intelligent Error Correction: Automatically corrects well-known misspelled email addresses.   - Risk Report: Provides an AI-driven normalized score (200-1000) to evaluate email risk, using predefined thresholds.      [Access Documentation >>](/docs/api/api-reference/email-insights)  - [**IP Insights:**](/docs/api/api-reference/ip-insights)   - Connection types: Detects connection types such as `wired`, `mobile`, `enterprise`, `satellite`, `VPN`, `cloud-provider`, `open-proxy`, or `Tor`.   - Geo location: Delivers detailed insights such as country, city, timezone, language preferences, and additional location-based information to enhance regional understanding.   - WHOIS: Provides main details including RIR, ASN, organization, and abuse/admin/technical contacts.   - Trusted Provider Recognition: Identifies if the IP is part of a known trusted provider (e.g., ZTNA - Zero Trust Network Access).   - Blocklist Reports: Retrieves up-to-date blocklist statuses, active reports, and the latest detections.   - Risk Report: Delivers an AI-driven normalized score (200-1000) to evaluate IP risk, supported by predefined thresholds.    [Access Documentation >>](/docs/api/api-reference/ip-insights)  ### Authentication & Security - **API Key:** Access to the API requires an API key, which must be included in the request headers. Businesses can generate unlimited API keys directly from their account, offering flexibility and ease of use.  - **ACL Rules:** Enhance security with Access Control Lists (ACL), allowing you to restrict API access from specific IP addresses or ranges. This feature provides an additional layer of protection by ensuring only authorized IPs can interact with the API. - **No Query Parameters:** As a precautionary measure, our API avoids the use of query parameters for all operations, including authentication and handling Personally Identifiable Information (PII). This approach minimizes security risks by preventing sensitive data from being exposed in access logs, browser history, cached URLs, debugging tools, or inadvertently shared URLs. All sensitive information is securely transmitted through headers or the request body. 
+ * ## Overview  The **Opportify Insights API** provides access to a powerful and up-to-date platform. With advanced data warehousing and AI-driven capabilities, this API is designed to empower your business to make informed, data-driven decisions and effectively assess potential risks.  ### Base URL Use the following base URL for all API requests:  ```plaintext https://api.opportify.ai/insights/v1/<service>/<endpoint> ```  ### Features - [**Email Insights:**](/docs/api/api-reference/email-insights)   - Validate email syntax.   - Identify email types (free, disposable, private or unknown).   - Real time verifications:     - Reachable: Confirms if the email domain has valid MX DNS records using DNS lookup.     - Deliverable: Simulates an SMTP handshake to check if the email address exists and is deliverable.     - Catch-All: Detects if the domain accepts all emails (catch-all configuration).   - Intelligent Error Correction: Automatically corrects well-known misspelled email addresses.   - Risk Report: Provides an AI-driven normalized score (200-1000) to evaluate email risk, using predefined thresholds.      [Access Documentation >>](/docs/api/api-reference/email-insights)  - [**IP Insights:**](/docs/api/api-reference/ip-insights)   - Connection types: Detects connection types such as `wired`, `mobile`, `enterprise`, `satellite`, `VPN`, `cloud-provider`, `open-proxy`, or `Tor`.   - Geo location: Delivers detailed insights such as country, city, timezone, language preferences, and additional location-based information to enhance regional understanding.   - WHOIS: Provides main details including RIR, ASN, organization, and abuse/admin/technical contacts.   - Trusted Provider Recognition: Identifies if the IP is part of a known trusted provider (e.g., ZTNA - Zero Trust Network Access).   - Blocklist Reports: Retrieves up-to-date blocklist statuses, active reports, and the latest detections.   - Risk Report: Delivers an AI-driven normalized score (200-1000) to evaluate IP risk, supported by predefined thresholds.    [Access Documentation >>](/docs/api/api-reference/ip-insights)  ### Authentication & Security - **API Key:** Access to the API requires an API key, which must be included in the request headers. Businesses can generate unlimited API keys directly from their account, offering flexibility and ease of use.  - **ACL Rules:** Enhance security with Access Control Lists (ACL), allowing you to restrict API access from specific IP addresses or ranges. This feature provides an additional layer of protection by ensuring only authorized IPs can interact with the API. - **No Query Parameters:** As a precautionary measure, our API avoids the use of query parameters for all operations, including authentication and handling Personally Identifiable Information (PII). This approach minimizes security risks by preventing sensitive data from being exposed in access logs, browser history, cached URLs, debugging tools, or inadvertently shared URLs. All sensitive information is securely transmitted through headers or the request body. 
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -21,8 +21,10 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import ai.opportify.client.model.AddressSignals;
 import ai.opportify.client.model.EmailDNS;
-import ai.opportify.client.model.RiskReport;
+import ai.opportify.client.model.EmailDomain;
+import ai.opportify.client.model.RiskReportEmail;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -50,7 +52,7 @@ import ai.opportify.client.JSON;
 /**
  * AnalyzeEmail200Response
  */
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2025-01-07T17:36:50.096636-08:00[America/Los_Angeles]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2025-11-08T13:20:53.492255-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class AnalyzeEmail200Response {
   public static final String SERIALIZED_NAME_EMAIL_ADDRESS = "emailAddress";
   @SerializedName(SERIALIZED_NAME_EMAIL_ADDRESS)
@@ -62,10 +64,140 @@ public class AnalyzeEmail200Response {
   @javax.annotation.Nonnull
   private String emailProvider;
 
+  /**
+   * Email classification based on provider and enrichment signals.
+   */
+  @JsonAdapter(EmailTypeEnum.Adapter.class)
+  public enum EmailTypeEnum {
+    PRIVATE("private"),
+    
+    FREE("free"),
+    
+    DISPOSABLE("disposable"),
+    
+    UNKNOWN("unknown");
+
+    private String value;
+
+    EmailTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static EmailTypeEnum fromValue(String value) {
+      for (EmailTypeEnum b : EmailTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<EmailTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final EmailTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public EmailTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return EmailTypeEnum.fromValue(value);
+      }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      EmailTypeEnum.fromValue(value);
+    }
+  }
+
   public static final String SERIALIZED_NAME_EMAIL_TYPE = "emailType";
   @SerializedName(SERIALIZED_NAME_EMAIL_TYPE)
   @javax.annotation.Nonnull
-  private String emailType;
+  private EmailTypeEnum emailType;
+
+  /**
+   * Checks if the email address exists and is deliverable using SMTP handshake simulation. This involves connecting to the mail server and issuing commands to verify deliverability. The possible answers are &#x60;yes&#x60;, &#x60;no&#x60;, or &#x60;unknown&#x60;. We guarantee a high confidence level on this parameter since this is a real time verification. 
+   */
+  @JsonAdapter(IsDeliverableEnum.Adapter.class)
+  public enum IsDeliverableEnum {
+    TRUE("true"),
+    
+    FALSE("false"),
+    
+    UNKNOWN("unknown");
+
+    private String value;
+
+    IsDeliverableEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static IsDeliverableEnum fromValue(String value) {
+      for (IsDeliverableEnum b : IsDeliverableEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<IsDeliverableEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final IsDeliverableEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public IsDeliverableEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return IsDeliverableEnum.fromValue(value);
+      }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      IsDeliverableEnum.fromValue(value);
+    }
+  }
+
+  public static final String SERIALIZED_NAME_IS_DELIVERABLE = "isDeliverable";
+  @SerializedName(SERIALIZED_NAME_IS_DELIVERABLE)
+  @javax.annotation.Nonnull
+  private IsDeliverableEnum isDeliverable;
+
+  public static final String SERIALIZED_NAME_IS_CATCH_ALL = "isCatchAll";
+  @SerializedName(SERIALIZED_NAME_IS_CATCH_ALL)
+  @javax.annotation.Nonnull
+  private Boolean isCatchAll;
+
+  public static final String SERIALIZED_NAME_IS_MAILBOX_FULL = "isMailboxFull";
+  @SerializedName(SERIALIZED_NAME_IS_MAILBOX_FULL)
+  @javax.annotation.Nonnull
+  private Boolean isMailboxFull;
+
+  public static final String SERIALIZED_NAME_IS_REACHABLE = "isReachable";
+  @SerializedName(SERIALIZED_NAME_IS_REACHABLE)
+  @javax.annotation.Nonnull
+  private Boolean isReachable;
 
   public static final String SERIALIZED_NAME_IS_FORMAT_VALID = "isFormatValid";
   @SerializedName(SERIALIZED_NAME_IS_FORMAT_VALID)
@@ -74,23 +206,13 @@ public class AnalyzeEmail200Response {
 
   public static final String SERIALIZED_NAME_EMAIL_CORRECTION = "emailCorrection";
   @SerializedName(SERIALIZED_NAME_EMAIL_CORRECTION)
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private String emailCorrection;
 
-  public static final String SERIALIZED_NAME_IS_DELIVERABLE = "isDeliverable";
-  @SerializedName(SERIALIZED_NAME_IS_DELIVERABLE)
+  public static final String SERIALIZED_NAME_ADDRESS_SIGNALS = "addressSignals";
+  @SerializedName(SERIALIZED_NAME_ADDRESS_SIGNALS)
   @javax.annotation.Nonnull
-  private Boolean isDeliverable;
-
-  public static final String SERIALIZED_NAME_IS_CATCH_ALL = "isCatchAll";
-  @SerializedName(SERIALIZED_NAME_IS_CATCH_ALL)
-  @javax.annotation.Nonnull
-  private Boolean isCatchAll;
-
-  public static final String SERIALIZED_NAME_IS_REACHABLE = "isReachable";
-  @SerializedName(SERIALIZED_NAME_IS_REACHABLE)
-  @javax.annotation.Nonnull
-  private Boolean isReachable;
+  private AddressSignals addressSignals;
 
   public static final String SERIALIZED_NAME_EMAIL_D_N_S = "emailDNS";
   @SerializedName(SERIALIZED_NAME_EMAIL_D_N_S)
@@ -99,8 +221,13 @@ public class AnalyzeEmail200Response {
 
   public static final String SERIALIZED_NAME_RISK_REPORT = "riskReport";
   @SerializedName(SERIALIZED_NAME_RISK_REPORT)
-  @javax.annotation.Nonnull
-  private RiskReport riskReport;
+  @javax.annotation.Nullable
+  private RiskReportEmail riskReport;
+
+  public static final String SERIALIZED_NAME_DOMAIN = "domain";
+  @SerializedName(SERIALIZED_NAME_DOMAIN)
+  @javax.annotation.Nullable
+  private EmailDomain domain;
 
   public AnalyzeEmail200Response() {
   }
@@ -111,7 +238,7 @@ public class AnalyzeEmail200Response {
   }
 
   /**
-   * The validated email address.
+   * Normalized email address returned by the service (always lower-case).
    * @return emailAddress
    */
   @javax.annotation.Nonnull
@@ -130,7 +257,7 @@ public class AnalyzeEmail200Response {
   }
 
   /**
-   * The email provider or domain name.
+   * Provider slug derived from the domain, or &#x60;unknown&#x60; when not classified.
    * @return emailProvider
    */
   @javax.annotation.Nonnull
@@ -143,78 +270,40 @@ public class AnalyzeEmail200Response {
   }
 
 
-  public AnalyzeEmail200Response emailType(@javax.annotation.Nonnull String emailType) {
+  public AnalyzeEmail200Response emailType(@javax.annotation.Nonnull EmailTypeEnum emailType) {
     this.emailType = emailType;
     return this;
   }
 
   /**
-   * Type of email address (e.g., free, disposable, corporate, unknown).
+   * Email classification based on provider and enrichment signals.
    * @return emailType
    */
   @javax.annotation.Nonnull
-  public String getEmailType() {
+  public EmailTypeEnum getEmailType() {
     return emailType;
   }
 
-  public void setEmailType(@javax.annotation.Nonnull String emailType) {
+  public void setEmailType(@javax.annotation.Nonnull EmailTypeEnum emailType) {
     this.emailType = emailType;
   }
 
 
-  public AnalyzeEmail200Response isFormatValid(@javax.annotation.Nonnull Boolean isFormatValid) {
-    this.isFormatValid = isFormatValid;
-    return this;
-  }
-
-  /**
-   * Indicates if the email address has a valid format.
-   * @return isFormatValid
-   */
-  @javax.annotation.Nonnull
-  public Boolean getIsFormatValid() {
-    return isFormatValid;
-  }
-
-  public void setIsFormatValid(@javax.annotation.Nonnull Boolean isFormatValid) {
-    this.isFormatValid = isFormatValid;
-  }
-
-
-  public AnalyzeEmail200Response emailCorrection(@javax.annotation.Nonnull String emailCorrection) {
-    this.emailCorrection = emailCorrection;
-    return this;
-  }
-
-  /**
-   * Suggested corrected email address, if applicable.
-   * @return emailCorrection
-   */
-  @javax.annotation.Nonnull
-  public String getEmailCorrection() {
-    return emailCorrection;
-  }
-
-  public void setEmailCorrection(@javax.annotation.Nonnull String emailCorrection) {
-    this.emailCorrection = emailCorrection;
-  }
-
-
-  public AnalyzeEmail200Response isDeliverable(@javax.annotation.Nonnull Boolean isDeliverable) {
+  public AnalyzeEmail200Response isDeliverable(@javax.annotation.Nonnull IsDeliverableEnum isDeliverable) {
     this.isDeliverable = isDeliverable;
     return this;
   }
 
   /**
-   * Checks if the email address exists and is deliverable using SMTP handshake simulation. This involves connecting to the mail server and issuing commands to verify deliverability. 
+   * Checks if the email address exists and is deliverable using SMTP handshake simulation. This involves connecting to the mail server and issuing commands to verify deliverability. The possible answers are &#x60;yes&#x60;, &#x60;no&#x60;, or &#x60;unknown&#x60;. We guarantee a high confidence level on this parameter since this is a real time verification. 
    * @return isDeliverable
    */
   @javax.annotation.Nonnull
-  public Boolean getIsDeliverable() {
+  public IsDeliverableEnum getIsDeliverable() {
     return isDeliverable;
   }
 
-  public void setIsDeliverable(@javax.annotation.Nonnull Boolean isDeliverable) {
+  public void setIsDeliverable(@javax.annotation.Nonnull IsDeliverableEnum isDeliverable) {
     this.isDeliverable = isDeliverable;
   }
 
@@ -238,6 +327,25 @@ public class AnalyzeEmail200Response {
   }
 
 
+  public AnalyzeEmail200Response isMailboxFull(@javax.annotation.Nonnull Boolean isMailboxFull) {
+    this.isMailboxFull = isMailboxFull;
+    return this;
+  }
+
+  /**
+   * Determines if the mailbox associated with the email is full, in association with isDeliverable field, it can give a reason why the email is not deliverable. 
+   * @return isMailboxFull
+   */
+  @javax.annotation.Nonnull
+  public Boolean getIsMailboxFull() {
+    return isMailboxFull;
+  }
+
+  public void setIsMailboxFull(@javax.annotation.Nonnull Boolean isMailboxFull) {
+    this.isMailboxFull = isMailboxFull;
+  }
+
+
   public AnalyzeEmail200Response isReachable(@javax.annotation.Nonnull Boolean isReachable) {
     this.isReachable = isReachable;
     return this;
@@ -254,6 +362,63 @@ public class AnalyzeEmail200Response {
 
   public void setIsReachable(@javax.annotation.Nonnull Boolean isReachable) {
     this.isReachable = isReachable;
+  }
+
+
+  public AnalyzeEmail200Response isFormatValid(@javax.annotation.Nonnull Boolean isFormatValid) {
+    this.isFormatValid = isFormatValid;
+    return this;
+  }
+
+  /**
+   * Indicates if the email address meets syntax validation rules.
+   * @return isFormatValid
+   */
+  @javax.annotation.Nonnull
+  public Boolean getIsFormatValid() {
+    return isFormatValid;
+  }
+
+  public void setIsFormatValid(@javax.annotation.Nonnull Boolean isFormatValid) {
+    this.isFormatValid = isFormatValid;
+  }
+
+
+  public AnalyzeEmail200Response emailCorrection(@javax.annotation.Nullable String emailCorrection) {
+    this.emailCorrection = emailCorrection;
+    return this;
+  }
+
+  /**
+   * Suggested corrected email address when auto-correction is confident. Present only when &#x60;enableAutoCorrection&#x60; is true and a correction exists.
+   * @return emailCorrection
+   */
+  @javax.annotation.Nullable
+  public String getEmailCorrection() {
+    return emailCorrection;
+  }
+
+  public void setEmailCorrection(@javax.annotation.Nullable String emailCorrection) {
+    this.emailCorrection = emailCorrection;
+  }
+
+
+  public AnalyzeEmail200Response addressSignals(@javax.annotation.Nonnull AddressSignals addressSignals) {
+    this.addressSignals = addressSignals;
+    return this;
+  }
+
+  /**
+   * Local-part parsing details for the analyzed address. Always present; fields default to empty strings when a signal is not applicable.
+   * @return addressSignals
+   */
+  @javax.annotation.Nonnull
+  public AddressSignals getAddressSignals() {
+    return addressSignals;
+  }
+
+  public void setAddressSignals(@javax.annotation.Nonnull AddressSignals addressSignals) {
+    this.addressSignals = addressSignals;
   }
 
 
@@ -276,22 +441,41 @@ public class AnalyzeEmail200Response {
   }
 
 
-  public AnalyzeEmail200Response riskReport(@javax.annotation.Nonnull RiskReport riskReport) {
+  public AnalyzeEmail200Response riskReport(@javax.annotation.Nullable RiskReportEmail riskReport) {
     this.riskReport = riskReport;
     return this;
   }
 
   /**
-   * Get riskReport
+   * AI-generated risk report detailing the evaluated risk bucket. Returned only when &#x60;enableAI&#x60; is true.
    * @return riskReport
    */
-  @javax.annotation.Nonnull
-  public RiskReport getRiskReport() {
+  @javax.annotation.Nullable
+  public RiskReportEmail getRiskReport() {
     return riskReport;
   }
 
-  public void setRiskReport(@javax.annotation.Nonnull RiskReport riskReport) {
+  public void setRiskReport(@javax.annotation.Nullable RiskReportEmail riskReport) {
     this.riskReport = riskReport;
+  }
+
+
+  public AnalyzeEmail200Response domain(@javax.annotation.Nullable EmailDomain domain) {
+    this.domain = domain;
+    return this;
+  }
+
+  /**
+   * Domain summary derived from enrichment providers. Omitted when enrichment is unavailable or &#x60;enableDomainEnrichment&#x60; is set to &#x60;false&#x60;.
+   * @return domain
+   */
+  @javax.annotation.Nullable
+  public EmailDomain getDomain() {
+    return domain;
+  }
+
+  public void setDomain(@javax.annotation.Nullable EmailDomain domain) {
+    this.domain = domain;
   }
 
 
@@ -308,18 +492,21 @@ public class AnalyzeEmail200Response {
     return Objects.equals(this.emailAddress, analyzeEmail200Response.emailAddress) &&
         Objects.equals(this.emailProvider, analyzeEmail200Response.emailProvider) &&
         Objects.equals(this.emailType, analyzeEmail200Response.emailType) &&
-        Objects.equals(this.isFormatValid, analyzeEmail200Response.isFormatValid) &&
-        Objects.equals(this.emailCorrection, analyzeEmail200Response.emailCorrection) &&
         Objects.equals(this.isDeliverable, analyzeEmail200Response.isDeliverable) &&
         Objects.equals(this.isCatchAll, analyzeEmail200Response.isCatchAll) &&
+        Objects.equals(this.isMailboxFull, analyzeEmail200Response.isMailboxFull) &&
         Objects.equals(this.isReachable, analyzeEmail200Response.isReachable) &&
+        Objects.equals(this.isFormatValid, analyzeEmail200Response.isFormatValid) &&
+        Objects.equals(this.emailCorrection, analyzeEmail200Response.emailCorrection) &&
+        Objects.equals(this.addressSignals, analyzeEmail200Response.addressSignals) &&
         Objects.equals(this.emailDNS, analyzeEmail200Response.emailDNS) &&
-        Objects.equals(this.riskReport, analyzeEmail200Response.riskReport);
+        Objects.equals(this.riskReport, analyzeEmail200Response.riskReport) &&
+        Objects.equals(this.domain, analyzeEmail200Response.domain);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(emailAddress, emailProvider, emailType, isFormatValid, emailCorrection, isDeliverable, isCatchAll, isReachable, emailDNS, riskReport);
+    return Objects.hash(emailAddress, emailProvider, emailType, isDeliverable, isCatchAll, isMailboxFull, isReachable, isFormatValid, emailCorrection, addressSignals, emailDNS, riskReport, domain);
   }
 
   @Override
@@ -329,13 +516,16 @@ public class AnalyzeEmail200Response {
     sb.append("    emailAddress: ").append(toIndentedString(emailAddress)).append("\n");
     sb.append("    emailProvider: ").append(toIndentedString(emailProvider)).append("\n");
     sb.append("    emailType: ").append(toIndentedString(emailType)).append("\n");
-    sb.append("    isFormatValid: ").append(toIndentedString(isFormatValid)).append("\n");
-    sb.append("    emailCorrection: ").append(toIndentedString(emailCorrection)).append("\n");
     sb.append("    isDeliverable: ").append(toIndentedString(isDeliverable)).append("\n");
     sb.append("    isCatchAll: ").append(toIndentedString(isCatchAll)).append("\n");
+    sb.append("    isMailboxFull: ").append(toIndentedString(isMailboxFull)).append("\n");
     sb.append("    isReachable: ").append(toIndentedString(isReachable)).append("\n");
+    sb.append("    isFormatValid: ").append(toIndentedString(isFormatValid)).append("\n");
+    sb.append("    emailCorrection: ").append(toIndentedString(emailCorrection)).append("\n");
+    sb.append("    addressSignals: ").append(toIndentedString(addressSignals)).append("\n");
     sb.append("    emailDNS: ").append(toIndentedString(emailDNS)).append("\n");
     sb.append("    riskReport: ").append(toIndentedString(riskReport)).append("\n");
+    sb.append("    domain: ").append(toIndentedString(domain)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -361,26 +551,29 @@ public class AnalyzeEmail200Response {
     openapiFields.add("emailAddress");
     openapiFields.add("emailProvider");
     openapiFields.add("emailType");
-    openapiFields.add("isFormatValid");
-    openapiFields.add("emailCorrection");
     openapiFields.add("isDeliverable");
     openapiFields.add("isCatchAll");
+    openapiFields.add("isMailboxFull");
     openapiFields.add("isReachable");
+    openapiFields.add("isFormatValid");
+    openapiFields.add("emailCorrection");
+    openapiFields.add("addressSignals");
     openapiFields.add("emailDNS");
     openapiFields.add("riskReport");
+    openapiFields.add("domain");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("emailAddress");
     openapiRequiredFields.add("emailProvider");
     openapiRequiredFields.add("emailType");
-    openapiRequiredFields.add("isFormatValid");
-    openapiRequiredFields.add("emailCorrection");
     openapiRequiredFields.add("isDeliverable");
     openapiRequiredFields.add("isCatchAll");
+    openapiRequiredFields.add("isMailboxFull");
     openapiRequiredFields.add("isReachable");
+    openapiRequiredFields.add("isFormatValid");
+    openapiRequiredFields.add("addressSignals");
     openapiRequiredFields.add("emailDNS");
-    openapiRequiredFields.add("riskReport");
   }
 
   /**
@@ -420,13 +613,28 @@ public class AnalyzeEmail200Response {
       if (!jsonObj.get("emailType").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `emailType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("emailType").toString()));
       }
-      if (!jsonObj.get("emailCorrection").isJsonPrimitive()) {
+      // validate the required field `emailType`
+      EmailTypeEnum.validateJsonElement(jsonObj.get("emailType"));
+      if (!jsonObj.get("isDeliverable").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `isDeliverable` to be a primitive type in the JSON string but got `%s`", jsonObj.get("isDeliverable").toString()));
+      }
+      // validate the required field `isDeliverable`
+      IsDeliverableEnum.validateJsonElement(jsonObj.get("isDeliverable"));
+      if ((jsonObj.get("emailCorrection") != null && !jsonObj.get("emailCorrection").isJsonNull()) && !jsonObj.get("emailCorrection").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `emailCorrection` to be a primitive type in the JSON string but got `%s`", jsonObj.get("emailCorrection").toString()));
       }
+      // validate the required field `addressSignals`
+      AddressSignals.validateJsonElement(jsonObj.get("addressSignals"));
       // validate the required field `emailDNS`
       EmailDNS.validateJsonElement(jsonObj.get("emailDNS"));
-      // validate the required field `riskReport`
-      RiskReport.validateJsonElement(jsonObj.get("riskReport"));
+      // validate the optional field `riskReport`
+      if (jsonObj.get("riskReport") != null && !jsonObj.get("riskReport").isJsonNull()) {
+        RiskReportEmail.validateJsonElement(jsonObj.get("riskReport"));
+      }
+      // validate the optional field `domain`
+      if (jsonObj.get("domain") != null && !jsonObj.get("domain").isJsonNull()) {
+        EmailDomain.validateJsonElement(jsonObj.get("domain"));
+      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

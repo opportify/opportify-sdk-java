@@ -1,6 +1,6 @@
 /*
  * Opportify Insights API
- * ## Overview  The **Opportify Insights API** provides access to a powerful and up-to-date platform. With advanced data warehousing and AI-driven capabilities, this API is designed to empower your business to make informed, data-driven decisions and effectively assess potential risks.  ### Base URL Use the following base URL for all API requests:  ```plaintext https://api.opportify.ai/insights/v1/<service>/<endpoint> ```  ### Features - [**Email Insights:**](/docs/api/api-reference/email-insights)   - Validate email syntax.   - Identify email types (free, disposable, corporate or unknown).   - Real time verifications:     - Reachable: Confirms if the email domain has valid MX DNS records using DNS lookup.     - Deliverable: Simulates an SMTP handshake to check if the email address exists and is deliverable.     - Catch-All: Detects if the domain accepts all emails (catch-all configuration).   - Intelligent Error Correction: Automatically corrects well-known misspelled email addresses.   - Risk Report: Provides an AI-driven normalized score (200-1000) to evaluate email risk, using predefined thresholds.      [Access Documentation >>](/docs/api/api-reference/email-insights)  - [**IP Insights:**](/docs/api/api-reference/ip-insights)   - Connection types: Detects connection types such as `wired`, `mobile`, `enterprise`, `satellite`, `VPN`, `cloud-provider`, `open-proxy`, or `Tor`.   - Geo location: Delivers detailed insights such as country, city, timezone, language preferences, and additional location-based information to enhance regional understanding.   - WHOIS: Provides main details including RIR, ASN, organization, and abuse/admin/technical contacts.   - Trusted Provider Recognition: Identifies if the IP is part of a known trusted provider (e.g., ZTNA - Zero Trust Network Access).   - Blocklist Reports: Retrieves up-to-date blocklist statuses, active reports, and the latest detections.   - Risk Report: Delivers an AI-driven normalized score (200-1000) to evaluate IP risk, supported by predefined thresholds.    [Access Documentation >>](/docs/api/api-reference/ip-insights)  ### Authentication & Security - **API Key:** Access to the API requires an API key, which must be included in the request headers. Businesses can generate unlimited API keys directly from their account, offering flexibility and ease of use.  - **ACL Rules:** Enhance security with Access Control Lists (ACL), allowing you to restrict API access from specific IP addresses or ranges. This feature provides an additional layer of protection by ensuring only authorized IPs can interact with the API. - **No Query Parameters:** As a precautionary measure, our API avoids the use of query parameters for all operations, including authentication and handling Personally Identifiable Information (PII). This approach minimizes security risks by preventing sensitive data from being exposed in access logs, browser history, cached URLs, debugging tools, or inadvertently shared URLs. All sensitive information is securely transmitted through headers or the request body. 
+ * ## Overview  The **Opportify Insights API** provides access to a powerful and up-to-date platform. With advanced data warehousing and AI-driven capabilities, this API is designed to empower your business to make informed, data-driven decisions and effectively assess potential risks.  ### Base URL Use the following base URL for all API requests:  ```plaintext https://api.opportify.ai/insights/v1/<service>/<endpoint> ```  ### Features - [**Email Insights:**](/docs/api/api-reference/email-insights)   - Validate email syntax.   - Identify email types (free, disposable, private or unknown).   - Real time verifications:     - Reachable: Confirms if the email domain has valid MX DNS records using DNS lookup.     - Deliverable: Simulates an SMTP handshake to check if the email address exists and is deliverable.     - Catch-All: Detects if the domain accepts all emails (catch-all configuration).   - Intelligent Error Correction: Automatically corrects well-known misspelled email addresses.   - Risk Report: Provides an AI-driven normalized score (200-1000) to evaluate email risk, using predefined thresholds.      [Access Documentation >>](/docs/api/api-reference/email-insights)  - [**IP Insights:**](/docs/api/api-reference/ip-insights)   - Connection types: Detects connection types such as `wired`, `mobile`, `enterprise`, `satellite`, `VPN`, `cloud-provider`, `open-proxy`, or `Tor`.   - Geo location: Delivers detailed insights such as country, city, timezone, language preferences, and additional location-based information to enhance regional understanding.   - WHOIS: Provides main details including RIR, ASN, organization, and abuse/admin/technical contacts.   - Trusted Provider Recognition: Identifies if the IP is part of a known trusted provider (e.g., ZTNA - Zero Trust Network Access).   - Blocklist Reports: Retrieves up-to-date blocklist statuses, active reports, and the latest detections.   - Risk Report: Delivers an AI-driven normalized score (200-1000) to evaluate IP risk, supported by predefined thresholds.    [Access Documentation >>](/docs/api/api-reference/ip-insights)  ### Authentication & Security - **API Key:** Access to the API requires an API key, which must be included in the request headers. Businesses can generate unlimited API keys directly from their account, offering flexibility and ease of use.  - **ACL Rules:** Enhance security with Access Control Lists (ACL), allowing you to restrict API access from specific IP addresses or ranges. This feature provides an additional layer of protection by ensuring only authorized IPs can interact with the API. - **No Query Parameters:** As a precautionary measure, our API avoids the use of query parameters for all operations, including authentication and handling Personally Identifiable Information (PII). This approach minimizes security risks by preventing sensitive data from being exposed in access logs, browser history, cached URLs, debugging tools, or inadvertently shared URLs. All sensitive information is securely transmitted through headers or the request body. 
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -28,11 +28,32 @@ import java.io.IOException;
 
 
 import ai.opportify.client.model.AnalyzeEmail403Response;
+import ai.opportify.client.model.AnalyzeEmail500Response;
 import ai.opportify.client.model.AnalyzeIp200Response;
 import ai.opportify.client.model.AnalyzeIp400Response;
-import ai.opportify.client.model.AnalyzeIp404Response;
-import ai.opportify.client.model.AnalyzeIp500Response;
 import ai.opportify.client.model.AnalyzeIpRequest;
+import ai.opportify.client.model.BatchAnalyzeEmails401Response;
+import ai.opportify.client.model.BatchAnalyzeEmails402Response;
+import ai.opportify.client.model.BatchAnalyzeEmails403Response;
+import ai.opportify.client.model.BatchAnalyzeEmails413Response;
+import ai.opportify.client.model.BatchAnalyzeEmails429Response;
+import ai.opportify.client.model.BatchAnalyzeIps202Response;
+import ai.opportify.client.model.BatchAnalyzeIps400Response;
+import ai.opportify.client.model.BatchAnalyzeIpsRequest;
+import ai.opportify.client.model.CreateEmailBatchExport400Response;
+import ai.opportify.client.model.CreateEmailBatchExport403Response;
+import ai.opportify.client.model.CreateEmailBatchExport404Response;
+import ai.opportify.client.model.CreateEmailBatchExport409Response;
+import ai.opportify.client.model.ExportCreatedResponse;
+import ai.opportify.client.model.ExportRequest;
+import ai.opportify.client.model.ExportStatusResponse;
+import ai.opportify.client.model.GetEmailBatchExportStatus400Response;
+import ai.opportify.client.model.GetEmailBatchExportStatus404Response;
+import ai.opportify.client.model.GetEmailBatchStatus404Response;
+import ai.opportify.client.model.GetIpBatchStatus200Response;
+import ai.opportify.client.model.INTERNALERROR1;
+import ai.opportify.client.model.NOTFOUND;
+import java.util.UUID;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -90,7 +111,7 @@ public class IpInsightsApi {
         <tr><td> 200 </td><td> The IP analysis is successful. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Either the request is improperly formatted, or the IP is invalid. </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> IP address not found in any RIR database. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. Authorization errors from the API. </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
      </table>
      */
@@ -163,7 +184,7 @@ public class IpInsightsApi {
         <tr><td> 200 </td><td> The IP analysis is successful. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Either the request is improperly formatted, or the IP is invalid. </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> IP address not found in any RIR database. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. Authorization errors from the API. </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
      </table>
      */
@@ -185,7 +206,7 @@ public class IpInsightsApi {
         <tr><td> 200 </td><td> The IP analysis is successful. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Either the request is improperly formatted, or the IP is invalid. </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> IP address not found in any RIR database. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. Authorization errors from the API. </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
      </table>
      */
@@ -209,7 +230,7 @@ public class IpInsightsApi {
         <tr><td> 200 </td><td> The IP analysis is successful. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request. Either the request is improperly formatted, or the IP is invalid. </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> IP address not found in any RIR database. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. Authorization errors from the API. </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
      </table>
      */
@@ -217,6 +238,611 @@ public class IpInsightsApi {
 
         okhttp3.Call localVarCall = analyzeIpValidateBeforeCall(analyzeIpRequest, _callback);
         Type localVarReturnType = new TypeToken<AnalyzeIp200Response>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for batchAnalyzeIps
+     * @param batchAnalyzeIpsRequest  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 202 </td><td> Batch job accepted for processing. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Either the request is improperly formatted, or contains invalid IP addresses. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. Invalid or missing authentication token. </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Plan limitations or quota exceeded. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. Authorization errors from the API. </td><td>  -  </td></tr>
+        <tr><td> 413 </td><td> Payload Too Large. The request exceeds the 3MB size limit. </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too Many Requests. Rate limit exceeded. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call batchAnalyzeIpsCall(BatchAnalyzeIpsRequest batchAnalyzeIpsRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = batchAnalyzeIpsRequest;
+
+        // create path and map variables
+        String localVarPath = "/ip/batch";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json",
+            "multipart/form-data",
+            "text/plain"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "opportifyToken" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call batchAnalyzeIpsValidateBeforeCall(BatchAnalyzeIpsRequest batchAnalyzeIpsRequest, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'batchAnalyzeIpsRequest' is set
+        if (batchAnalyzeIpsRequest == null) {
+            throw new ApiException("Missing the required parameter 'batchAnalyzeIpsRequest' when calling batchAnalyzeIps(Async)");
+        }
+
+        return batchAnalyzeIpsCall(batchAnalyzeIpsRequest, _callback);
+
+    }
+
+    /**
+     * Batch Analyze IPs
+     * The **Batch Analyze IPs** endpoint enables processing of large volumes of IP addresses asynchronously. This endpoint accepts various input formats and returns a job ID for tracking the analysis progress.  ### Features: - **Asynchronous Processing**: Submit large lists of IP addresses for background processing. - **Multiple Input Formats**: Submit data as JSON arrays, tabular CSV/TSV/XLSX uploads, or line-separated text. - **Job Tracking**: Monitor processing status using the returned job ID.  ### Example JSON Request: &#x60;&#x60;&#x60;json {   \&quot;ips\&quot;: [     \&quot;192.168.0.1\&quot;,     \&quot;10.0.0.1\&quot;,     \&quot;172.16.0.1\&quot;   ],   \&quot;name\&quot;: \&quot;my list of IPs\&quot;,   \&quot;enableAI\&quot;: true } &#x60;&#x60;&#x60;  ### Authentication &amp; Security - **API Key:** Access requires an API key in the request headers. - **ACL Rules:** Optional IP-based access restrictions for enhanced security. - **No Query Parameters:** All data is transmitted securely through headers or request body.  ### Payload Limits - Maximum payload size: 3MB 
+     * @param batchAnalyzeIpsRequest  (required)
+     * @return BatchAnalyzeIps202Response
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 202 </td><td> Batch job accepted for processing. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Either the request is improperly formatted, or contains invalid IP addresses. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. Invalid or missing authentication token. </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Plan limitations or quota exceeded. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. Authorization errors from the API. </td><td>  -  </td></tr>
+        <tr><td> 413 </td><td> Payload Too Large. The request exceeds the 3MB size limit. </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too Many Requests. Rate limit exceeded. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
+     </table>
+     */
+    public BatchAnalyzeIps202Response batchAnalyzeIps(BatchAnalyzeIpsRequest batchAnalyzeIpsRequest) throws ApiException {
+        ApiResponse<BatchAnalyzeIps202Response> localVarResp = batchAnalyzeIpsWithHttpInfo(batchAnalyzeIpsRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Batch Analyze IPs
+     * The **Batch Analyze IPs** endpoint enables processing of large volumes of IP addresses asynchronously. This endpoint accepts various input formats and returns a job ID for tracking the analysis progress.  ### Features: - **Asynchronous Processing**: Submit large lists of IP addresses for background processing. - **Multiple Input Formats**: Submit data as JSON arrays, tabular CSV/TSV/XLSX uploads, or line-separated text. - **Job Tracking**: Monitor processing status using the returned job ID.  ### Example JSON Request: &#x60;&#x60;&#x60;json {   \&quot;ips\&quot;: [     \&quot;192.168.0.1\&quot;,     \&quot;10.0.0.1\&quot;,     \&quot;172.16.0.1\&quot;   ],   \&quot;name\&quot;: \&quot;my list of IPs\&quot;,   \&quot;enableAI\&quot;: true } &#x60;&#x60;&#x60;  ### Authentication &amp; Security - **API Key:** Access requires an API key in the request headers. - **ACL Rules:** Optional IP-based access restrictions for enhanced security. - **No Query Parameters:** All data is transmitted securely through headers or request body.  ### Payload Limits - Maximum payload size: 3MB 
+     * @param batchAnalyzeIpsRequest  (required)
+     * @return ApiResponse&lt;BatchAnalyzeIps202Response&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 202 </td><td> Batch job accepted for processing. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Either the request is improperly formatted, or contains invalid IP addresses. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. Invalid or missing authentication token. </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Plan limitations or quota exceeded. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. Authorization errors from the API. </td><td>  -  </td></tr>
+        <tr><td> 413 </td><td> Payload Too Large. The request exceeds the 3MB size limit. </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too Many Requests. Rate limit exceeded. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<BatchAnalyzeIps202Response> batchAnalyzeIpsWithHttpInfo(BatchAnalyzeIpsRequest batchAnalyzeIpsRequest) throws ApiException {
+        okhttp3.Call localVarCall = batchAnalyzeIpsValidateBeforeCall(batchAnalyzeIpsRequest, null);
+        Type localVarReturnType = new TypeToken<BatchAnalyzeIps202Response>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Batch Analyze IPs (asynchronously)
+     * The **Batch Analyze IPs** endpoint enables processing of large volumes of IP addresses asynchronously. This endpoint accepts various input formats and returns a job ID for tracking the analysis progress.  ### Features: - **Asynchronous Processing**: Submit large lists of IP addresses for background processing. - **Multiple Input Formats**: Submit data as JSON arrays, tabular CSV/TSV/XLSX uploads, or line-separated text. - **Job Tracking**: Monitor processing status using the returned job ID.  ### Example JSON Request: &#x60;&#x60;&#x60;json {   \&quot;ips\&quot;: [     \&quot;192.168.0.1\&quot;,     \&quot;10.0.0.1\&quot;,     \&quot;172.16.0.1\&quot;   ],   \&quot;name\&quot;: \&quot;my list of IPs\&quot;,   \&quot;enableAI\&quot;: true } &#x60;&#x60;&#x60;  ### Authentication &amp; Security - **API Key:** Access requires an API key in the request headers. - **ACL Rules:** Optional IP-based access restrictions for enhanced security. - **No Query Parameters:** All data is transmitted securely through headers or request body.  ### Payload Limits - Maximum payload size: 3MB 
+     * @param batchAnalyzeIpsRequest  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 202 </td><td> Batch job accepted for processing. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Either the request is improperly formatted, or contains invalid IP addresses. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. Invalid or missing authentication token. </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Plan limitations or quota exceeded. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. Authorization errors from the API. </td><td>  -  </td></tr>
+        <tr><td> 413 </td><td> Payload Too Large. The request exceeds the 3MB size limit. </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too Many Requests. Rate limit exceeded. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call batchAnalyzeIpsAsync(BatchAnalyzeIpsRequest batchAnalyzeIpsRequest, final ApiCallback<BatchAnalyzeIps202Response> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = batchAnalyzeIpsValidateBeforeCall(batchAnalyzeIpsRequest, _callback);
+        Type localVarReturnType = new TypeToken<BatchAnalyzeIps202Response>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for createIpBatchExport
+     * @param jobId The unique identifier of the completed batch job. (required)
+     * @param exportRequest  (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 202 </td><td> Export request accepted for processing. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Invalid request parameters or body. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. Access denied to this job. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Job not found. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict. Job not ready for export. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call createIpBatchExportCall(UUID jobId, ExportRequest exportRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = exportRequest;
+
+        // create path and map variables
+        String localVarPath = "/ip/batch/{jobId}/exports"
+            .replace("{" + "jobId" + "}", localVarApiClient.escapeString(jobId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "opportifyToken" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call createIpBatchExportValidateBeforeCall(UUID jobId, ExportRequest exportRequest, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'jobId' is set
+        if (jobId == null) {
+            throw new ApiException("Missing the required parameter 'jobId' when calling createIpBatchExport(Async)");
+        }
+
+        return createIpBatchExportCall(jobId, exportRequest, _callback);
+
+    }
+
+    /**
+     * Create IP Batch Export
+     * The **Create IP Batch Export** endpoint allows you to request a custom export of completed batch analysis results. You can apply filters, select specific columns, and choose the output format (CSV or JSON).  ### Features: - **Format Options**: Export results as CSV or JSON - **Filtering**: Apply filters on any field in the response data - **Column Selection**: Choose specific fields to include in the export - **Async Processing**: Export requests are processed asynchronously  ### Filter Syntax: - **String filters**: Exact match, comma-separated values, or arrays - **Numeric filters**: Exact values, arrays, or range objects with &#x60;min&#x60;/&#x60;max&#x60; - **Nested fields**: Use dot notation (e.g., &#x60;result.riskReport.score&#x60;)  ### Example Request: &#x60;&#x60;&#x60;json {   \&quot;exportType\&quot;: \&quot;json\&quot;,   \&quot;filters\&quot;: {     \&quot;result.riskReport.level\&quot;: \&quot;low,medium\&quot;,     \&quot;result.riskReport.score\&quot;: { \&quot;max\&quot;: 500 },     \&quot;result.geo.countryCode\&quot;: [\&quot;US\&quot;, \&quot;CA\&quot;, \&quot;GB\&quot;]   } } &#x60;&#x60;&#x60; 
+     * @param jobId The unique identifier of the completed batch job. (required)
+     * @param exportRequest  (optional)
+     * @return ExportCreatedResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 202 </td><td> Export request accepted for processing. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Invalid request parameters or body. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. Access denied to this job. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Job not found. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict. Job not ready for export. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ExportCreatedResponse createIpBatchExport(UUID jobId, ExportRequest exportRequest) throws ApiException {
+        ApiResponse<ExportCreatedResponse> localVarResp = createIpBatchExportWithHttpInfo(jobId, exportRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Create IP Batch Export
+     * The **Create IP Batch Export** endpoint allows you to request a custom export of completed batch analysis results. You can apply filters, select specific columns, and choose the output format (CSV or JSON).  ### Features: - **Format Options**: Export results as CSV or JSON - **Filtering**: Apply filters on any field in the response data - **Column Selection**: Choose specific fields to include in the export - **Async Processing**: Export requests are processed asynchronously  ### Filter Syntax: - **String filters**: Exact match, comma-separated values, or arrays - **Numeric filters**: Exact values, arrays, or range objects with &#x60;min&#x60;/&#x60;max&#x60; - **Nested fields**: Use dot notation (e.g., &#x60;result.riskReport.score&#x60;)  ### Example Request: &#x60;&#x60;&#x60;json {   \&quot;exportType\&quot;: \&quot;json\&quot;,   \&quot;filters\&quot;: {     \&quot;result.riskReport.level\&quot;: \&quot;low,medium\&quot;,     \&quot;result.riskReport.score\&quot;: { \&quot;max\&quot;: 500 },     \&quot;result.geo.countryCode\&quot;: [\&quot;US\&quot;, \&quot;CA\&quot;, \&quot;GB\&quot;]   } } &#x60;&#x60;&#x60; 
+     * @param jobId The unique identifier of the completed batch job. (required)
+     * @param exportRequest  (optional)
+     * @return ApiResponse&lt;ExportCreatedResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 202 </td><td> Export request accepted for processing. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Invalid request parameters or body. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. Access denied to this job. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Job not found. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict. Job not ready for export. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<ExportCreatedResponse> createIpBatchExportWithHttpInfo(UUID jobId, ExportRequest exportRequest) throws ApiException {
+        okhttp3.Call localVarCall = createIpBatchExportValidateBeforeCall(jobId, exportRequest, null);
+        Type localVarReturnType = new TypeToken<ExportCreatedResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Create IP Batch Export (asynchronously)
+     * The **Create IP Batch Export** endpoint allows you to request a custom export of completed batch analysis results. You can apply filters, select specific columns, and choose the output format (CSV or JSON).  ### Features: - **Format Options**: Export results as CSV or JSON - **Filtering**: Apply filters on any field in the response data - **Column Selection**: Choose specific fields to include in the export - **Async Processing**: Export requests are processed asynchronously  ### Filter Syntax: - **String filters**: Exact match, comma-separated values, or arrays - **Numeric filters**: Exact values, arrays, or range objects with &#x60;min&#x60;/&#x60;max&#x60; - **Nested fields**: Use dot notation (e.g., &#x60;result.riskReport.score&#x60;)  ### Example Request: &#x60;&#x60;&#x60;json {   \&quot;exportType\&quot;: \&quot;json\&quot;,   \&quot;filters\&quot;: {     \&quot;result.riskReport.level\&quot;: \&quot;low,medium\&quot;,     \&quot;result.riskReport.score\&quot;: { \&quot;max\&quot;: 500 },     \&quot;result.geo.countryCode\&quot;: [\&quot;US\&quot;, \&quot;CA\&quot;, \&quot;GB\&quot;]   } } &#x60;&#x60;&#x60; 
+     * @param jobId The unique identifier of the completed batch job. (required)
+     * @param exportRequest  (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 202 </td><td> Export request accepted for processing. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Invalid request parameters or body. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. Access denied to this job. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Job not found. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict. Job not ready for export. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call createIpBatchExportAsync(UUID jobId, ExportRequest exportRequest, final ApiCallback<ExportCreatedResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = createIpBatchExportValidateBeforeCall(jobId, exportRequest, _callback);
+        Type localVarReturnType = new TypeToken<ExportCreatedResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for getIpBatchExportStatus
+     * @param jobId The unique identifier of the batch job. (required)
+     * @param exportId The unique identifier of the export job. (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successfully retrieved export status. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Invalid path parameters. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. Access denied to this job. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Job or export not found. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getIpBatchExportStatusCall(UUID jobId, UUID exportId, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/ip/batch/{jobId}/exports/{exportId}"
+            .replace("{" + "jobId" + "}", localVarApiClient.escapeString(jobId.toString()))
+            .replace("{" + "exportId" + "}", localVarApiClient.escapeString(exportId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "opportifyToken" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getIpBatchExportStatusValidateBeforeCall(UUID jobId, UUID exportId, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'jobId' is set
+        if (jobId == null) {
+            throw new ApiException("Missing the required parameter 'jobId' when calling getIpBatchExportStatus(Async)");
+        }
+
+        // verify the required parameter 'exportId' is set
+        if (exportId == null) {
+            throw new ApiException("Missing the required parameter 'exportId' when calling getIpBatchExportStatus(Async)");
+        }
+
+        return getIpBatchExportStatusCall(jobId, exportId, _callback);
+
+    }
+
+    /**
+     * Get IP Batch Export Status
+     * The **Get IP Batch Export Status** endpoint retrieves the status and download URL for a previously requested export job.  ### Export Status Values: - &#x60;QUEUED&#x60;: Export request received, waiting for processing - &#x60;PROCESSING&#x60;: Worker is filtering and generating the export file - &#x60;COMPLETED&#x60;: Export ready, &#x60;downloadUrl&#x60; available - &#x60;FAILED&#x60;: Export failed, check &#x60;errorCode&#x60; and &#x60;errorMessage&#x60; 
+     * @param jobId The unique identifier of the batch job. (required)
+     * @param exportId The unique identifier of the export job. (required)
+     * @return ExportStatusResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successfully retrieved export status. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Invalid path parameters. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. Access denied to this job. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Job or export not found. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ExportStatusResponse getIpBatchExportStatus(UUID jobId, UUID exportId) throws ApiException {
+        ApiResponse<ExportStatusResponse> localVarResp = getIpBatchExportStatusWithHttpInfo(jobId, exportId);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Get IP Batch Export Status
+     * The **Get IP Batch Export Status** endpoint retrieves the status and download URL for a previously requested export job.  ### Export Status Values: - &#x60;QUEUED&#x60;: Export request received, waiting for processing - &#x60;PROCESSING&#x60;: Worker is filtering and generating the export file - &#x60;COMPLETED&#x60;: Export ready, &#x60;downloadUrl&#x60; available - &#x60;FAILED&#x60;: Export failed, check &#x60;errorCode&#x60; and &#x60;errorMessage&#x60; 
+     * @param jobId The unique identifier of the batch job. (required)
+     * @param exportId The unique identifier of the export job. (required)
+     * @return ApiResponse&lt;ExportStatusResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successfully retrieved export status. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Invalid path parameters. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. Access denied to this job. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Job or export not found. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<ExportStatusResponse> getIpBatchExportStatusWithHttpInfo(UUID jobId, UUID exportId) throws ApiException {
+        okhttp3.Call localVarCall = getIpBatchExportStatusValidateBeforeCall(jobId, exportId, null);
+        Type localVarReturnType = new TypeToken<ExportStatusResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Get IP Batch Export Status (asynchronously)
+     * The **Get IP Batch Export Status** endpoint retrieves the status and download URL for a previously requested export job.  ### Export Status Values: - &#x60;QUEUED&#x60;: Export request received, waiting for processing - &#x60;PROCESSING&#x60;: Worker is filtering and generating the export file - &#x60;COMPLETED&#x60;: Export ready, &#x60;downloadUrl&#x60; available - &#x60;FAILED&#x60;: Export failed, check &#x60;errorCode&#x60; and &#x60;errorMessage&#x60; 
+     * @param jobId The unique identifier of the batch job. (required)
+     * @param exportId The unique identifier of the export job. (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successfully retrieved export status. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request. Invalid path parameters. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. Access denied to this job. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Job or export not found. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getIpBatchExportStatusAsync(UUID jobId, UUID exportId, final ApiCallback<ExportStatusResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = getIpBatchExportStatusValidateBeforeCall(jobId, exportId, _callback);
+        Type localVarReturnType = new TypeToken<ExportStatusResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for getIpBatchStatus
+     * @param jobId The unique identifier of the batch job to retrieve status for. (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successfully retrieved batch job status. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. Invalid or missing authentication token. </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Plan limitations or quota exceeded. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. Authorization errors from the API. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Job not found. The specified jobId doesn&#39;t exist or has expired. </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too Many Requests. Rate limit exceeded. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getIpBatchStatusCall(String jobId, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/ip/batch/{jobId}"
+            .replace("{" + "jobId" + "}", localVarApiClient.escapeString(jobId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "opportifyToken" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getIpBatchStatusValidateBeforeCall(String jobId, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'jobId' is set
+        if (jobId == null) {
+            throw new ApiException("Missing the required parameter 'jobId' when calling getIpBatchStatus(Async)");
+        }
+
+        return getIpBatchStatusCall(jobId, _callback);
+
+    }
+
+    /**
+     * Get IP Batch Status
+     * The **Get IP Batch Status** endpoint allows you to retrieve the current status of a previously submitted batch processing job. Use this endpoint to track the progress of your batch IP analysis request and retrieve results when processing is complete.  ### Response Information: - When status is &#x60;QUEUED&#x60;: The job is in the processing queue waiting to be processed. - When status is &#x60;PROCESSING&#x60;: The job is actively being processed. - When status is &#x60;COMPLETED&#x60;: The job has finished successfully. - When status is &#x60;ERROR&#x60;: An issue occurred during processing; check the statusDescription for details. 
+     * @param jobId The unique identifier of the batch job to retrieve status for. (required)
+     * @return GetIpBatchStatus200Response
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successfully retrieved batch job status. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. Invalid or missing authentication token. </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Plan limitations or quota exceeded. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. Authorization errors from the API. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Job not found. The specified jobId doesn&#39;t exist or has expired. </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too Many Requests. Rate limit exceeded. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
+     </table>
+     */
+    public GetIpBatchStatus200Response getIpBatchStatus(String jobId) throws ApiException {
+        ApiResponse<GetIpBatchStatus200Response> localVarResp = getIpBatchStatusWithHttpInfo(jobId);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Get IP Batch Status
+     * The **Get IP Batch Status** endpoint allows you to retrieve the current status of a previously submitted batch processing job. Use this endpoint to track the progress of your batch IP analysis request and retrieve results when processing is complete.  ### Response Information: - When status is &#x60;QUEUED&#x60;: The job is in the processing queue waiting to be processed. - When status is &#x60;PROCESSING&#x60;: The job is actively being processed. - When status is &#x60;COMPLETED&#x60;: The job has finished successfully. - When status is &#x60;ERROR&#x60;: An issue occurred during processing; check the statusDescription for details. 
+     * @param jobId The unique identifier of the batch job to retrieve status for. (required)
+     * @return ApiResponse&lt;GetIpBatchStatus200Response&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successfully retrieved batch job status. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. Invalid or missing authentication token. </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Plan limitations or quota exceeded. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. Authorization errors from the API. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Job not found. The specified jobId doesn&#39;t exist or has expired. </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too Many Requests. Rate limit exceeded. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<GetIpBatchStatus200Response> getIpBatchStatusWithHttpInfo(String jobId) throws ApiException {
+        okhttp3.Call localVarCall = getIpBatchStatusValidateBeforeCall(jobId, null);
+        Type localVarReturnType = new TypeToken<GetIpBatchStatus200Response>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Get IP Batch Status (asynchronously)
+     * The **Get IP Batch Status** endpoint allows you to retrieve the current status of a previously submitted batch processing job. Use this endpoint to track the progress of your batch IP analysis request and retrieve results when processing is complete.  ### Response Information: - When status is &#x60;QUEUED&#x60;: The job is in the processing queue waiting to be processed. - When status is &#x60;PROCESSING&#x60;: The job is actively being processed. - When status is &#x60;COMPLETED&#x60;: The job has finished successfully. - When status is &#x60;ERROR&#x60;: An issue occurred during processing; check the statusDescription for details. 
+     * @param jobId The unique identifier of the batch job to retrieve status for. (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successfully retrieved batch job status. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. Invalid or missing authentication token. </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Plan limitations or quota exceeded. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. Authorization errors from the API. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Job not found. The specified jobId doesn&#39;t exist or has expired. </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too Many Requests. Rate limit exceeded. </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getIpBatchStatusAsync(String jobId, final ApiCallback<GetIpBatchStatus200Response> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = getIpBatchStatusValidateBeforeCall(jobId, _callback);
+        Type localVarReturnType = new TypeToken<GetIpBatchStatus200Response>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
