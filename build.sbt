@@ -1,7 +1,7 @@
 lazy val root = (project in file(".")).
   settings(
     organization := "ai.opportify",
-    name := "opportify-sdk-client",
+    name := "opportify-sdk-java",
     version := "0.6.0",
     scalaVersion := "2.11.4",
     scalacOptions ++= Seq("-feature"),
