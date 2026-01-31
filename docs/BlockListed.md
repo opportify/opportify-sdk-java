@@ -11,7 +11,7 @@
 |**isBlockListed** | **Boolean** | Indicates if the IP is blocklisted in some of the known blocklist sources. |  |
 |**sources** | **Integer** | Number of blocklist sources. |  |
 |**activeReports** | **Integer** | Number of blocklist active reports for the given IP address. We constantly monitor and update this value as new reports are detected or resolved. |  |
-|**lastDetected** | **String** | Date and time of the last blocklist detection. ISO 8601 standard. |  [optional] |
+|**lastDetected** | **String** | Date and time of the last blocklist detection. ISO 8601 standard. Format: date-time. Example: \&quot;2022-01-01T12:00:00Z\&quot;.  |  [optional] |
 
 
 

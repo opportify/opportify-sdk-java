@@ -190,7 +190,7 @@ public class Example {
     //opportifyToken.setApiKeyPrefix("Token");
 
     IpInsightsApi apiInstance = new IpInsightsApi(defaultClient);
-    UUID jobId = UUID.fromString("52b36b1f-0c21-41fa-8a4f-423d25a9a8e2"); // UUID | The unique identifier of the completed batch job.
+    String jobId = "52b36b1f-0c21-41fa-8a4f-423d25a9a8e2"; // String | The unique identifier of the completed batch job. Format: uuid. Example: \"52b36b1f-0c21-41fa-8a4f-423d25a9a8e2\". 
     ExportRequest exportRequest = new ExportRequest(); // ExportRequest | 
     try {
       ExportCreatedResponse result = apiInstance.createIpBatchExport(jobId, exportRequest);
@@ -210,7 +210,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **jobId** | **UUID**| The unique identifier of the completed batch job. | |
+| **jobId** | **String**| The unique identifier of the completed batch job. Format: uuid. Example: \&quot;52b36b1f-0c21-41fa-8a4f-423d25a9a8e2\&quot;.  | |
 | **exportRequest** | [**ExportRequest**](ExportRequest.md)|  | [optional] |
 
 ### Return type
@@ -265,8 +265,8 @@ public class Example {
     //opportifyToken.setApiKeyPrefix("Token");
 
     IpInsightsApi apiInstance = new IpInsightsApi(defaultClient);
-    UUID jobId = UUID.fromString("52b36b1f-0c21-41fa-8a4f-423d25a9a8e2"); // UUID | The unique identifier of the batch job.
-    UUID exportId = UUID.fromString("3b90d156-a0d8-4630-8230-f59e9a4e9e33"); // UUID | The unique identifier of the export job.
+    String jobId = "52b36b1f-0c21-41fa-8a4f-423d25a9a8e2"; // String | The unique identifier of the batch job. Format: uuid. Example: \"52b36b1f-0c21-41fa-8a4f-423d25a9a8e2\". 
+    String exportId = "3b90d156-a0d8-4630-8230-f59e9a4e9e33"; // String | The unique identifier of the export job. Format: uuid. Example: \"3b90d156-a0d8-4630-8230-f59e9a4e9e33\". 
     try {
       ExportStatusResponse result = apiInstance.getIpBatchExportStatus(jobId, exportId);
       System.out.println(result);
@@ -285,8 +285,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **jobId** | **UUID**| The unique identifier of the batch job. | |
-| **exportId** | **UUID**| The unique identifier of the export job. | |
+| **jobId** | **String**| The unique identifier of the batch job. Format: uuid. Example: \&quot;52b36b1f-0c21-41fa-8a4f-423d25a9a8e2\&quot;.  | |
+| **exportId** | **String**| The unique identifier of the export job. Format: uuid. Example: \&quot;3b90d156-a0d8-4630-8230-f59e9a4e9e33\&quot;.  | |
 
 ### Return type
 
