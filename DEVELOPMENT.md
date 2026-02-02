@@ -137,7 +137,6 @@ Class | Method | HTTP request | Description
  - [INVALIDEMAIL](docs/INVALIDEMAIL.md)
  - [IPVALIDATIONFAILED](docs/IPVALIDATIONFAILED.md)
  - [MALFORMEDREQUEST](docs/MALFORMEDREQUEST.md)
- - [MALFORMEDREQUEST1](docs/MALFORMEDREQUEST1.md)
  - [NOTFOUND](docs/NOTFOUND.md)
  - [Organization](docs/Organization.md)
  - [RiskReport](docs/RiskReport.md)
