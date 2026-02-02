@@ -20,11 +20,9 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
 import ai.opportify.client.model.ExportFilter;
 
 import com.google.gson.Gson;
@@ -53,135 +51,27 @@ import ai.opportify.client.JSON;
 /**
  * Response containing the status and details of an export job.
  */
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2025-11-08T13:20:53.492255-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-01-31T14:35:15.553092-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class ExportStatusResponse {
   public static final String SERIALIZED_NAME_JOB_ID = "jobId";
   @SerializedName(SERIALIZED_NAME_JOB_ID)
   @javax.annotation.Nonnull
-  private UUID jobId;
+  private String jobId;
 
   public static final String SERIALIZED_NAME_EXPORT_ID = "exportId";
   @SerializedName(SERIALIZED_NAME_EXPORT_ID)
   @javax.annotation.Nonnull
-  private UUID exportId;
-
-  /**
-   * Current status of the export job.
-   */
-  @JsonAdapter(StatusEnum.Adapter.class)
-  public enum StatusEnum {
-    QUEUED("QUEUED"),
-    
-    PROCESSING("PROCESSING"),
-    
-    COMPLETED("COMPLETED"),
-    
-    FAILED("FAILED");
-
-    private String value;
-
-    StatusEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static StatusEnum fromValue(String value) {
-      for (StatusEnum b : StatusEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<StatusEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final StatusEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public StatusEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return StatusEnum.fromValue(value);
-      }
-    }
-
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      String value = jsonElement.getAsString();
-      StatusEnum.fromValue(value);
-    }
-  }
+  private String exportId;
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
   @javax.annotation.Nonnull
-  private StatusEnum status;
-
-  /**
-   * The output format of the export.
-   */
-  @JsonAdapter(FormatEnum.Adapter.class)
-  public enum FormatEnum {
-    CSV("csv"),
-    
-    JSON("json");
-
-    private String value;
-
-    FormatEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static FormatEnum fromValue(String value) {
-      for (FormatEnum b : FormatEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<FormatEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final FormatEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public FormatEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return FormatEnum.fromValue(value);
-      }
-    }
-
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      String value = jsonElement.getAsString();
-      FormatEnum.fromValue(value);
-    }
-  }
+  private String status;
 
   public static final String SERIALIZED_NAME_FORMAT = "format";
   @SerializedName(SERIALIZED_NAME_FORMAT)
   @javax.annotation.Nonnull
-  private FormatEnum format;
+  private String format;
 
   public static final String SERIALIZED_NAME_FILTERS = "filters";
   @SerializedName(SERIALIZED_NAME_FILTERS)
@@ -206,7 +96,7 @@ public class ExportStatusResponse {
   public static final String SERIALIZED_NAME_DOWNLOAD_URL = "downloadUrl";
   @SerializedName(SERIALIZED_NAME_DOWNLOAD_URL)
   @javax.annotation.Nullable
-  private URI downloadUrl;
+  private String downloadUrl;
 
   public static final String SERIALIZED_NAME_EXPIRES_AT = "expiresAt";
   @SerializedName(SERIALIZED_NAME_EXPIRES_AT)
@@ -231,78 +121,78 @@ public class ExportStatusResponse {
   public ExportStatusResponse() {
   }
 
-  public ExportStatusResponse jobId(@javax.annotation.Nonnull UUID jobId) {
+  public ExportStatusResponse jobId(@javax.annotation.Nonnull String jobId) {
     this.jobId = jobId;
     return this;
   }
 
   /**
-   * The batch job identifier.
+   * The batch job identifier. Format: uuid. Example: \&quot;84d22c8b-2cb6-4606-bfb1-361244a097e4\&quot;. 
    * @return jobId
    */
   @javax.annotation.Nonnull
-  public UUID getJobId() {
+  public String getJobId() {
     return jobId;
   }
 
-  public void setJobId(@javax.annotation.Nonnull UUID jobId) {
+  public void setJobId(@javax.annotation.Nonnull String jobId) {
     this.jobId = jobId;
   }
 
 
-  public ExportStatusResponse exportId(@javax.annotation.Nonnull UUID exportId) {
+  public ExportStatusResponse exportId(@javax.annotation.Nonnull String exportId) {
     this.exportId = exportId;
     return this;
   }
 
   /**
-   * The unique identifier for the export job.
+   * The unique identifier for the export job. Format: uuid. Example: \&quot;6f8d88ef-0896-4f69-90cd-7cc6ce5e6ddf\&quot;. 
    * @return exportId
    */
   @javax.annotation.Nonnull
-  public UUID getExportId() {
+  public String getExportId() {
     return exportId;
   }
 
-  public void setExportId(@javax.annotation.Nonnull UUID exportId) {
+  public void setExportId(@javax.annotation.Nonnull String exportId) {
     this.exportId = exportId;
   }
 
 
-  public ExportStatusResponse status(@javax.annotation.Nonnull StatusEnum status) {
+  public ExportStatusResponse status(@javax.annotation.Nonnull String status) {
     this.status = status;
     return this;
   }
 
   /**
-   * Current status of the export job.
+   * Current status of the export job. Allowed values: &#x60;QUEUED&#x60;, &#x60;PROCESSING&#x60;, &#x60;COMPLETED&#x60;, &#x60;FAILED&#x60;. Example: &#x60;COMPLETED&#x60;. 
    * @return status
    */
   @javax.annotation.Nonnull
-  public StatusEnum getStatus() {
+  public String getStatus() {
     return status;
   }
 
-  public void setStatus(@javax.annotation.Nonnull StatusEnum status) {
+  public void setStatus(@javax.annotation.Nonnull String status) {
     this.status = status;
   }
 
 
-  public ExportStatusResponse format(@javax.annotation.Nonnull FormatEnum format) {
+  public ExportStatusResponse format(@javax.annotation.Nonnull String format) {
     this.format = format;
     return this;
   }
 
   /**
-   * The output format of the export.
+   * The output format of the export. Allowed values: &#x60;csv&#x60;, &#x60;json&#x60;. Example: &#x60;csv&#x60;. 
    * @return format
    */
   @javax.annotation.Nonnull
-  public FormatEnum getFormat() {
+  public String getFormat() {
     return format;
   }
 
-  public void setFormat(@javax.annotation.Nonnull FormatEnum format) {
+  public void setFormat(@javax.annotation.Nonnull String format) {
     this.format = format;
   }
 
@@ -367,7 +257,7 @@ public class ExportStatusResponse {
   }
 
   /**
-   * Timestamp when the export was requested (ISO 8601 format).
+   * Timestamp when the export was requested (ISO 8601 format). Format: date-time. Example: \&quot;2025-11-07T10:30:00.000Z\&quot;. 
    * @return requestedAt
    */
   @javax.annotation.Nonnull
@@ -386,7 +276,7 @@ public class ExportStatusResponse {
   }
 
   /**
-   * Timestamp when the export status was last updated (ISO 8601 format).
+   * Timestamp when the export status was last updated (ISO 8601 format). Format: date-time. Example: \&quot;2025-11-07T10:32:15.000Z\&quot;. 
    * @return updatedAt
    */
   @javax.annotation.Nonnull
@@ -399,21 +289,21 @@ public class ExportStatusResponse {
   }
 
 
-  public ExportStatusResponse downloadUrl(@javax.annotation.Nullable URI downloadUrl) {
+  public ExportStatusResponse downloadUrl(@javax.annotation.Nullable String downloadUrl) {
     this.downloadUrl = downloadUrl;
     return this;
   }
 
   /**
-   * Pre-signed URL to download the export file. Only present when status is &#x60;COMPLETED&#x60;.
+   * Pre-signed URL to download the export file. Only present when status is &#x60;COMPLETED&#x60;. Format: uri. Example: \&quot;https://opportify-batch-analysis.s3.amazonaws.com/...\&quot;. 
    * @return downloadUrl
    */
   @javax.annotation.Nullable
-  public URI getDownloadUrl() {
+  public String getDownloadUrl() {
     return downloadUrl;
   }
 
-  public void setDownloadUrl(@javax.annotation.Nullable URI downloadUrl) {
+  public void setDownloadUrl(@javax.annotation.Nullable String downloadUrl) {
     this.downloadUrl = downloadUrl;
   }
 
@@ -424,7 +314,7 @@ public class ExportStatusResponse {
   }
 
   /**
-   * Expiration timestamp for the download URL (ISO 8601 format). Only present when status is &#x60;COMPLETED&#x60;.
+   * Expiration timestamp for the download URL (ISO 8601 format). Only present when status is &#x60;COMPLETED&#x60;. Format: date-time. Example: \&quot;2025-11-07T14:32:15.000Z\&quot;. 
    * @return expiresAt
    */
   @javax.annotation.Nullable
@@ -624,13 +514,9 @@ public class ExportStatusResponse {
       if (!jsonObj.get("status").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("status").toString()));
       }
-      // validate the required field `status`
-      StatusEnum.validateJsonElement(jsonObj.get("status"));
       if (!jsonObj.get("format").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `format` to be a primitive type in the JSON string but got `%s`", jsonObj.get("format").toString()));
       }
-      // validate the required field `format`
-      FormatEnum.validateJsonElement(jsonObj.get("format"));
       if (jsonObj.get("filters") != null && !jsonObj.get("filters").isJsonNull()) {
         JsonArray jsonArrayfilters = jsonObj.getAsJsonArray("filters");
         if (jsonArrayfilters != null) {

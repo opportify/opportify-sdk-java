@@ -59,7 +59,7 @@ import com.google.gson.JsonParseException;
 
 import ai.opportify.client.JSON;
 
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2025-11-08T13:20:53.492255-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-01-31T14:35:15.553092-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class GetEmailBatchExportStatus404Response extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(GetEmailBatchExportStatus404Response.class.getName());
 

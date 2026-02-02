@@ -50,7 +50,7 @@ import ai.opportify.client.JSON;
 /**
  * BatchAnalyzeEmailsRequest
  */
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2025-11-08T13:20:53.492255-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-01-31T14:35:15.553092-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class BatchAnalyzeEmailsRequest {
   public static final String SERIALIZED_NAME_EMAILS = "emails";
   @SerializedName(SERIALIZED_NAME_EMAILS)
@@ -146,7 +146,7 @@ public class BatchAnalyzeEmailsRequest {
   }
 
   /**
-   * Suggest possible corrections for misspelled emails.
+   * Controls email auto-correction behavior for batch processing. Default: &#x60;false&#x60;.  - When set to &#x60;true&#x60;: The system will automatically apply corrections when highly confident. The analysis will be performed on corrected email addresses. - When set to &#x60;false&#x60;: The system will still suggest corrections in the results, but the analysis will remain based on the original email addresses provided. 
    * @return enableAutoCorrection
    */
   @javax.annotation.Nullable

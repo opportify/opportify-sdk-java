@@ -24,17 +24,17 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for MALFORMEDREQUEST2
+ * Model tests for CreateEmailBatchExport400ResponseOneOf
  */
-public class MALFORMEDREQUEST2Test {
-    private final MALFORMEDREQUEST2 model = new MALFORMEDREQUEST2();
+public class CreateEmailBatchExport400ResponseOneOfTest {
+    private final CreateEmailBatchExport400ResponseOneOf model = new CreateEmailBatchExport400ResponseOneOf();
 
     /**
-     * Model tests for MALFORMEDREQUEST2
+     * Model tests for CreateEmailBatchExport400ResponseOneOf
      */
     @Test
-    public void testMALFORMEDREQUEST2() {
-        // TODO: test MALFORMEDREQUEST2
+    public void testCreateEmailBatchExport400ResponseOneOf() {
+        // TODO: test CreateEmailBatchExport400ResponseOneOf
     }
 
     /**

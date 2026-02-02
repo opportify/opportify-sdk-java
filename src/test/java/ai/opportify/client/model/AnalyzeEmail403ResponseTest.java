@@ -24,7 +24,6 @@ import ai.opportify.client.model.FORBIDDEN;
 import ai.opportify.client.model.INTERNALERROR;
 import ai.opportify.client.model.INVALIDPLAN;
 import ai.opportify.client.model.INVALIDTOKEN;
-import ai.opportify.client.model.MALFORMEDREQUEST1;
 import ai.opportify.client.model.QUOTAEXCEEDED;
 import ai.opportify.client.model.TOOMANYREQUESTS;
 import org.junit.jupiter.api.Disabled;

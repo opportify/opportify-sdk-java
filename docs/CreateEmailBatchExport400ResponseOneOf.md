@@ -1,6 +1,6 @@
 
 
-# MALFORMEDREQUEST1
+# CreateEmailBatchExport400ResponseOneOf
 
 
 ## Properties

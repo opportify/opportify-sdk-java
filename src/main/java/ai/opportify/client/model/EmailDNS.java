@@ -50,7 +50,7 @@ import ai.opportify.client.JSON;
 /**
  * DNS details for an email address domain.
  */
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2025-11-08T13:20:53.492255-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-01-31T14:35:15.553092-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class EmailDNS {
   public static final String SERIALIZED_NAME_MX = "mx";
   @SerializedName(SERIALIZED_NAME_MX)
@@ -60,27 +60,27 @@ public class EmailDNS {
   public static final String SERIALIZED_NAME_SPF_VALID = "spfValid";
   @SerializedName(SERIALIZED_NAME_SPF_VALID)
   @javax.annotation.Nonnull
-  private Boolean spfValid = false;
+  private Boolean spfValid;
 
   public static final String SERIALIZED_NAME_DKIM_CONFIGURED = "dkimConfigured";
   @SerializedName(SERIALIZED_NAME_DKIM_CONFIGURED)
   @javax.annotation.Nonnull
-  private Boolean dkimConfigured = false;
+  private Boolean dkimConfigured;
 
   public static final String SERIALIZED_NAME_DMARC_VALID = "dmarcValid";
   @SerializedName(SERIALIZED_NAME_DMARC_VALID)
   @javax.annotation.Nonnull
-  private Boolean dmarcValid = false;
+  private Boolean dmarcValid;
 
   public static final String SERIALIZED_NAME_MX_RELAY = "mxRelay";
   @SerializedName(SERIALIZED_NAME_MX_RELAY)
   @javax.annotation.Nonnull
-  private String mxRelay = "";
+  private String mxRelay;
 
   public static final String SERIALIZED_NAME_MX_RELAY_CATEGORY = "mxRelayCategory";
   @SerializedName(SERIALIZED_NAME_MX_RELAY_CATEGORY)
   @javax.annotation.Nonnull
-  private String mxRelayCategory = "";
+  private String mxRelayCategory;
 
   public EmailDNS() {
   }
@@ -99,7 +99,7 @@ public class EmailDNS {
   }
 
   /**
-   * Mail exchange records for the domain formatted as \&quot;&lt;priority&gt; &lt;hostname&gt;\&quot;. Records are sorted ascending by numeric priority before responding.
+   * Mail exchange records for the domain formatted as \&quot;&lt;priority&gt; &lt;hostname&gt;\&quot;. Records are sorted ascending by numeric priority before responding. Default: empty array. Example: [\&quot;0 mx1.example.com\&quot;, \&quot;10 mx2.example.com\&quot;]. 
    * @return mx
    */
   @javax.annotation.Nonnull
@@ -118,7 +118,7 @@ public class EmailDNS {
   }
 
   /**
-   * Indicates whether SPF validation succeeded for the domain.
+   * Indicates whether SPF validation succeeded for the domain. Default: false. Example: true. 
    * @return spfValid
    */
   @javax.annotation.Nonnull
@@ -137,7 +137,7 @@ public class EmailDNS {
   }
 
   /**
-   * Indicates whether DKIM selectors are configured for the domain.
+   * Indicates whether DKIM selectors are configured for the domain. Default: false. Example: true. 
    * @return dkimConfigured
    */
   @javax.annotation.Nonnull
@@ -156,7 +156,7 @@ public class EmailDNS {
   }
 
   /**
-   * Indicates whether a valid DMARC policy is present for the domain.
+   * Indicates whether a valid DMARC policy is present for the domain. Default: false. Example: false. 
    * @return dmarcValid
    */
   @javax.annotation.Nonnull
@@ -175,7 +175,7 @@ public class EmailDNS {
   }
 
   /**
-   * Primary MX relay hostname identified during analysis.
+   * Primary MX relay hostname identified during analysis. Default: empty string. Example: \&quot;mx1.example.com\&quot;. 
    * @return mxRelay
    */
   @javax.annotation.Nonnull
@@ -194,7 +194,7 @@ public class EmailDNS {
   }
 
   /**
-   * Categorization of the MX relay (provider slug or classification when available).
+   * Categorization of the MX relay (provider slug or classification when available). Default: empty string. Example: \&quot;google\&quot;. 
    * @return mxRelayCategory
    */
   @javax.annotation.Nonnull

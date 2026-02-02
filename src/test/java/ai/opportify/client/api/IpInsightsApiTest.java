@@ -38,9 +38,7 @@ import ai.opportify.client.model.GetEmailBatchExportStatus400Response;
 import ai.opportify.client.model.GetEmailBatchExportStatus404Response;
 import ai.opportify.client.model.GetEmailBatchStatus404Response;
 import ai.opportify.client.model.GetIpBatchStatus200Response;
-import ai.opportify.client.model.INTERNALERROR1;
 import ai.opportify.client.model.NOTFOUND;
-import java.util.UUID;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -94,7 +92,7 @@ public class IpInsightsApiTest {
      */
     @Test
     public void createIpBatchExportTest() throws ApiException {
-        UUID jobId = null;
+        String jobId = null;
         ExportRequest exportRequest = null;
         ExportCreatedResponse response = api.createIpBatchExport(jobId, exportRequest);
         // TODO: test validations
@@ -109,8 +107,8 @@ public class IpInsightsApiTest {
      */
     @Test
     public void getIpBatchExportStatusTest() throws ApiException {
-        UUID jobId = null;
-        UUID exportId = null;
+        String jobId = null;
+        String exportId = null;
         ExportStatusResponse response = api.getIpBatchExportStatus(jobId, exportId);
         // TODO: test validations
     }

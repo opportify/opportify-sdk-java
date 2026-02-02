@@ -20,8 +20,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import ai.opportify.client.model.INVALIDDATA1;
-import ai.opportify.client.model.MALFORMEDREQUEST3;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 

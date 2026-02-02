@@ -48,17 +48,17 @@ import ai.opportify.client.JSON;
 /**
  * Summary of the domain-level enrichment returned when enrichment is available and not opted out via &#x60;enableDomainEnrichment&#x60;.  The &#x60;ageYears&#x60; value is sourced from stored enrichment data to keep responses deterministic across subsequent calls. 
  */
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2025-11-08T13:20:53.492255-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-01-31T14:35:15.553092-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class EmailDomain {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
   @javax.annotation.Nonnull
-  private String name = "";
+  private String name;
 
   public static final String SERIALIZED_NAME_ENRICHMENT_AVAILABLE = "enrichmentAvailable";
   @SerializedName(SERIALIZED_NAME_ENRICHMENT_AVAILABLE)
   @javax.annotation.Nonnull
-  private Boolean enrichmentAvailable = false;
+  private Boolean enrichmentAvailable;
 
   public static final String SERIALIZED_NAME_CREATION_DATE = "creationDate";
   @SerializedName(SERIALIZED_NAME_CREATION_DATE)
@@ -78,161 +78,47 @@ public class EmailDomain {
   public static final String SERIALIZED_NAME_AGE_YEARS = "ageYears";
   @SerializedName(SERIALIZED_NAME_AGE_YEARS)
   @javax.annotation.Nonnull
-  private Integer ageYears = 0;
+  private Integer ageYears;
 
   public static final String SERIALIZED_NAME_REGISTRAR = "registrar";
   @SerializedName(SERIALIZED_NAME_REGISTRAR)
   @javax.annotation.Nonnull
-  private String registrar = "";
+  private String registrar;
 
   public static final String SERIALIZED_NAME_IS_BLOCK_LISTED = "isBlockListed";
   @SerializedName(SERIALIZED_NAME_IS_BLOCK_LISTED)
   @javax.annotation.Nonnull
-  private Boolean isBlockListed = false;
-
-  /**
-   * Status of the domain&#39;s MTA-STS configuration.
-   */
-  @JsonAdapter(MtaStsStatusEnum.Adapter.class)
-  public enum MtaStsStatusEnum {
-    PRESENT("present"),
-    
-    INVALID("invalid"),
-    
-    ABSENT("absent"),
-    
-    UNKNOWN("unknown");
-
-    private String value;
-
-    MtaStsStatusEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static MtaStsStatusEnum fromValue(String value) {
-      for (MtaStsStatusEnum b : MtaStsStatusEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<MtaStsStatusEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final MtaStsStatusEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public MtaStsStatusEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return MtaStsStatusEnum.fromValue(value);
-      }
-    }
-
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      String value = jsonElement.getAsString();
-      MtaStsStatusEnum.fromValue(value);
-    }
-  }
+  private Boolean isBlockListed;
 
   public static final String SERIALIZED_NAME_MTA_STS_STATUS = "mtaStsStatus";
   @SerializedName(SERIALIZED_NAME_MTA_STS_STATUS)
   @javax.annotation.Nonnull
-  private MtaStsStatusEnum mtaStsStatus = MtaStsStatusEnum.UNKNOWN;
-
-  /**
-   * BIMI (Brand Indicators for Message Identification) status.
-   */
-  @JsonAdapter(BimiStatusEnum.Adapter.class)
-  public enum BimiStatusEnum {
-    PRESENT("present"),
-    
-    PRESENT_NO_VMC("present-no-vmc"),
-    
-    INVALID("invalid"),
-    
-    ABSENT("absent"),
-    
-    UNKNOWN("unknown");
-
-    private String value;
-
-    BimiStatusEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static BimiStatusEnum fromValue(String value) {
-      for (BimiStatusEnum b : BimiStatusEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<BimiStatusEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final BimiStatusEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public BimiStatusEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return BimiStatusEnum.fromValue(value);
-      }
-    }
-
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      String value = jsonElement.getAsString();
-      BimiStatusEnum.fromValue(value);
-    }
-  }
+  private String mtaStsStatus;
 
   public static final String SERIALIZED_NAME_BIMI_STATUS = "bimiStatus";
   @SerializedName(SERIALIZED_NAME_BIMI_STATUS)
   @javax.annotation.Nonnull
-  private BimiStatusEnum bimiStatus = BimiStatusEnum.UNKNOWN;
+  private String bimiStatus;
 
   public static final String SERIALIZED_NAME_HAS_V_M_C = "hasVMC";
   @SerializedName(SERIALIZED_NAME_HAS_V_M_C)
   @javax.annotation.Nonnull
-  private Boolean hasVMC = false;
+  private Boolean hasVMC;
 
   public static final String SERIALIZED_NAME_A_RECORD_VALID = "aRecordValid";
   @SerializedName(SERIALIZED_NAME_A_RECORD_VALID)
   @javax.annotation.Nonnull
-  private Boolean aRecordValid = false;
+  private Boolean aRecordValid;
 
   public static final String SERIALIZED_NAME_A_RECORD_REVERSE_HOST = "aRecordReverseHost";
   @SerializedName(SERIALIZED_NAME_A_RECORD_REVERSE_HOST)
   @javax.annotation.Nonnull
-  private String aRecordReverseHost = "";
+  private String aRecordReverseHost;
 
   public static final String SERIALIZED_NAME_SSL_VALID = "sslValid";
   @SerializedName(SERIALIZED_NAME_SSL_VALID)
   @javax.annotation.Nonnull
-  private Boolean sslValid = false;
+  private Boolean sslValid;
 
   public EmailDomain() {
   }
@@ -243,7 +129,7 @@ public class EmailDomain {
   }
 
   /**
-   * Fully qualified domain name associated with the email.
+   * Fully qualified domain name associated with the email. Default: empty string. Example: \&quot;company.com\&quot;. 
    * @return name
    */
   @javax.annotation.Nonnull
@@ -262,7 +148,7 @@ public class EmailDomain {
   }
 
   /**
-   * Indicates whether enrichment data was available at analysis time.  When this is &#x60;false&#x60;, all enrichment fields (except &#x60;name&#x60;) represent safe defaults and must not be used for decision-making. Only the &#x60;name&#x60; field (the queried domain) and the default values of boolean and enum fields are meaningful; all other fields should be treated as informational only and ignored for any logic or risk assessment. 
+   * Indicates whether enrichment data was available at analysis time.  When this is &#x60;false&#x60;, all enrichment fields (except &#x60;name&#x60;) represent safe defaults and must not be used for decision-making. Only the &#x60;name&#x60; field (the queried domain) and the default values of boolean and enum fields are meaningful; all other fields should be treated as informational only and ignored for any logic or risk assessment. Default: false. Example: true. 
    * @return enrichmentAvailable
    */
   @javax.annotation.Nonnull
@@ -281,7 +167,7 @@ public class EmailDomain {
   }
 
   /**
-   * Domain creation timestamp (ISO 8601). Returns an empty string when enrichment data is unavailable.
+   * Domain creation timestamp (ISO 8601). Returns an empty string when enrichment data is unavailable. Format: date-time. Example: \&quot;2014-05-12T00:00:00Z\&quot;. 
    * @return creationDate
    */
   @javax.annotation.Nonnull
@@ -300,7 +186,7 @@ public class EmailDomain {
   }
 
   /**
-   * Domain expiration timestamp (ISO 8601). Returns an empty string when enrichment data is unavailable.
+   * Domain expiration timestamp (ISO 8601). Returns an empty string when enrichment data is unavailable. Format: date-time. Example: \&quot;2026-05-11T23:59:59Z\&quot;. 
    * @return expirationDate
    */
   @javax.annotation.Nonnull
@@ -319,7 +205,7 @@ public class EmailDomain {
   }
 
   /**
-   * Last WHOIS update timestamp (ISO 8601). Returns an empty string when enrichment data is unavailable.
+   * Last WHOIS update timestamp (ISO 8601). Returns an empty string when enrichment data is unavailable. Format: date-time. Example: \&quot;2024-11-01T08:30:00Z\&quot;. 
    * @return updatedDate
    */
   @javax.annotation.Nonnull
@@ -338,7 +224,7 @@ public class EmailDomain {
   }
 
   /**
-   * Domain age in whole years based on stored enrichment data. Returns 0 for domains younger than one year.
+   * Domain age in whole years based on stored enrichment data. Returns 0 for domains younger than one year. Default: 0. Example: 11. 
    * @return ageYears
    */
   @javax.annotation.Nonnull
@@ -357,7 +243,7 @@ public class EmailDomain {
   }
 
   /**
-   * Registrar recorded for the domain.
+   * Registrar recorded for the domain. Default: empty string. Example: \&quot;Namecheap, Inc.\&quot;. 
    * @return registrar
    */
   @javax.annotation.Nonnull
@@ -376,7 +262,7 @@ public class EmailDomain {
   }
 
   /**
-   * Indicates whether the domain appears in monitored blocklists.
+   * Indicates whether the domain appears in monitored blocklists. Default: false. Example: false. 
    * @return isBlockListed
    */
   @javax.annotation.Nonnull
@@ -389,40 +275,40 @@ public class EmailDomain {
   }
 
 
-  public EmailDomain mtaStsStatus(@javax.annotation.Nonnull MtaStsStatusEnum mtaStsStatus) {
+  public EmailDomain mtaStsStatus(@javax.annotation.Nonnull String mtaStsStatus) {
     this.mtaStsStatus = mtaStsStatus;
     return this;
   }
 
   /**
-   * Status of the domain&#39;s MTA-STS configuration.
+   * Status of the domain&#39;s MTA-STS configuration. Allowed values: &#x60;present&#x60;, &#x60;invalid&#x60;, &#x60;absent&#x60;, &#x60;unknown&#x60;. Default: &#x60;unknown&#x60;. Example: &#x60;present&#x60;. 
    * @return mtaStsStatus
    */
   @javax.annotation.Nonnull
-  public MtaStsStatusEnum getMtaStsStatus() {
+  public String getMtaStsStatus() {
     return mtaStsStatus;
   }
 
-  public void setMtaStsStatus(@javax.annotation.Nonnull MtaStsStatusEnum mtaStsStatus) {
+  public void setMtaStsStatus(@javax.annotation.Nonnull String mtaStsStatus) {
     this.mtaStsStatus = mtaStsStatus;
   }
 
 
-  public EmailDomain bimiStatus(@javax.annotation.Nonnull BimiStatusEnum bimiStatus) {
+  public EmailDomain bimiStatus(@javax.annotation.Nonnull String bimiStatus) {
     this.bimiStatus = bimiStatus;
     return this;
   }
 
   /**
-   * BIMI (Brand Indicators for Message Identification) status.
+   * BIMI (Brand Indicators for Message Identification) status. Allowed values: &#x60;present&#x60;, &#x60;present-no-vmc&#x60;, &#x60;invalid&#x60;, &#x60;absent&#x60;, &#x60;unknown&#x60;. Default: &#x60;unknown&#x60;. Example: &#x60;present-no-vmc&#x60;. 
    * @return bimiStatus
    */
   @javax.annotation.Nonnull
-  public BimiStatusEnum getBimiStatus() {
+  public String getBimiStatus() {
     return bimiStatus;
   }
 
-  public void setBimiStatus(@javax.annotation.Nonnull BimiStatusEnum bimiStatus) {
+  public void setBimiStatus(@javax.annotation.Nonnull String bimiStatus) {
     this.bimiStatus = bimiStatus;
   }
 
@@ -433,7 +319,7 @@ public class EmailDomain {
   }
 
   /**
-   * Indicates whether a Verified Mark Certificate is associated with the domain.
+   * Indicates whether a Verified Mark Certificate is associated with the domain. Default: false. Example: false. 
    * @return hasVMC
    */
   @javax.annotation.Nonnull
@@ -452,7 +338,7 @@ public class EmailDomain {
   }
 
   /**
-   * Indicates whether the domain has valid A records.
+   * Indicates whether the domain has valid A records. Default: false. Example: true. 
    * @return aRecordValid
    */
   @javax.annotation.Nonnull
@@ -471,7 +357,7 @@ public class EmailDomain {
   }
 
   /**
-   * Reverse hostname observed for the A record when available. Empty string when no reverse mapping is returned.
+   * Reverse hostname observed for the A record when available. Empty string when no reverse mapping is returned. Default: empty string. Example: \&quot;reverse.company.com\&quot;. 
    * @return aRecordReverseHost
    */
   @javax.annotation.Nonnull
@@ -490,7 +376,7 @@ public class EmailDomain {
   }
 
   /**
-   * Indicates whether the domain serves a valid SSL certificate on common endpoints.
+   * Indicates whether the domain serves a valid SSL certificate on common endpoints. Default: false. Example: true. 
    * @return sslValid
    */
   @javax.annotation.Nonnull
@@ -653,13 +539,9 @@ public class EmailDomain {
       if (!jsonObj.get("mtaStsStatus").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `mtaStsStatus` to be a primitive type in the JSON string but got `%s`", jsonObj.get("mtaStsStatus").toString()));
       }
-      // validate the required field `mtaStsStatus`
-      MtaStsStatusEnum.validateJsonElement(jsonObj.get("mtaStsStatus"));
       if (!jsonObj.get("bimiStatus").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `bimiStatus` to be a primitive type in the JSON string but got `%s`", jsonObj.get("bimiStatus").toString()));
       }
-      // validate the required field `bimiStatus`
-      BimiStatusEnum.validateJsonElement(jsonObj.get("bimiStatus"));
       if (!jsonObj.get("aRecordReverseHost").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `aRecordReverseHost` to be a primitive type in the JSON string but got `%s`", jsonObj.get("aRecordReverseHost").toString()));
       }

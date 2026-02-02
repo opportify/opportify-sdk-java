@@ -38,7 +38,6 @@ import ai.opportify.client.model.GetEmailBatchExportStatus400Response;
 import ai.opportify.client.model.GetEmailBatchExportStatus404Response;
 import ai.opportify.client.model.GetEmailBatchStatus200Response;
 import ai.opportify.client.model.GetEmailBatchStatus404Response;
-import java.util.UUID;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -92,7 +91,7 @@ public class EmailInsightsApiTest {
      */
     @Test
     public void createEmailBatchExportTest() throws ApiException {
-        UUID jobId = null;
+        String jobId = null;
         ExportRequest exportRequest = null;
         ExportCreatedResponse response = api.createEmailBatchExport(jobId, exportRequest);
         // TODO: test validations
@@ -107,8 +106,8 @@ public class EmailInsightsApiTest {
      */
     @Test
     public void getEmailBatchExportStatusTest() throws ApiException {
-        UUID jobId = null;
-        UUID exportId = null;
+        String jobId = null;
+        String exportId = null;
         ExportStatusResponse response = api.getEmailBatchExportStatus(jobId, exportId);
         // TODO: test validations
     }

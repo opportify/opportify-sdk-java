@@ -114,6 +114,14 @@ public class AnalyzeEmail200ResponseTest {
     }
 
     /**
+     * Test the property 'emailAutoCorrectedFrom'
+     */
+    @Test
+    public void emailAutoCorrectedFromTest() {
+        // TODO: test emailAutoCorrectedFrom
+    }
+
+    /**
      * Test the property 'addressSignals'
      */
     @Test

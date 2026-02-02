@@ -118,6 +118,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new ai.opportify.client.model.BatchAnalyzeIpsRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new ai.opportify.client.model.BlockListed.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new ai.opportify.client.model.CreateEmailBatchExport400Response.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new ai.opportify.client.model.CreateEmailBatchExport400ResponseOneOf.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new ai.opportify.client.model.CreateEmailBatchExport403Response.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new ai.opportify.client.model.CreateEmailBatchExport404Response.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new ai.opportify.client.model.CreateEmailBatchExport409Response.CustomTypeAdapterFactory());
@@ -137,20 +138,14 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new ai.opportify.client.model.GetEmailBatchStatus404Response.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new ai.opportify.client.model.GetIpBatchStatus200Response.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new ai.opportify.client.model.INTERNALERROR.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new ai.opportify.client.model.INTERNALERROR1.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new ai.opportify.client.model.INVALIDDATA.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new ai.opportify.client.model.INVALIDDATA1.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new ai.opportify.client.model.INVALIDEMAIL.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new ai.opportify.client.model.INVALIDPLAN.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new ai.opportify.client.model.INVALIDPLAN1.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new ai.opportify.client.model.INVALIDTOKEN.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new ai.opportify.client.model.IPVALIDATIONFAILED.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new ai.opportify.client.model.JOBNOTFOUND.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new ai.opportify.client.model.JOBNOTREADY.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new ai.opportify.client.model.MALFORMEDREQUEST.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new ai.opportify.client.model.MALFORMEDREQUEST1.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new ai.opportify.client.model.MALFORMEDREQUEST2.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new ai.opportify.client.model.MALFORMEDREQUEST3.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new ai.opportify.client.model.MANIFESTNOTAVAILABLE.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new ai.opportify.client.model.NOTFOUND.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new ai.opportify.client.model.Organization.CustomTypeAdapterFactory());

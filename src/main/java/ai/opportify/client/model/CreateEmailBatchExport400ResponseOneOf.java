@@ -46,10 +46,10 @@ import java.util.Set;
 import ai.opportify.client.JSON;
 
 /**
- * INTERNALERROR1
+ * CreateEmailBatchExport400ResponseOneOf
  */
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2025-11-08T13:20:53.492255-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
-public class INTERNALERROR1 {
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-01-31T14:35:15.553092-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+public class CreateEmailBatchExport400ResponseOneOf {
   public static final String SERIALIZED_NAME_ERROR_MESSAGE = "errorMessage";
   @SerializedName(SERIALIZED_NAME_ERROR_MESSAGE)
   @javax.annotation.Nullable
@@ -60,10 +60,10 @@ public class INTERNALERROR1 {
   @javax.annotation.Nullable
   private String errorCode;
 
-  public INTERNALERROR1() {
+  public CreateEmailBatchExport400ResponseOneOf() {
   }
 
-  public INTERNALERROR1 errorMessage(@javax.annotation.Nullable String errorMessage) {
+  public CreateEmailBatchExport400ResponseOneOf errorMessage(@javax.annotation.Nullable String errorMessage) {
     this.errorMessage = errorMessage;
     return this;
   }
@@ -82,7 +82,7 @@ public class INTERNALERROR1 {
   }
 
 
-  public INTERNALERROR1 errorCode(@javax.annotation.Nullable String errorCode) {
+  public CreateEmailBatchExport400ResponseOneOf errorCode(@javax.annotation.Nullable String errorCode) {
     this.errorCode = errorCode;
     return this;
   }
@@ -110,9 +110,9 @@ public class INTERNALERROR1 {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    INTERNALERROR1 INTERNAL_ERROR_1 = (INTERNALERROR1) o;
-    return Objects.equals(this.errorMessage, INTERNAL_ERROR_1.errorMessage) &&
-        Objects.equals(this.errorCode, INTERNAL_ERROR_1.errorCode);
+    CreateEmailBatchExport400ResponseOneOf createEmailBatchExport400ResponseOneOf = (CreateEmailBatchExport400ResponseOneOf) o;
+    return Objects.equals(this.errorMessage, createEmailBatchExport400ResponseOneOf.errorMessage) &&
+        Objects.equals(this.errorCode, createEmailBatchExport400ResponseOneOf.errorCode);
   }
 
   @Override
@@ -123,7 +123,7 @@ public class INTERNALERROR1 {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class INTERNALERROR1 {\n");
+    sb.append("class CreateEmailBatchExport400ResponseOneOf {\n");
     sb.append("    errorMessage: ").append(toIndentedString(errorMessage)).append("\n");
     sb.append("    errorCode: ").append(toIndentedString(errorCode)).append("\n");
     sb.append("}");
@@ -159,20 +159,20 @@ public class INTERNALERROR1 {
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to INTERNALERROR1
+   * @throws IOException if the JSON Element is invalid with respect to CreateEmailBatchExport400ResponseOneOf
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!INTERNALERROR1.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in INTERNALERROR1 is not found in the empty JSON string", INTERNALERROR1.openapiRequiredFields.toString()));
+        if (!CreateEmailBatchExport400ResponseOneOf.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in CreateEmailBatchExport400ResponseOneOf is not found in the empty JSON string", CreateEmailBatchExport400ResponseOneOf.openapiRequiredFields.toString()));
         }
       }
 
       Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!INTERNALERROR1.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `INTERNALERROR1` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        if (!CreateEmailBatchExport400ResponseOneOf.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateEmailBatchExport400ResponseOneOf` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -188,22 +188,22 @@ public class INTERNALERROR1 {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!INTERNALERROR1.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'INTERNALERROR1' and its subtypes
+       if (!CreateEmailBatchExport400ResponseOneOf.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'CreateEmailBatchExport400ResponseOneOf' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<INTERNALERROR1> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(INTERNALERROR1.class));
+       final TypeAdapter<CreateEmailBatchExport400ResponseOneOf> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(CreateEmailBatchExport400ResponseOneOf.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<INTERNALERROR1>() {
+       return (TypeAdapter<T>) new TypeAdapter<CreateEmailBatchExport400ResponseOneOf>() {
            @Override
-           public void write(JsonWriter out, INTERNALERROR1 value) throws IOException {
+           public void write(JsonWriter out, CreateEmailBatchExport400ResponseOneOf value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public INTERNALERROR1 read(JsonReader in) throws IOException {
+           public CreateEmailBatchExport400ResponseOneOf read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
@@ -214,18 +214,18 @@ public class INTERNALERROR1 {
   }
 
   /**
-   * Create an instance of INTERNALERROR1 given an JSON string
+   * Create an instance of CreateEmailBatchExport400ResponseOneOf given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of INTERNALERROR1
-   * @throws IOException if the JSON string is invalid with respect to INTERNALERROR1
+   * @return An instance of CreateEmailBatchExport400ResponseOneOf
+   * @throws IOException if the JSON string is invalid with respect to CreateEmailBatchExport400ResponseOneOf
    */
-  public static INTERNALERROR1 fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, INTERNALERROR1.class);
+  public static CreateEmailBatchExport400ResponseOneOf fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, CreateEmailBatchExport400ResponseOneOf.class);
   }
 
   /**
-   * Convert an instance of INTERNALERROR1 to an JSON string
+   * Convert an instance of CreateEmailBatchExport400ResponseOneOf to an JSON string
    *
    * @return JSON string
    */

@@ -51,9 +51,7 @@ import ai.opportify.client.model.GetEmailBatchExportStatus400Response;
 import ai.opportify.client.model.GetEmailBatchExportStatus404Response;
 import ai.opportify.client.model.GetEmailBatchStatus404Response;
 import ai.opportify.client.model.GetIpBatchStatus200Response;
-import ai.opportify.client.model.INTERNALERROR1;
 import ai.opportify.client.model.NOTFOUND;
-import java.util.UUID;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -400,7 +398,7 @@ public class IpInsightsApi {
     }
     /**
      * Build call for createIpBatchExport
-     * @param jobId The unique identifier of the completed batch job. (required)
+     * @param jobId The unique identifier of the completed batch job. Format: uuid. Example: \&quot;52b36b1f-0c21-41fa-8a4f-423d25a9a8e2\&quot;.  (required)
      * @param exportRequest  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -416,7 +414,7 @@ public class IpInsightsApi {
         <tr><td> 409 </td><td> Conflict. Job not ready for export. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createIpBatchExportCall(UUID jobId, ExportRequest exportRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call createIpBatchExportCall(String jobId, ExportRequest exportRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -463,7 +461,7 @@ public class IpInsightsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call createIpBatchExportValidateBeforeCall(UUID jobId, ExportRequest exportRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call createIpBatchExportValidateBeforeCall(String jobId, ExportRequest exportRequest, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'jobId' is set
         if (jobId == null) {
             throw new ApiException("Missing the required parameter 'jobId' when calling createIpBatchExport(Async)");
@@ -476,7 +474,7 @@ public class IpInsightsApi {
     /**
      * Create IP Batch Export
      * The **Create IP Batch Export** endpoint allows you to request a custom export of completed batch analysis results. You can apply filters, select specific columns, and choose the output format (CSV or JSON).  ### Features: - **Format Options**: Export results as CSV or JSON - **Filtering**: Apply filters on any field in the response data - **Column Selection**: Choose specific fields to include in the export - **Async Processing**: Export requests are processed asynchronously  ### Filter Syntax: - **String filters**: Exact match, comma-separated values, or arrays - **Numeric filters**: Exact values, arrays, or range objects with &#x60;min&#x60;/&#x60;max&#x60; - **Nested fields**: Use dot notation (e.g., &#x60;result.riskReport.score&#x60;)  ### Example Request: &#x60;&#x60;&#x60;json {   \&quot;exportType\&quot;: \&quot;json\&quot;,   \&quot;filters\&quot;: {     \&quot;result.riskReport.level\&quot;: \&quot;low,medium\&quot;,     \&quot;result.riskReport.score\&quot;: { \&quot;max\&quot;: 500 },     \&quot;result.geo.countryCode\&quot;: [\&quot;US\&quot;, \&quot;CA\&quot;, \&quot;GB\&quot;]   } } &#x60;&#x60;&#x60; 
-     * @param jobId The unique identifier of the completed batch job. (required)
+     * @param jobId The unique identifier of the completed batch job. Format: uuid. Example: \&quot;52b36b1f-0c21-41fa-8a4f-423d25a9a8e2\&quot;.  (required)
      * @param exportRequest  (optional)
      * @return ExportCreatedResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -491,7 +489,7 @@ public class IpInsightsApi {
         <tr><td> 409 </td><td> Conflict. Job not ready for export. </td><td>  -  </td></tr>
      </table>
      */
-    public ExportCreatedResponse createIpBatchExport(UUID jobId, ExportRequest exportRequest) throws ApiException {
+    public ExportCreatedResponse createIpBatchExport(String jobId, ExportRequest exportRequest) throws ApiException {
         ApiResponse<ExportCreatedResponse> localVarResp = createIpBatchExportWithHttpInfo(jobId, exportRequest);
         return localVarResp.getData();
     }
@@ -499,7 +497,7 @@ public class IpInsightsApi {
     /**
      * Create IP Batch Export
      * The **Create IP Batch Export** endpoint allows you to request a custom export of completed batch analysis results. You can apply filters, select specific columns, and choose the output format (CSV or JSON).  ### Features: - **Format Options**: Export results as CSV or JSON - **Filtering**: Apply filters on any field in the response data - **Column Selection**: Choose specific fields to include in the export - **Async Processing**: Export requests are processed asynchronously  ### Filter Syntax: - **String filters**: Exact match, comma-separated values, or arrays - **Numeric filters**: Exact values, arrays, or range objects with &#x60;min&#x60;/&#x60;max&#x60; - **Nested fields**: Use dot notation (e.g., &#x60;result.riskReport.score&#x60;)  ### Example Request: &#x60;&#x60;&#x60;json {   \&quot;exportType\&quot;: \&quot;json\&quot;,   \&quot;filters\&quot;: {     \&quot;result.riskReport.level\&quot;: \&quot;low,medium\&quot;,     \&quot;result.riskReport.score\&quot;: { \&quot;max\&quot;: 500 },     \&quot;result.geo.countryCode\&quot;: [\&quot;US\&quot;, \&quot;CA\&quot;, \&quot;GB\&quot;]   } } &#x60;&#x60;&#x60; 
-     * @param jobId The unique identifier of the completed batch job. (required)
+     * @param jobId The unique identifier of the completed batch job. Format: uuid. Example: \&quot;52b36b1f-0c21-41fa-8a4f-423d25a9a8e2\&quot;.  (required)
      * @param exportRequest  (optional)
      * @return ApiResponse&lt;ExportCreatedResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -514,7 +512,7 @@ public class IpInsightsApi {
         <tr><td> 409 </td><td> Conflict. Job not ready for export. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ExportCreatedResponse> createIpBatchExportWithHttpInfo(UUID jobId, ExportRequest exportRequest) throws ApiException {
+    public ApiResponse<ExportCreatedResponse> createIpBatchExportWithHttpInfo(String jobId, ExportRequest exportRequest) throws ApiException {
         okhttp3.Call localVarCall = createIpBatchExportValidateBeforeCall(jobId, exportRequest, null);
         Type localVarReturnType = new TypeToken<ExportCreatedResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -523,7 +521,7 @@ public class IpInsightsApi {
     /**
      * Create IP Batch Export (asynchronously)
      * The **Create IP Batch Export** endpoint allows you to request a custom export of completed batch analysis results. You can apply filters, select specific columns, and choose the output format (CSV or JSON).  ### Features: - **Format Options**: Export results as CSV or JSON - **Filtering**: Apply filters on any field in the response data - **Column Selection**: Choose specific fields to include in the export - **Async Processing**: Export requests are processed asynchronously  ### Filter Syntax: - **String filters**: Exact match, comma-separated values, or arrays - **Numeric filters**: Exact values, arrays, or range objects with &#x60;min&#x60;/&#x60;max&#x60; - **Nested fields**: Use dot notation (e.g., &#x60;result.riskReport.score&#x60;)  ### Example Request: &#x60;&#x60;&#x60;json {   \&quot;exportType\&quot;: \&quot;json\&quot;,   \&quot;filters\&quot;: {     \&quot;result.riskReport.level\&quot;: \&quot;low,medium\&quot;,     \&quot;result.riskReport.score\&quot;: { \&quot;max\&quot;: 500 },     \&quot;result.geo.countryCode\&quot;: [\&quot;US\&quot;, \&quot;CA\&quot;, \&quot;GB\&quot;]   } } &#x60;&#x60;&#x60; 
-     * @param jobId The unique identifier of the completed batch job. (required)
+     * @param jobId The unique identifier of the completed batch job. Format: uuid. Example: \&quot;52b36b1f-0c21-41fa-8a4f-423d25a9a8e2\&quot;.  (required)
      * @param exportRequest  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -539,7 +537,7 @@ public class IpInsightsApi {
         <tr><td> 409 </td><td> Conflict. Job not ready for export. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createIpBatchExportAsync(UUID jobId, ExportRequest exportRequest, final ApiCallback<ExportCreatedResponse> _callback) throws ApiException {
+    public okhttp3.Call createIpBatchExportAsync(String jobId, ExportRequest exportRequest, final ApiCallback<ExportCreatedResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = createIpBatchExportValidateBeforeCall(jobId, exportRequest, _callback);
         Type localVarReturnType = new TypeToken<ExportCreatedResponse>(){}.getType();
@@ -548,8 +546,8 @@ public class IpInsightsApi {
     }
     /**
      * Build call for getIpBatchExportStatus
-     * @param jobId The unique identifier of the batch job. (required)
-     * @param exportId The unique identifier of the export job. (required)
+     * @param jobId The unique identifier of the batch job. Format: uuid. Example: \&quot;52b36b1f-0c21-41fa-8a4f-423d25a9a8e2\&quot;.  (required)
+     * @param exportId The unique identifier of the export job. Format: uuid. Example: \&quot;3b90d156-a0d8-4630-8230-f59e9a4e9e33\&quot;.  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -563,7 +561,7 @@ public class IpInsightsApi {
         <tr><td> 404 </td><td> Job or export not found. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getIpBatchExportStatusCall(UUID jobId, UUID exportId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getIpBatchExportStatusCall(String jobId, String exportId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -610,7 +608,7 @@ public class IpInsightsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getIpBatchExportStatusValidateBeforeCall(UUID jobId, UUID exportId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getIpBatchExportStatusValidateBeforeCall(String jobId, String exportId, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'jobId' is set
         if (jobId == null) {
             throw new ApiException("Missing the required parameter 'jobId' when calling getIpBatchExportStatus(Async)");
@@ -628,8 +626,8 @@ public class IpInsightsApi {
     /**
      * Get IP Batch Export Status
      * The **Get IP Batch Export Status** endpoint retrieves the status and download URL for a previously requested export job.  ### Export Status Values: - &#x60;QUEUED&#x60;: Export request received, waiting for processing - &#x60;PROCESSING&#x60;: Worker is filtering and generating the export file - &#x60;COMPLETED&#x60;: Export ready, &#x60;downloadUrl&#x60; available - &#x60;FAILED&#x60;: Export failed, check &#x60;errorCode&#x60; and &#x60;errorMessage&#x60; 
-     * @param jobId The unique identifier of the batch job. (required)
-     * @param exportId The unique identifier of the export job. (required)
+     * @param jobId The unique identifier of the batch job. Format: uuid. Example: \&quot;52b36b1f-0c21-41fa-8a4f-423d25a9a8e2\&quot;.  (required)
+     * @param exportId The unique identifier of the export job. Format: uuid. Example: \&quot;3b90d156-a0d8-4630-8230-f59e9a4e9e33\&quot;.  (required)
      * @return ExportStatusResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -642,7 +640,7 @@ public class IpInsightsApi {
         <tr><td> 404 </td><td> Job or export not found. </td><td>  -  </td></tr>
      </table>
      */
-    public ExportStatusResponse getIpBatchExportStatus(UUID jobId, UUID exportId) throws ApiException {
+    public ExportStatusResponse getIpBatchExportStatus(String jobId, String exportId) throws ApiException {
         ApiResponse<ExportStatusResponse> localVarResp = getIpBatchExportStatusWithHttpInfo(jobId, exportId);
         return localVarResp.getData();
     }
@@ -650,8 +648,8 @@ public class IpInsightsApi {
     /**
      * Get IP Batch Export Status
      * The **Get IP Batch Export Status** endpoint retrieves the status and download URL for a previously requested export job.  ### Export Status Values: - &#x60;QUEUED&#x60;: Export request received, waiting for processing - &#x60;PROCESSING&#x60;: Worker is filtering and generating the export file - &#x60;COMPLETED&#x60;: Export ready, &#x60;downloadUrl&#x60; available - &#x60;FAILED&#x60;: Export failed, check &#x60;errorCode&#x60; and &#x60;errorMessage&#x60; 
-     * @param jobId The unique identifier of the batch job. (required)
-     * @param exportId The unique identifier of the export job. (required)
+     * @param jobId The unique identifier of the batch job. Format: uuid. Example: \&quot;52b36b1f-0c21-41fa-8a4f-423d25a9a8e2\&quot;.  (required)
+     * @param exportId The unique identifier of the export job. Format: uuid. Example: \&quot;3b90d156-a0d8-4630-8230-f59e9a4e9e33\&quot;.  (required)
      * @return ApiResponse&lt;ExportStatusResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -664,7 +662,7 @@ public class IpInsightsApi {
         <tr><td> 404 </td><td> Job or export not found. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ExportStatusResponse> getIpBatchExportStatusWithHttpInfo(UUID jobId, UUID exportId) throws ApiException {
+    public ApiResponse<ExportStatusResponse> getIpBatchExportStatusWithHttpInfo(String jobId, String exportId) throws ApiException {
         okhttp3.Call localVarCall = getIpBatchExportStatusValidateBeforeCall(jobId, exportId, null);
         Type localVarReturnType = new TypeToken<ExportStatusResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -673,8 +671,8 @@ public class IpInsightsApi {
     /**
      * Get IP Batch Export Status (asynchronously)
      * The **Get IP Batch Export Status** endpoint retrieves the status and download URL for a previously requested export job.  ### Export Status Values: - &#x60;QUEUED&#x60;: Export request received, waiting for processing - &#x60;PROCESSING&#x60;: Worker is filtering and generating the export file - &#x60;COMPLETED&#x60;: Export ready, &#x60;downloadUrl&#x60; available - &#x60;FAILED&#x60;: Export failed, check &#x60;errorCode&#x60; and &#x60;errorMessage&#x60; 
-     * @param jobId The unique identifier of the batch job. (required)
-     * @param exportId The unique identifier of the export job. (required)
+     * @param jobId The unique identifier of the batch job. Format: uuid. Example: \&quot;52b36b1f-0c21-41fa-8a4f-423d25a9a8e2\&quot;.  (required)
+     * @param exportId The unique identifier of the export job. Format: uuid. Example: \&quot;3b90d156-a0d8-4630-8230-f59e9a4e9e33\&quot;.  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -688,7 +686,7 @@ public class IpInsightsApi {
         <tr><td> 404 </td><td> Job or export not found. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getIpBatchExportStatusAsync(UUID jobId, UUID exportId, final ApiCallback<ExportStatusResponse> _callback) throws ApiException {
+    public okhttp3.Call getIpBatchExportStatusAsync(String jobId, String exportId, final ApiCallback<ExportStatusResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getIpBatchExportStatusValidateBeforeCall(jobId, exportId, _callback);
         Type localVarReturnType = new TypeToken<ExportStatusResponse>(){}.getType();
