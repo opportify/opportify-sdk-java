@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-
 package ai.opportify.client.model;
 
 import java.util.Objects;
@@ -53,7 +52,7 @@ import ai.opportify.client.JSON;
 /**
  * ### WHOIS Details This object provides sanitized and normalized WHOIS information for an IP address, including details about the Regional Internet Registry (RIR), Autonomous System Number (ASN), organization, and contact information.  #### Key Features: - **RIR Details**: Identify the Regional Internet Registry managing the IP address. - **ASN Information**: Obtain the Autonomous System Number details, including the ASN identifier, name, and description. - **Organization Data**: Retrieve organization details, such as the ID, name, type, description, address, country, and contact information. - **Contact Information**: Access contact details for abuse, admin, and tech issues, including the contact ID, type, name, address, phone, fax, and email.  ---  ### Response Elements 
  */
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-01-31T14:35:15.553092-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-02-02T05:39:48.071489-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class Whois {
   public static final String SERIALIZED_NAME_RIR = "rir";
   @SerializedName(SERIALIZED_NAME_RIR)
@@ -106,7 +105,6 @@ public class Whois {
     this.rir = rir;
   }
 
-
   public Whois asn(@javax.annotation.Nullable Asn asn) {
     this.asn = asn;
     return this;
@@ -124,7 +122,6 @@ public class Whois {
   public void setAsn(@javax.annotation.Nullable Asn asn) {
     this.asn = asn;
   }
-
 
   public Whois organization(@javax.annotation.Nullable Organization organization) {
     this.organization = organization;
@@ -144,7 +141,6 @@ public class Whois {
     this.organization = organization;
   }
 
-
   public Whois abuseContact(@javax.annotation.Nullable AbuseContact abuseContact) {
     this.abuseContact = abuseContact;
     return this;
@@ -162,7 +158,6 @@ public class Whois {
   public void setAbuseContact(@javax.annotation.Nullable AbuseContact abuseContact) {
     this.abuseContact = abuseContact;
   }
-
 
   public Whois adminContact(@javax.annotation.Nullable AdminContact adminContact) {
     this.adminContact = adminContact;
@@ -182,7 +177,6 @@ public class Whois {
     this.adminContact = adminContact;
   }
 
-
   public Whois techContact(@javax.annotation.Nullable TechContact techContact) {
     this.techContact = techContact;
     return this;
@@ -200,8 +194,6 @@ public class Whois {
   public void setTechContact(@javax.annotation.Nullable TechContact techContact) {
     this.techContact = techContact;
   }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -249,7 +241,6 @@ public class Whois {
     }
     return o.toString().replace("\n", "\n    ");
   }
-
 
   public static HashSet<String> openapiFields;
   public static HashSet<String> openapiRequiredFields;
@@ -363,4 +354,3 @@ public class Whois {
     return JSON.getGson().toJson(this);
   }
 }
-

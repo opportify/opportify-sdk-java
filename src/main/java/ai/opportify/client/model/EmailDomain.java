@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-
 package ai.opportify.client.model;
 
 import java.util.Objects;
@@ -48,7 +47,7 @@ import ai.opportify.client.JSON;
 /**
  * Summary of the domain-level enrichment returned when enrichment is available and not opted out via &#x60;enableDomainEnrichment&#x60;.  The &#x60;ageYears&#x60; value is sourced from stored enrichment data to keep responses deterministic across subsequent calls. 
  */
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-01-31T14:35:15.553092-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-02-02T05:39:48.071489-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class EmailDomain {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -141,7 +140,6 @@ public class EmailDomain {
     this.name = name;
   }
 
-
   public EmailDomain enrichmentAvailable(@javax.annotation.Nonnull Boolean enrichmentAvailable) {
     this.enrichmentAvailable = enrichmentAvailable;
     return this;
@@ -159,7 +157,6 @@ public class EmailDomain {
   public void setEnrichmentAvailable(@javax.annotation.Nonnull Boolean enrichmentAvailable) {
     this.enrichmentAvailable = enrichmentAvailable;
   }
-
 
   public EmailDomain creationDate(@javax.annotation.Nonnull String creationDate) {
     this.creationDate = creationDate;
@@ -179,7 +176,6 @@ public class EmailDomain {
     this.creationDate = creationDate;
   }
 
-
   public EmailDomain expirationDate(@javax.annotation.Nonnull String expirationDate) {
     this.expirationDate = expirationDate;
     return this;
@@ -197,7 +193,6 @@ public class EmailDomain {
   public void setExpirationDate(@javax.annotation.Nonnull String expirationDate) {
     this.expirationDate = expirationDate;
   }
-
 
   public EmailDomain updatedDate(@javax.annotation.Nonnull String updatedDate) {
     this.updatedDate = updatedDate;
@@ -217,7 +212,6 @@ public class EmailDomain {
     this.updatedDate = updatedDate;
   }
 
-
   public EmailDomain ageYears(@javax.annotation.Nonnull Integer ageYears) {
     this.ageYears = ageYears;
     return this;
@@ -235,7 +229,6 @@ public class EmailDomain {
   public void setAgeYears(@javax.annotation.Nonnull Integer ageYears) {
     this.ageYears = ageYears;
   }
-
 
   public EmailDomain registrar(@javax.annotation.Nonnull String registrar) {
     this.registrar = registrar;
@@ -255,7 +248,6 @@ public class EmailDomain {
     this.registrar = registrar;
   }
 
-
   public EmailDomain isBlockListed(@javax.annotation.Nonnull Boolean isBlockListed) {
     this.isBlockListed = isBlockListed;
     return this;
@@ -273,7 +265,6 @@ public class EmailDomain {
   public void setIsBlockListed(@javax.annotation.Nonnull Boolean isBlockListed) {
     this.isBlockListed = isBlockListed;
   }
-
 
   public EmailDomain mtaStsStatus(@javax.annotation.Nonnull String mtaStsStatus) {
     this.mtaStsStatus = mtaStsStatus;
@@ -293,7 +284,6 @@ public class EmailDomain {
     this.mtaStsStatus = mtaStsStatus;
   }
 
-
   public EmailDomain bimiStatus(@javax.annotation.Nonnull String bimiStatus) {
     this.bimiStatus = bimiStatus;
     return this;
@@ -311,7 +301,6 @@ public class EmailDomain {
   public void setBimiStatus(@javax.annotation.Nonnull String bimiStatus) {
     this.bimiStatus = bimiStatus;
   }
-
 
   public EmailDomain hasVMC(@javax.annotation.Nonnull Boolean hasVMC) {
     this.hasVMC = hasVMC;
@@ -331,7 +320,6 @@ public class EmailDomain {
     this.hasVMC = hasVMC;
   }
 
-
   public EmailDomain aRecordValid(@javax.annotation.Nonnull Boolean aRecordValid) {
     this.aRecordValid = aRecordValid;
     return this;
@@ -349,7 +337,6 @@ public class EmailDomain {
   public void setaRecordValid(@javax.annotation.Nonnull Boolean aRecordValid) {
     this.aRecordValid = aRecordValid;
   }
-
 
   public EmailDomain aRecordReverseHost(@javax.annotation.Nonnull String aRecordReverseHost) {
     this.aRecordReverseHost = aRecordReverseHost;
@@ -369,7 +356,6 @@ public class EmailDomain {
     this.aRecordReverseHost = aRecordReverseHost;
   }
 
-
   public EmailDomain sslValid(@javax.annotation.Nonnull Boolean sslValid) {
     this.sslValid = sslValid;
     return this;
@@ -387,8 +373,6 @@ public class EmailDomain {
   public void setSslValid(@javax.annotation.Nonnull Boolean sslValid) {
     this.sslValid = sslValid;
   }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -452,7 +436,6 @@ public class EmailDomain {
     }
     return o.toString().replace("\n", "\n    ");
   }
-
 
   public static HashSet<String> openapiFields;
   public static HashSet<String> openapiRequiredFields;
@@ -596,4 +579,3 @@ public class EmailDomain {
     return JSON.getGson().toJson(this);
   }
 }
-

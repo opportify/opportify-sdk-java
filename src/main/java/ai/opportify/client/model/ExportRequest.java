@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-
 package ai.opportify.client.model;
 
 import java.util.Objects;
@@ -52,7 +51,7 @@ import ai.opportify.client.JSON;
 /**
  * Request body for creating a batch export.
  */
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-01-31T14:35:15.553092-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-02-02T05:39:48.071489-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class ExportRequest {
   public static final String SERIALIZED_NAME_EXPORT_TYPE = "exportType";
   @SerializedName(SERIALIZED_NAME_EXPORT_TYPE)
@@ -90,7 +89,6 @@ public class ExportRequest {
     this.exportType = exportType;
   }
 
-
   public ExportRequest filters(@javax.annotation.Nullable Map<String, Object> filters) {
     this.filters = filters;
     return this;
@@ -117,7 +115,6 @@ public class ExportRequest {
     this.filters = filters;
   }
 
-
   public ExportRequest columns(@javax.annotation.Nullable List<String> columns) {
     this.columns = columns;
     return this;
@@ -143,8 +140,6 @@ public class ExportRequest {
   public void setColumns(@javax.annotation.Nullable List<String> columns) {
     this.columns = columns;
   }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -186,7 +181,6 @@ public class ExportRequest {
     }
     return o.toString().replace("\n", "\n    ");
   }
-
 
   public static HashSet<String> openapiFields;
   public static HashSet<String> openapiRequiredFields;
@@ -281,4 +275,3 @@ public class ExportRequest {
     return JSON.getGson().toJson(this);
   }
 }
-

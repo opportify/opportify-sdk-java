@@ -21,7 +21,6 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
 import ai.opportify.client.model.CreateEmailBatchExport400ResponseOneOf;
-
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.logging.Level;
@@ -55,7 +54,7 @@ import com.google.gson.JsonParseException;
 
 import ai.opportify.client.JSON;
 
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-01-31T14:35:15.553092-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-02-02T05:39:48.071489-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class CreateEmailBatchExport400Response extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(CreateEmailBatchExport400Response.class.getName());
 
@@ -68,6 +67,7 @@ public class CreateEmailBatchExport400Response extends AbstractOpenApiSchema {
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
             final TypeAdapter<CreateEmailBatchExport400ResponseOneOf> adapterCreateEmailBatchExport400ResponseOneOf = gson.getDelegateAdapter(this, TypeToken.get(CreateEmailBatchExport400ResponseOneOf.class));
+            final TypeAdapter<CreateEmailBatchExport400ResponseOneOf> adapterCreateEmailBatchExport400ResponseOneOf1 = gson.getDelegateAdapter(this, TypeToken.get(CreateEmailBatchExport400ResponseOneOf.class));
 
             return (TypeAdapter<T>) new TypeAdapter<CreateEmailBatchExport400Response>() {
                 @Override
@@ -83,7 +83,13 @@ public class CreateEmailBatchExport400Response extends AbstractOpenApiSchema {
                         elementAdapter.write(out, element);
                         return;
                     }
-                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: CreateEmailBatchExport400ResponseOneOf");
+                    // check if the actual instance is of the type `CreateEmailBatchExport400ResponseOneOf`
+                    if (value.getActualInstance() instanceof CreateEmailBatchExport400ResponseOneOf) {
+                        JsonElement element = adapterCreateEmailBatchExport400ResponseOneOf1.toJsonTree((CreateEmailBatchExport400ResponseOneOf)value.getActualInstance());
+                        elementAdapter.write(out, element);
+                        return;
+                    }
+                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: CreateEmailBatchExport400ResponseOneOf, CreateEmailBatchExport400ResponseOneOf");
                 }
 
                 @Override
@@ -100,6 +106,18 @@ public class CreateEmailBatchExport400Response extends AbstractOpenApiSchema {
                         // validate the JSON object to see if any exception is thrown
                         CreateEmailBatchExport400ResponseOneOf.validateJsonElement(jsonElement);
                         actualAdapter = adapterCreateEmailBatchExport400ResponseOneOf;
+                        match++;
+                        log.log(Level.FINER, "Input data matches schema 'CreateEmailBatchExport400ResponseOneOf'");
+                    } catch (Exception e) {
+                        // deserialization failed, continue
+                        errorMessages.add(String.format("Deserialization for CreateEmailBatchExport400ResponseOneOf failed with `%s`.", e.getMessage()));
+                        log.log(Level.FINER, "Input data does not match schema 'CreateEmailBatchExport400ResponseOneOf'", e);
+                    }
+                    // deserialize CreateEmailBatchExport400ResponseOneOf
+                    try {
+                        // validate the JSON object to see if any exception is thrown
+                        CreateEmailBatchExport400ResponseOneOf.validateJsonElement(jsonElement);
+                        actualAdapter = adapterCreateEmailBatchExport400ResponseOneOf1;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'CreateEmailBatchExport400ResponseOneOf'");
                     } catch (Exception e) {
@@ -134,11 +152,67 @@ public class CreateEmailBatchExport400Response extends AbstractOpenApiSchema {
 
     static {
         schemas.put("CreateEmailBatchExport400ResponseOneOf", CreateEmailBatchExport400ResponseOneOf.class);
-}
+    }
 
     @Override
     public Map<String, Class<?>> getSchemas() {
         return CreateEmailBatchExport400Response.schemas;
+    }
+
+    /**
+     * Set the instance that matches the oneOf child schema, check
+     * the instance parameter is valid against the oneOf child schemas:
+     * CreateEmailBatchExport400ResponseOneOf, CreateEmailBatchExport400ResponseOneOf
+     *
+     * It could be an instance of the 'oneOf' schemas.
+     */
+    @Override
+    public void setActualInstance(Object instance) {
+        if (instance instanceof CreateEmailBatchExport400ResponseOneOf) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        if (instance instanceof CreateEmailBatchExport400ResponseOneOf) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        throw new RuntimeException("Invalid instance type. Must be CreateEmailBatchExport400ResponseOneOf, CreateEmailBatchExport400ResponseOneOf");
+    }
+
+    /**
+     * Get the actual instance, which can be the following:
+     * CreateEmailBatchExport400ResponseOneOf, CreateEmailBatchExport400ResponseOneOf
+     *
+     * @return The actual instance (CreateEmailBatchExport400ResponseOneOf, CreateEmailBatchExport400ResponseOneOf)
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public Object getActualInstance() {
+        return super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `CreateEmailBatchExport400ResponseOneOf`. If the actual instance is not `CreateEmailBatchExport400ResponseOneOf`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `CreateEmailBatchExport400ResponseOneOf`
+     * @throws ClassCastException if the instance is not `CreateEmailBatchExport400ResponseOneOf`
+     */
+    public CreateEmailBatchExport400ResponseOneOf getCreateEmailBatchExport400ResponseOneOf() throws ClassCastException {
+        return (CreateEmailBatchExport400ResponseOneOf)super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `CreateEmailBatchExport400ResponseOneOf`. If the actual instance is not `CreateEmailBatchExport400ResponseOneOf`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `CreateEmailBatchExport400ResponseOneOf`
+     * @throws ClassCastException if the instance is not `CreateEmailBatchExport400ResponseOneOf`
+     */
+    public CreateEmailBatchExport400ResponseOneOf getCreateEmailBatchExport400ResponseOneOf1() throws ClassCastException {
+        return (CreateEmailBatchExport400ResponseOneOf)super.getActualInstance();
     }
 
     /**
@@ -159,8 +233,16 @@ public class CreateEmailBatchExport400Response extends AbstractOpenApiSchema {
             errorMessages.add(String.format("Deserialization for CreateEmailBatchExport400ResponseOneOf failed with `%s`.", e.getMessage()));
             // continue to the next one
         }
+        // validate the json string with CreateEmailBatchExport400ResponseOneOf
+        try {
+            CreateEmailBatchExport400ResponseOneOf.validateJsonElement(jsonElement);
+            validCount++;
+        } catch (Exception e) {
+            errorMessages.add(String.format("Deserialization for CreateEmailBatchExport400ResponseOneOf failed with `%s`.", e.getMessage()));
+            // continue to the next one
+        }
         if (validCount != 1) {
-            throw new IOException(String.format("The JSON string is invalid for CreateEmailBatchExport400Response with oneOf schemas: CreateEmailBatchExport400ResponseOneOf. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
+            throw new IOException(String.format("The JSON string is invalid for CreateEmailBatchExport400Response with oneOf schemas: CreateEmailBatchExport400ResponseOneOf, CreateEmailBatchExport400ResponseOneOf. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
         }
     }
 
@@ -184,4 +266,3 @@ public class CreateEmailBatchExport400Response extends AbstractOpenApiSchema {
         return JSON.getGson().toJson(this);
     }
 }
-

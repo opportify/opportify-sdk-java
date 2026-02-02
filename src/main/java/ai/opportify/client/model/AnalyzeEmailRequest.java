@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-
 package ai.opportify.client.model;
 
 import java.util.Objects;
@@ -48,7 +47,7 @@ import ai.opportify.client.JSON;
 /**
  * AnalyzeEmailRequest
  */
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-01-31T14:35:15.553092-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-02-02T05:39:48.071489-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class AnalyzeEmailRequest {
   public static final String SERIALIZED_NAME_EMAIL = "email";
   @SerializedName(SERIALIZED_NAME_EMAIL)
@@ -91,7 +90,6 @@ public class AnalyzeEmailRequest {
     this.email = email;
   }
 
-
   public AnalyzeEmailRequest enableAI(@javax.annotation.Nullable Boolean enableAI) {
     this.enableAI = enableAI;
     return this;
@@ -109,7 +107,6 @@ public class AnalyzeEmailRequest {
   public void setEnableAI(@javax.annotation.Nullable Boolean enableAI) {
     this.enableAI = enableAI;
   }
-
 
   public AnalyzeEmailRequest enableAutoCorrection(@javax.annotation.Nullable Boolean enableAutoCorrection) {
     this.enableAutoCorrection = enableAutoCorrection;
@@ -129,7 +126,6 @@ public class AnalyzeEmailRequest {
     this.enableAutoCorrection = enableAutoCorrection;
   }
 
-
   public AnalyzeEmailRequest enableDomainEnrichment(@javax.annotation.Nullable Boolean enableDomainEnrichment) {
     this.enableDomainEnrichment = enableDomainEnrichment;
     return this;
@@ -147,8 +143,6 @@ public class AnalyzeEmailRequest {
   public void setEnableDomainEnrichment(@javax.annotation.Nullable Boolean enableDomainEnrichment) {
     this.enableDomainEnrichment = enableDomainEnrichment;
   }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -192,7 +186,6 @@ public class AnalyzeEmailRequest {
     }
     return o.toString().replace("\n", "\n    ");
   }
-
 
   public static HashSet<String> openapiFields;
   public static HashSet<String> openapiRequiredFields;
@@ -292,4 +285,3 @@ public class AnalyzeEmailRequest {
     return JSON.getGson().toJson(this);
   }
 }
-

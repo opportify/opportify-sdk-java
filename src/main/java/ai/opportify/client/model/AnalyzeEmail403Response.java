@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-
 package ai.opportify.client.model;
 
 import java.util.Objects;
@@ -25,11 +24,8 @@ import ai.opportify.client.model.FORBIDDEN;
 import ai.opportify.client.model.INTERNALERROR;
 import ai.opportify.client.model.INVALIDPLAN;
 import ai.opportify.client.model.INVALIDTOKEN;
-import ai.opportify.client.model.MALFORMEDREQUEST;
 import ai.opportify.client.model.QUOTAEXCEEDED;
 import ai.opportify.client.model.TOOMANYREQUESTS;
-
-
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -64,7 +60,7 @@ import com.google.gson.JsonParseException;
 
 import ai.opportify.client.JSON;
 
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-01-31T14:35:15.553092-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-02-02T05:39:48.071489-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class AnalyzeEmail403Response extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(AnalyzeEmail403Response.class.getName());
 
@@ -76,7 +72,7 @@ public class AnalyzeEmail403Response extends AbstractOpenApiSchema {
                 return null; // this class only serializes 'AnalyzeEmail403Response' and its subtypes
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<MALFORMEDREQUEST> adapterMALFORMEDREQUEST = gson.getDelegateAdapter(this, TypeToken.get(MALFORMEDREQUEST.class));
+            final TypeAdapter<MALFORMEDREQUEST> adapterMALFORMEDREQUEST1 = gson.getDelegateAdapter(this, TypeToken.get(MALFORMEDREQUEST.class));
             final TypeAdapter<INVALIDTOKEN> adapterINVALIDTOKEN = gson.getDelegateAdapter(this, TypeToken.get(INVALIDTOKEN.class));
             final TypeAdapter<INVALIDPLAN> adapterINVALIDPLAN = gson.getDelegateAdapter(this, TypeToken.get(INVALIDPLAN.class));
             final TypeAdapter<FORBIDDEN> adapterFORBIDDEN = gson.getDelegateAdapter(this, TypeToken.get(FORBIDDEN.class));
@@ -94,7 +90,7 @@ public class AnalyzeEmail403Response extends AbstractOpenApiSchema {
 
                     // check if the actual instance is of the type `MALFORMEDREQUEST`
                     if (value.getActualInstance() instanceof MALFORMEDREQUEST) {
-                        JsonElement element = adapterMALFORMEDREQUEST.toJsonTree((MALFORMEDREQUEST)value.getActualInstance());
+                        JsonElement element = adapterMALFORMEDREQUEST1.toJsonTree((MALFORMEDREQUEST)value.getActualInstance());
                         elementAdapter.write(out, element);
                         return;
                     }
@@ -150,7 +146,7 @@ public class AnalyzeEmail403Response extends AbstractOpenApiSchema {
                     try {
                         // validate the JSON object to see if any exception is thrown
                         MALFORMEDREQUEST.validateJsonElement(jsonElement);
-                        actualAdapter = adapterMALFORMEDREQUEST;
+                        actualAdapter = adapterMALFORMEDREQUEST1;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'MALFORMEDREQUEST'");
                     } catch (Exception e) {
@@ -336,7 +332,7 @@ public class AnalyzeEmail403Response extends AbstractOpenApiSchema {
      * @return The actual instance of `MALFORMEDREQUEST`
      * @throws ClassCastException if the instance is not `MALFORMEDREQUEST`
      */
-    public MALFORMEDREQUEST getMALFORMEDREQUEST() throws ClassCastException {
+    public MALFORMEDREQUEST getMALFORMEDREQUEST1() throws ClassCastException {
         return (MALFORMEDREQUEST)super.getActualInstance();
     }
 
@@ -497,4 +493,3 @@ public class AnalyzeEmail403Response extends AbstractOpenApiSchema {
         return JSON.getGson().toJson(this);
     }
 }
-

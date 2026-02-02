@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-
 package ai.opportify.client.model;
 
 import java.util.Objects;
@@ -48,7 +47,7 @@ import ai.opportify.client.JSON;
 /**
  * AnalyzeIpRequest
  */
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-01-31T14:35:15.553092-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-02-02T05:39:48.071489-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class AnalyzeIpRequest {
   public static final String SERIALIZED_NAME_IP = "ip";
   @SerializedName(SERIALIZED_NAME_IP)
@@ -81,7 +80,6 @@ public class AnalyzeIpRequest {
     this.ip = ip;
   }
 
-
   public AnalyzeIpRequest enableAI(@javax.annotation.Nullable Boolean enableAI) {
     this.enableAI = enableAI;
     return this;
@@ -99,8 +97,6 @@ public class AnalyzeIpRequest {
   public void setEnableAI(@javax.annotation.Nullable Boolean enableAI) {
     this.enableAI = enableAI;
   }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -140,7 +136,6 @@ public class AnalyzeIpRequest {
     }
     return o.toString().replace("\n", "\n    ");
   }
-
 
   public static HashSet<String> openapiFields;
   public static HashSet<String> openapiRequiredFields;
@@ -238,4 +233,3 @@ public class AnalyzeIpRequest {
     return JSON.getGson().toJson(this);
   }
 }
-

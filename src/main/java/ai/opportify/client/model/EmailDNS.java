@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-
 package ai.opportify.client.model;
 
 import java.util.Objects;
@@ -50,7 +49,7 @@ import ai.opportify.client.JSON;
 /**
  * DNS details for an email address domain.
  */
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-01-31T14:35:15.553092-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-02-02T05:39:48.071489-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class EmailDNS {
   public static final String SERIALIZED_NAME_MX = "mx";
   @SerializedName(SERIALIZED_NAME_MX)
@@ -111,7 +110,6 @@ public class EmailDNS {
     this.mx = mx;
   }
 
-
   public EmailDNS spfValid(@javax.annotation.Nonnull Boolean spfValid) {
     this.spfValid = spfValid;
     return this;
@@ -129,7 +127,6 @@ public class EmailDNS {
   public void setSpfValid(@javax.annotation.Nonnull Boolean spfValid) {
     this.spfValid = spfValid;
   }
-
 
   public EmailDNS dkimConfigured(@javax.annotation.Nonnull Boolean dkimConfigured) {
     this.dkimConfigured = dkimConfigured;
@@ -149,7 +146,6 @@ public class EmailDNS {
     this.dkimConfigured = dkimConfigured;
   }
 
-
   public EmailDNS dmarcValid(@javax.annotation.Nonnull Boolean dmarcValid) {
     this.dmarcValid = dmarcValid;
     return this;
@@ -167,7 +163,6 @@ public class EmailDNS {
   public void setDmarcValid(@javax.annotation.Nonnull Boolean dmarcValid) {
     this.dmarcValid = dmarcValid;
   }
-
 
   public EmailDNS mxRelay(@javax.annotation.Nonnull String mxRelay) {
     this.mxRelay = mxRelay;
@@ -187,7 +182,6 @@ public class EmailDNS {
     this.mxRelay = mxRelay;
   }
 
-
   public EmailDNS mxRelayCategory(@javax.annotation.Nonnull String mxRelayCategory) {
     this.mxRelayCategory = mxRelayCategory;
     return this;
@@ -205,8 +199,6 @@ public class EmailDNS {
   public void setMxRelayCategory(@javax.annotation.Nonnull String mxRelayCategory) {
     this.mxRelayCategory = mxRelayCategory;
   }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -254,7 +246,6 @@ public class EmailDNS {
     }
     return o.toString().replace("\n", "\n    ");
   }
-
 
   public static HashSet<String> openapiFields;
   public static HashSet<String> openapiRequiredFields;
@@ -370,4 +361,3 @@ public class EmailDNS {
     return JSON.getGson().toJson(this);
   }
 }
-

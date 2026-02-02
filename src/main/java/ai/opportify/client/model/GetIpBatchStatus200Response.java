@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-
 package ai.opportify.client.model;
 
 import java.util.Objects;
@@ -49,7 +48,7 @@ import ai.opportify.client.JSON;
 /**
  * GetIpBatchStatus200Response
  */
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-01-31T14:35:15.553092-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-02-02T05:39:48.071489-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class GetIpBatchStatus200Response {
   public static final String SERIALIZED_NAME_JOB_ID = "jobId";
   @SerializedName(SERIALIZED_NAME_JOB_ID)
@@ -102,7 +101,6 @@ public class GetIpBatchStatus200Response {
     this.jobId = jobId;
   }
 
-
   public GetIpBatchStatus200Response name(@javax.annotation.Nullable String name) {
     this.name = name;
     return this;
@@ -120,7 +118,6 @@ public class GetIpBatchStatus200Response {
   public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
   }
-
 
   public GetIpBatchStatus200Response status(@javax.annotation.Nullable String status) {
     this.status = status;
@@ -140,7 +137,6 @@ public class GetIpBatchStatus200Response {
     this.status = status;
   }
 
-
   public GetIpBatchStatus200Response statusDescription(@javax.annotation.Nullable String statusDescription) {
     this.statusDescription = statusDescription;
     return this;
@@ -158,7 +154,6 @@ public class GetIpBatchStatus200Response {
   public void setStatusDescription(@javax.annotation.Nullable String statusDescription) {
     this.statusDescription = statusDescription;
   }
-
 
   public GetIpBatchStatus200Response progress(@javax.annotation.Nullable Integer progress) {
     this.progress = progress;
@@ -178,7 +173,6 @@ public class GetIpBatchStatus200Response {
     this.progress = progress;
   }
 
-
   public GetIpBatchStatus200Response downloadUrls(@javax.annotation.Nullable GetEmailBatchStatus200ResponseDownloadUrls downloadUrls) {
     this.downloadUrls = downloadUrls;
     return this;
@@ -196,8 +190,6 @@ public class GetIpBatchStatus200Response {
   public void setDownloadUrls(@javax.annotation.Nullable GetEmailBatchStatus200ResponseDownloadUrls downloadUrls) {
     this.downloadUrls = downloadUrls;
   }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -245,7 +237,6 @@ public class GetIpBatchStatus200Response {
     }
     return o.toString().replace("\n", "\n    ");
   }
-
 
   public static HashSet<String> openapiFields;
   public static HashSet<String> openapiRequiredFields;
@@ -352,4 +343,3 @@ public class GetIpBatchStatus200Response {
     return JSON.getGson().toJson(this);
   }
 }
-

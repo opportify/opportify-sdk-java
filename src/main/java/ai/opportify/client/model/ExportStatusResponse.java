@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-
 package ai.opportify.client.model;
 
 import java.util.Objects;
@@ -51,7 +50,7 @@ import ai.opportify.client.JSON;
 /**
  * Response containing the status and details of an export job.
  */
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-01-31T14:35:15.553092-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-02-02T05:39:48.071489-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class ExportStatusResponse {
   public static final String SERIALIZED_NAME_JOB_ID = "jobId";
   @SerializedName(SERIALIZED_NAME_JOB_ID)
@@ -139,7 +138,6 @@ public class ExportStatusResponse {
     this.jobId = jobId;
   }
 
-
   public ExportStatusResponse exportId(@javax.annotation.Nonnull String exportId) {
     this.exportId = exportId;
     return this;
@@ -157,7 +155,6 @@ public class ExportStatusResponse {
   public void setExportId(@javax.annotation.Nonnull String exportId) {
     this.exportId = exportId;
   }
-
 
   public ExportStatusResponse status(@javax.annotation.Nonnull String status) {
     this.status = status;
@@ -177,7 +174,6 @@ public class ExportStatusResponse {
     this.status = status;
   }
 
-
   public ExportStatusResponse format(@javax.annotation.Nonnull String format) {
     this.format = format;
     return this;
@@ -195,7 +191,6 @@ public class ExportStatusResponse {
   public void setFormat(@javax.annotation.Nonnull String format) {
     this.format = format;
   }
-
 
   public ExportStatusResponse filters(@javax.annotation.Nullable List<ExportFilter> filters) {
     this.filters = filters;
@@ -223,7 +218,6 @@ public class ExportStatusResponse {
     this.filters = filters;
   }
 
-
   public ExportStatusResponse columns(@javax.annotation.Nullable List<String> columns) {
     this.columns = columns;
     return this;
@@ -250,7 +244,6 @@ public class ExportStatusResponse {
     this.columns = columns;
   }
 
-
   public ExportStatusResponse requestedAt(@javax.annotation.Nonnull String requestedAt) {
     this.requestedAt = requestedAt;
     return this;
@@ -268,7 +261,6 @@ public class ExportStatusResponse {
   public void setRequestedAt(@javax.annotation.Nonnull String requestedAt) {
     this.requestedAt = requestedAt;
   }
-
 
   public ExportStatusResponse updatedAt(@javax.annotation.Nonnull String updatedAt) {
     this.updatedAt = updatedAt;
@@ -288,7 +280,6 @@ public class ExportStatusResponse {
     this.updatedAt = updatedAt;
   }
 
-
   public ExportStatusResponse downloadUrl(@javax.annotation.Nullable String downloadUrl) {
     this.downloadUrl = downloadUrl;
     return this;
@@ -306,7 +297,6 @@ public class ExportStatusResponse {
   public void setDownloadUrl(@javax.annotation.Nullable String downloadUrl) {
     this.downloadUrl = downloadUrl;
   }
-
 
   public ExportStatusResponse expiresAt(@javax.annotation.Nullable String expiresAt) {
     this.expiresAt = expiresAt;
@@ -326,7 +316,6 @@ public class ExportStatusResponse {
     this.expiresAt = expiresAt;
   }
 
-
   public ExportStatusResponse resultSizeBytes(@javax.annotation.Nullable Integer resultSizeBytes) {
     this.resultSizeBytes = resultSizeBytes;
     return this;
@@ -344,7 +333,6 @@ public class ExportStatusResponse {
   public void setResultSizeBytes(@javax.annotation.Nullable Integer resultSizeBytes) {
     this.resultSizeBytes = resultSizeBytes;
   }
-
 
   public ExportStatusResponse errorCode(@javax.annotation.Nullable String errorCode) {
     this.errorCode = errorCode;
@@ -364,7 +352,6 @@ public class ExportStatusResponse {
     this.errorCode = errorCode;
   }
 
-
   public ExportStatusResponse errorMessage(@javax.annotation.Nullable String errorMessage) {
     this.errorMessage = errorMessage;
     return this;
@@ -382,8 +369,6 @@ public class ExportStatusResponse {
   public void setErrorMessage(@javax.annotation.Nullable String errorMessage) {
     this.errorMessage = errorMessage;
   }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -445,7 +430,6 @@ public class ExportStatusResponse {
     }
     return o.toString().replace("\n", "\n    ");
   }
-
 
   public static HashSet<String> openapiFields;
   public static HashSet<String> openapiRequiredFields;
@@ -604,4 +588,3 @@ public class ExportStatusResponse {
     return JSON.getGson().toJson(this);
   }
 }
-

@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-
 package ai.opportify.client.model;
 
 import java.util.Objects;
@@ -50,7 +49,7 @@ import ai.opportify.client.JSON;
 /**
  * Organization details for an IP address.
  */
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-01-31T14:35:15.553092-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-02-02T05:39:48.071489-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class Organization {
   public static final String SERIALIZED_NAME_ORG_ID = "orgId";
   @SerializedName(SERIALIZED_NAME_ORG_ID)
@@ -118,7 +117,6 @@ public class Organization {
     this.orgId = orgId;
   }
 
-
   public Organization orgName(@javax.annotation.Nullable String orgName) {
     this.orgName = orgName;
     return this;
@@ -137,7 +135,6 @@ public class Organization {
     this.orgName = orgName;
   }
 
-
   public Organization orgType(@javax.annotation.Nullable String orgType) {
     this.orgType = orgType;
     return this;
@@ -155,7 +152,6 @@ public class Organization {
   public void setOrgType(@javax.annotation.Nullable String orgType) {
     this.orgType = orgType;
   }
-
 
   public Organization descr(@javax.annotation.Nullable List<String> descr) {
     this.descr = descr;
@@ -183,7 +179,6 @@ public class Organization {
     this.descr = descr;
   }
 
-
   public Organization address(@javax.annotation.Nullable List<String> address) {
     this.address = address;
     return this;
@@ -210,7 +205,6 @@ public class Organization {
     this.address = address;
   }
 
-
   public Organization country(@javax.annotation.Nullable String country) {
     this.country = country;
     return this;
@@ -228,7 +222,6 @@ public class Organization {
   public void setCountry(@javax.annotation.Nullable String country) {
     this.country = country;
   }
-
 
   public Organization phone(@javax.annotation.Nullable List<String> phone) {
     this.phone = phone;
@@ -256,7 +249,6 @@ public class Organization {
     this.phone = phone;
   }
 
-
   public Organization fax(@javax.annotation.Nullable List<String> fax) {
     this.fax = fax;
     return this;
@@ -283,7 +275,6 @@ public class Organization {
     this.fax = fax;
   }
 
-
   public Organization email(@javax.annotation.Nullable List<String> email) {
     this.email = email;
     return this;
@@ -309,8 +300,6 @@ public class Organization {
   public void setEmail(@javax.annotation.Nullable List<String> email) {
     this.email = email;
   }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -364,7 +353,6 @@ public class Organization {
     }
     return o.toString().replace("\n", "\n    ");
   }
-
 
   public static HashSet<String> openapiFields;
   public static HashSet<String> openapiRequiredFields;
@@ -490,4 +478,3 @@ public class Organization {
     return JSON.getGson().toJson(this);
   }
 }
-

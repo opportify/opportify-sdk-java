@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-
 package ai.opportify.client.model;
 
 import java.util.Objects;
@@ -48,7 +47,7 @@ import ai.opportify.client.JSON;
 /**
  * Details of trusted providers for an IP address.
  */
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-01-31T14:35:15.553092-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-02-02T05:39:48.071489-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class TrustedProvider {
   public static final String SERIALIZED_NAME_IS_KNOWN_PROVIDER = "isKnownProvider";
   @SerializedName(SERIALIZED_NAME_IS_KNOWN_PROVIDER)
@@ -91,7 +90,6 @@ public class TrustedProvider {
     this.isKnownProvider = isKnownProvider;
   }
 
-
   public TrustedProvider provider(@javax.annotation.Nullable String provider) {
     this.provider = provider;
     return this;
@@ -109,7 +107,6 @@ public class TrustedProvider {
   public void setProvider(@javax.annotation.Nullable String provider) {
     this.provider = provider;
   }
-
 
   public TrustedProvider providerType(@javax.annotation.Nullable String providerType) {
     this.providerType = providerType;
@@ -129,7 +126,6 @@ public class TrustedProvider {
     this.providerType = providerType;
   }
 
-
   public TrustedProvider description(@javax.annotation.Nullable String description) {
     this.description = description;
     return this;
@@ -147,8 +143,6 @@ public class TrustedProvider {
   public void setDescription(@javax.annotation.Nullable String description) {
     this.description = description;
   }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -192,7 +186,6 @@ public class TrustedProvider {
     }
     return o.toString().replace("\n", "\n    ");
   }
-
 
   public static HashSet<String> openapiFields;
   public static HashSet<String> openapiRequiredFields;
@@ -298,4 +291,3 @@ public class TrustedProvider {
     return JSON.getGson().toJson(this);
   }
 }
-

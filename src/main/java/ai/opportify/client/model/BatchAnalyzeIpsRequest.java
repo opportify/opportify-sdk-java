@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-
 package ai.opportify.client.model;
 
 import java.util.Objects;
@@ -50,7 +49,7 @@ import ai.opportify.client.JSON;
 /**
  * BatchAnalyzeIpsRequest
  */
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-01-31T14:35:15.553092-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-02-02T05:39:48.071489-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class BatchAnalyzeIpsRequest {
   public static final String SERIALIZED_NAME_IPS = "ips";
   @SerializedName(SERIALIZED_NAME_IPS)
@@ -96,7 +95,6 @@ public class BatchAnalyzeIpsRequest {
     this.ips = ips;
   }
 
-
   public BatchAnalyzeIpsRequest name(@javax.annotation.Nullable String name) {
     this.name = name;
     return this;
@@ -115,7 +113,6 @@ public class BatchAnalyzeIpsRequest {
     this.name = name;
   }
 
-
   public BatchAnalyzeIpsRequest enableAI(@javax.annotation.Nullable Boolean enableAI) {
     this.enableAI = enableAI;
     return this;
@@ -133,8 +130,6 @@ public class BatchAnalyzeIpsRequest {
   public void setEnableAI(@javax.annotation.Nullable Boolean enableAI) {
     this.enableAI = enableAI;
   }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -176,7 +171,6 @@ public class BatchAnalyzeIpsRequest {
     }
     return o.toString().replace("\n", "\n    ");
   }
-
 
   public static HashSet<String> openapiFields;
   public static HashSet<String> openapiRequiredFields;
@@ -281,4 +275,3 @@ public class BatchAnalyzeIpsRequest {
     return JSON.getGson().toJson(this);
   }
 }
-

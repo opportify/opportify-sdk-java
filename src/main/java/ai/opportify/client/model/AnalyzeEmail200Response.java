@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-
 package ai.opportify.client.model;
 
 import java.util.Objects;
@@ -52,7 +51,7 @@ import ai.opportify.client.JSON;
 /**
  * AnalyzeEmail200Response
  */
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-01-31T14:35:15.553092-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-02-02T05:39:48.071489-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class AnalyzeEmail200Response {
   public static final String SERIALIZED_NAME_EMAIL_ADDRESS = "emailAddress";
   @SerializedName(SERIALIZED_NAME_EMAIL_ADDRESS)
@@ -145,7 +144,6 @@ public class AnalyzeEmail200Response {
     this.emailAddress = emailAddress;
   }
 
-
   public AnalyzeEmail200Response emailProvider(@javax.annotation.Nonnull String emailProvider) {
     this.emailProvider = emailProvider;
     return this;
@@ -163,7 +161,6 @@ public class AnalyzeEmail200Response {
   public void setEmailProvider(@javax.annotation.Nonnull String emailProvider) {
     this.emailProvider = emailProvider;
   }
-
 
   public AnalyzeEmail200Response emailType(@javax.annotation.Nonnull String emailType) {
     this.emailType = emailType;
@@ -183,7 +180,6 @@ public class AnalyzeEmail200Response {
     this.emailType = emailType;
   }
 
-
   public AnalyzeEmail200Response isDeliverable(@javax.annotation.Nonnull String isDeliverable) {
     this.isDeliverable = isDeliverable;
     return this;
@@ -201,7 +197,6 @@ public class AnalyzeEmail200Response {
   public void setIsDeliverable(@javax.annotation.Nonnull String isDeliverable) {
     this.isDeliverable = isDeliverable;
   }
-
 
   public AnalyzeEmail200Response isCatchAll(@javax.annotation.Nonnull Boolean isCatchAll) {
     this.isCatchAll = isCatchAll;
@@ -221,7 +216,6 @@ public class AnalyzeEmail200Response {
     this.isCatchAll = isCatchAll;
   }
 
-
   public AnalyzeEmail200Response isMailboxFull(@javax.annotation.Nonnull Boolean isMailboxFull) {
     this.isMailboxFull = isMailboxFull;
     return this;
@@ -239,7 +233,6 @@ public class AnalyzeEmail200Response {
   public void setIsMailboxFull(@javax.annotation.Nonnull Boolean isMailboxFull) {
     this.isMailboxFull = isMailboxFull;
   }
-
 
   public AnalyzeEmail200Response isReachable(@javax.annotation.Nonnull Boolean isReachable) {
     this.isReachable = isReachable;
@@ -259,7 +252,6 @@ public class AnalyzeEmail200Response {
     this.isReachable = isReachable;
   }
 
-
   public AnalyzeEmail200Response isFormatValid(@javax.annotation.Nonnull Boolean isFormatValid) {
     this.isFormatValid = isFormatValid;
     return this;
@@ -277,7 +269,6 @@ public class AnalyzeEmail200Response {
   public void setIsFormatValid(@javax.annotation.Nonnull Boolean isFormatValid) {
     this.isFormatValid = isFormatValid;
   }
-
 
   public AnalyzeEmail200Response emailCorrection(@javax.annotation.Nonnull String emailCorrection) {
     this.emailCorrection = emailCorrection;
@@ -297,7 +288,6 @@ public class AnalyzeEmail200Response {
     this.emailCorrection = emailCorrection;
   }
 
-
   public AnalyzeEmail200Response emailAutoCorrectedFrom(@javax.annotation.Nullable String emailAutoCorrectedFrom) {
     this.emailAutoCorrectedFrom = emailAutoCorrectedFrom;
     return this;
@@ -315,7 +305,6 @@ public class AnalyzeEmail200Response {
   public void setEmailAutoCorrectedFrom(@javax.annotation.Nullable String emailAutoCorrectedFrom) {
     this.emailAutoCorrectedFrom = emailAutoCorrectedFrom;
   }
-
 
   public AnalyzeEmail200Response addressSignals(@javax.annotation.Nonnull AddressSignals addressSignals) {
     this.addressSignals = addressSignals;
@@ -335,7 +324,6 @@ public class AnalyzeEmail200Response {
     this.addressSignals = addressSignals;
   }
 
-
   public AnalyzeEmail200Response emailDNS(@javax.annotation.Nonnull EmailDNS emailDNS) {
     this.emailDNS = emailDNS;
     return this;
@@ -353,7 +341,6 @@ public class AnalyzeEmail200Response {
   public void setEmailDNS(@javax.annotation.Nonnull EmailDNS emailDNS) {
     this.emailDNS = emailDNS;
   }
-
 
   public AnalyzeEmail200Response riskReport(@javax.annotation.Nullable RiskReportEmail riskReport) {
     this.riskReport = riskReport;
@@ -373,7 +360,6 @@ public class AnalyzeEmail200Response {
     this.riskReport = riskReport;
   }
 
-
   public AnalyzeEmail200Response domain(@javax.annotation.Nullable EmailDomain domain) {
     this.domain = domain;
     return this;
@@ -391,8 +377,6 @@ public class AnalyzeEmail200Response {
   public void setDomain(@javax.annotation.Nullable EmailDomain domain) {
     this.domain = domain;
   }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -456,7 +440,6 @@ public class AnalyzeEmail200Response {
     }
     return o.toString().replace("\n", "\n    ");
   }
-
 
   public static HashSet<String> openapiFields;
   public static HashSet<String> openapiRequiredFields;
@@ -603,4 +586,3 @@ public class AnalyzeEmail200Response {
     return JSON.getGson().toJson(this);
   }
 }
-

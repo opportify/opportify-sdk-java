@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-
 package ai.opportify.client.model;
 
 import java.util.Objects;
@@ -48,7 +47,7 @@ import ai.opportify.client.JSON;
 /**
  * Local-part parsing insights produced during analysis. The service always returns this payload; when a specific signal is unavailable, the corresponding value falls back to &#x60;false&#x60; or an empty string.  When &#x60;isNoReply&#x60; is &#x60;true&#x60;, the risk engine enforces a minimum &#x60;high&#x60; risk level and appends &#x60;noreply-detected&#x60; to &#x60;riskReport.baseAnalysis&#x60;. 
  */
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-01-31T14:35:15.553092-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-02-02T05:39:48.071489-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class AddressSignals {
   public static final String SERIALIZED_NAME_TAG_DETECTED = "tagDetected";
   @SerializedName(SERIALIZED_NAME_TAG_DETECTED)
@@ -106,7 +105,6 @@ public class AddressSignals {
     this.tagDetected = tagDetected;
   }
 
-
   public AddressSignals tagValue(@javax.annotation.Nonnull String tagValue) {
     this.tagValue = tagValue;
     return this;
@@ -124,7 +122,6 @@ public class AddressSignals {
   public void setTagValue(@javax.annotation.Nonnull String tagValue) {
     this.tagValue = tagValue;
   }
-
 
   public AddressSignals normalizedAddress(@javax.annotation.Nonnull String normalizedAddress) {
     this.normalizedAddress = normalizedAddress;
@@ -144,7 +141,6 @@ public class AddressSignals {
     this.normalizedAddress = normalizedAddress;
   }
 
-
   public AddressSignals isRoleAddress(@javax.annotation.Nonnull Boolean isRoleAddress) {
     this.isRoleAddress = isRoleAddress;
     return this;
@@ -162,7 +158,6 @@ public class AddressSignals {
   public void setIsRoleAddress(@javax.annotation.Nonnull Boolean isRoleAddress) {
     this.isRoleAddress = isRoleAddress;
   }
-
 
   public AddressSignals roleType(@javax.annotation.Nonnull String roleType) {
     this.roleType = roleType;
@@ -182,7 +177,6 @@ public class AddressSignals {
     this.roleType = roleType;
   }
 
-
   public AddressSignals isNoReply(@javax.annotation.Nonnull Boolean isNoReply) {
     this.isNoReply = isNoReply;
     return this;
@@ -201,7 +195,6 @@ public class AddressSignals {
     this.isNoReply = isNoReply;
   }
 
-
   public AddressSignals noReplyPattern(@javax.annotation.Nonnull String noReplyPattern) {
     this.noReplyPattern = noReplyPattern;
     return this;
@@ -219,8 +212,6 @@ public class AddressSignals {
   public void setNoReplyPattern(@javax.annotation.Nonnull String noReplyPattern) {
     this.noReplyPattern = noReplyPattern;
   }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -270,7 +261,6 @@ public class AddressSignals {
     }
     return o.toString().replace("\n", "\n    ");
   }
-
 
   public static HashSet<String> openapiFields;
   public static HashSet<String> openapiRequiredFields;
@@ -388,4 +378,3 @@ public class AddressSignals {
     return JSON.getGson().toJson(this);
   }
 }
-

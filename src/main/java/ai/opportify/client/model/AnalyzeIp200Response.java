@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-
 package ai.opportify.client.model;
 
 import java.util.Objects;
@@ -53,7 +52,7 @@ import ai.opportify.client.JSON;
 /**
  * AnalyzeIp200Response
  */
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-01-31T14:35:15.553092-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-02-02T05:39:48.071489-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class AnalyzeIp200Response {
   public static final String SERIALIZED_NAME_IP_ADDRESS = "ipAddress";
   @SerializedName(SERIALIZED_NAME_IP_ADDRESS)
@@ -131,7 +130,6 @@ public class AnalyzeIp200Response {
     this.ipAddress = ipAddress;
   }
 
-
   public AnalyzeIp200Response ipAddressNumber(@javax.annotation.Nonnull Integer ipAddressNumber) {
     this.ipAddressNumber = ipAddressNumber;
     return this;
@@ -149,7 +147,6 @@ public class AnalyzeIp200Response {
   public void setIpAddressNumber(@javax.annotation.Nonnull Integer ipAddressNumber) {
     this.ipAddressNumber = ipAddressNumber;
   }
-
 
   public AnalyzeIp200Response ipType(@javax.annotation.Nonnull String ipType) {
     this.ipType = ipType;
@@ -169,7 +166,6 @@ public class AnalyzeIp200Response {
     this.ipType = ipType;
   }
 
-
   public AnalyzeIp200Response ipCidr(@javax.annotation.Nonnull String ipCidr) {
     this.ipCidr = ipCidr;
     return this;
@@ -187,7 +183,6 @@ public class AnalyzeIp200Response {
   public void setIpCidr(@javax.annotation.Nonnull String ipCidr) {
     this.ipCidr = ipCidr;
   }
-
 
   public AnalyzeIp200Response connectionType(@javax.annotation.Nonnull String connectionType) {
     this.connectionType = connectionType;
@@ -207,7 +202,6 @@ public class AnalyzeIp200Response {
     this.connectionType = connectionType;
   }
 
-
   public AnalyzeIp200Response hostReverse(@javax.annotation.Nonnull String hostReverse) {
     this.hostReverse = hostReverse;
     return this;
@@ -225,7 +219,6 @@ public class AnalyzeIp200Response {
   public void setHostReverse(@javax.annotation.Nonnull String hostReverse) {
     this.hostReverse = hostReverse;
   }
-
 
   public AnalyzeIp200Response geo(@javax.annotation.Nonnull Geo geo) {
     this.geo = geo;
@@ -245,7 +238,6 @@ public class AnalyzeIp200Response {
     this.geo = geo;
   }
 
-
   public AnalyzeIp200Response whois(@javax.annotation.Nonnull Whois whois) {
     this.whois = whois;
     return this;
@@ -263,7 +255,6 @@ public class AnalyzeIp200Response {
   public void setWhois(@javax.annotation.Nonnull Whois whois) {
     this.whois = whois;
   }
-
 
   public AnalyzeIp200Response trustedProvider(@javax.annotation.Nonnull TrustedProvider trustedProvider) {
     this.trustedProvider = trustedProvider;
@@ -283,7 +274,6 @@ public class AnalyzeIp200Response {
     this.trustedProvider = trustedProvider;
   }
 
-
   public AnalyzeIp200Response blocklisted(@javax.annotation.Nonnull BlockListed blocklisted) {
     this.blocklisted = blocklisted;
     return this;
@@ -302,7 +292,6 @@ public class AnalyzeIp200Response {
     this.blocklisted = blocklisted;
   }
 
-
   public AnalyzeIp200Response riskReport(@javax.annotation.Nonnull RiskReportIp riskReport) {
     this.riskReport = riskReport;
     return this;
@@ -320,8 +309,6 @@ public class AnalyzeIp200Response {
   public void setRiskReport(@javax.annotation.Nonnull RiskReportIp riskReport) {
     this.riskReport = riskReport;
   }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -379,7 +366,6 @@ public class AnalyzeIp200Response {
     }
     return o.toString().replace("\n", "\n    ");
   }
-
 
   public static HashSet<String> openapiFields;
   public static HashSet<String> openapiRequiredFields;
@@ -518,4 +504,3 @@ public class AnalyzeIp200Response {
     return JSON.getGson().toJson(this);
   }
 }
-

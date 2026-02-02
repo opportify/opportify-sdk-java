@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-
 package ai.opportify.client.model;
 
 import java.util.Objects;
@@ -51,7 +50,7 @@ import ai.opportify.client.JSON;
 /**
  * Describes a filter applied to an export.
  */
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-01-31T14:35:15.553092-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-02-02T05:39:48.071489-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class ExportFilter {
   public static final String SERIALIZED_NAME_FIELD = "field";
   @SerializedName(SERIALIZED_NAME_FIELD)
@@ -99,7 +98,6 @@ public class ExportFilter {
     this.field = field;
   }
 
-
   public ExportFilter kind(@javax.annotation.Nonnull String kind) {
     this.kind = kind;
     return this;
@@ -117,7 +115,6 @@ public class ExportFilter {
   public void setKind(@javax.annotation.Nonnull String kind) {
     this.kind = kind;
   }
-
 
   public ExportFilter values(@javax.annotation.Nullable List<String> values) {
     this.values = values;
@@ -145,7 +142,6 @@ public class ExportFilter {
     this.values = values;
   }
 
-
   public ExportFilter min(@javax.annotation.Nullable BigDecimal min) {
     this.min = min;
     return this;
@@ -164,7 +160,6 @@ public class ExportFilter {
     this.min = min;
   }
 
-
   public ExportFilter max(@javax.annotation.Nullable BigDecimal max) {
     this.max = max;
     return this;
@@ -182,8 +177,6 @@ public class ExportFilter {
   public void setMax(@javax.annotation.Nullable BigDecimal max) {
     this.max = max;
   }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -229,7 +222,6 @@ public class ExportFilter {
     }
     return o.toString().replace("\n", "\n    ");
   }
-
 
   public static HashSet<String> openapiFields;
   public static HashSet<String> openapiRequiredFields;
@@ -338,4 +330,3 @@ public class ExportFilter {
     return JSON.getGson().toJson(this);
   }
 }
-

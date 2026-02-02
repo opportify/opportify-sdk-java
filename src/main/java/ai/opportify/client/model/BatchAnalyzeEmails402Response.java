@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-
 package ai.opportify.client.model;
 
 import java.util.Objects;
@@ -21,10 +20,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import ai.opportify.client.model.INVALIDPLAN;
 import ai.opportify.client.model.QUOTAEXCEEDED;
-
-
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -59,7 +55,7 @@ import com.google.gson.JsonParseException;
 
 import ai.opportify.client.JSON;
 
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-01-31T14:35:15.553092-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-02-02T05:39:48.071489-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class BatchAnalyzeEmails402Response extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(BatchAnalyzeEmails402Response.class.getName());
 
@@ -71,7 +67,7 @@ public class BatchAnalyzeEmails402Response extends AbstractOpenApiSchema {
                 return null; // this class only serializes 'BatchAnalyzeEmails402Response' and its subtypes
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<INVALIDPLAN> adapterINVALIDPLAN = gson.getDelegateAdapter(this, TypeToken.get(INVALIDPLAN.class));
+            final TypeAdapter<INVALIDPLAN> adapterINVALIDPLAN1 = gson.getDelegateAdapter(this, TypeToken.get(INVALIDPLAN.class));
             final TypeAdapter<QUOTAEXCEEDED> adapterQUOTAEXCEEDED = gson.getDelegateAdapter(this, TypeToken.get(QUOTAEXCEEDED.class));
 
             return (TypeAdapter<T>) new TypeAdapter<BatchAnalyzeEmails402Response>() {
@@ -84,7 +80,7 @@ public class BatchAnalyzeEmails402Response extends AbstractOpenApiSchema {
 
                     // check if the actual instance is of the type `INVALIDPLAN`
                     if (value.getActualInstance() instanceof INVALIDPLAN) {
-                        JsonElement element = adapterINVALIDPLAN.toJsonTree((INVALIDPLAN)value.getActualInstance());
+                        JsonElement element = adapterINVALIDPLAN1.toJsonTree((INVALIDPLAN)value.getActualInstance());
                         elementAdapter.write(out, element);
                         return;
                     }
@@ -110,7 +106,7 @@ public class BatchAnalyzeEmails402Response extends AbstractOpenApiSchema {
                     try {
                         // validate the JSON object to see if any exception is thrown
                         INVALIDPLAN.validateJsonElement(jsonElement);
-                        actualAdapter = adapterINVALIDPLAN;
+                        actualAdapter = adapterINVALIDPLAN1;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'INVALIDPLAN'");
                     } catch (Exception e) {
@@ -206,7 +202,7 @@ public class BatchAnalyzeEmails402Response extends AbstractOpenApiSchema {
      * @return The actual instance of `INVALIDPLAN`
      * @throws ClassCastException if the instance is not `INVALIDPLAN`
      */
-    public INVALIDPLAN getINVALIDPLAN() throws ClassCastException {
+    public INVALIDPLAN getINVALIDPLAN1() throws ClassCastException {
         return (INVALIDPLAN)super.getActualInstance();
     }
 
@@ -272,4 +268,3 @@ public class BatchAnalyzeEmails402Response extends AbstractOpenApiSchema {
         return JSON.getGson().toJson(this);
     }
 }
-

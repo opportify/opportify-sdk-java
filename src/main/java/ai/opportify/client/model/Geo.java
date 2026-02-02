@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-
 package ai.opportify.client.model;
 
 import java.util.Objects;
@@ -49,7 +48,7 @@ import ai.opportify.client.JSON;
 /**
  * ### Geolocation Determination &amp; Confidence Levels Geolocation details are derived by analyzing the provided IP address using data aggregated from a wide range of sources, both official and unofficial (such as user-generated data, open-source, or crowdsourced). This data is meticulously evaluated and ranked using a proprietary weighted reliability score that is tailored to the specific characteristics and trustworthiness of each data source.  ---  #### Confidence Levels  The geolocation process assigns a confidence level to each level of granularity. These levels reflect the probability of accuracy based on the reliability of the data and analysis:  - **Continent-Level (99%)**: The determination of the continent is highly reliable, with a near-certain accuracy rate of 99%. - **Country-Level (98%)**: Locating the specific country has a very high accuracy of 98%, reflecting reliable cross-verification. - **Region-Level (70–90%)**: Identifying regions (such as states or provinces) has moderate to high accuracy, depending on the data quality and density for the given area. - **City-Level (50–70%)**: Pinpointing the specific city is moderately accurate, influenced by factors such as ISP data resolution and urban vs. rural settings. - **Specific Area/Point (5–40%)**: Pinpointing a highly specific area (e.g., a neighborhood or street) has a significantly lower confidence level due to inherent limitations in IP-based geolocation technology.  ---  #### Key Features  - **Alphabetical Object Sorting**:     The keys in the returned geolocation object are consistently sorted alphabetically, ensuring a predictable structure for easier integration and parsing.  ---  ### Response Elements 
  */
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-01-31T14:35:15.553092-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-02-02T05:39:48.071489-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class Geo {
   public static final String SERIALIZED_NAME_CONTINENT = "continent";
   @SerializedName(SERIALIZED_NAME_CONTINENT)
@@ -142,7 +141,6 @@ public class Geo {
     this.continent = continent;
   }
 
-
   public Geo countryCode(@javax.annotation.Nullable String countryCode) {
     this.countryCode = countryCode;
     return this;
@@ -160,7 +158,6 @@ public class Geo {
   public void setCountryCode(@javax.annotation.Nullable String countryCode) {
     this.countryCode = countryCode;
   }
-
 
   public Geo countryName(@javax.annotation.Nullable String countryName) {
     this.countryName = countryName;
@@ -180,7 +177,6 @@ public class Geo {
     this.countryName = countryName;
   }
 
-
   public Geo countryShortName(@javax.annotation.Nullable String countryShortName) {
     this.countryShortName = countryShortName;
     return this;
@@ -198,7 +194,6 @@ public class Geo {
   public void setCountryShortName(@javax.annotation.Nullable String countryShortName) {
     this.countryShortName = countryShortName;
   }
-
 
   public Geo city(@javax.annotation.Nullable String city) {
     this.city = city;
@@ -218,7 +213,6 @@ public class Geo {
     this.city = city;
   }
 
-
   public Geo currencyCode(@javax.annotation.Nullable String currencyCode) {
     this.currencyCode = currencyCode;
     return this;
@@ -236,7 +230,6 @@ public class Geo {
   public void setCurrencyCode(@javax.annotation.Nullable String currencyCode) {
     this.currencyCode = currencyCode;
   }
-
 
   public Geo domainExtension(@javax.annotation.Nullable String domainExtension) {
     this.domainExtension = domainExtension;
@@ -256,7 +249,6 @@ public class Geo {
     this.domainExtension = domainExtension;
   }
 
-
   public Geo languages(@javax.annotation.Nullable String languages) {
     this.languages = languages;
     return this;
@@ -274,7 +266,6 @@ public class Geo {
   public void setLanguages(@javax.annotation.Nullable String languages) {
     this.languages = languages;
   }
-
 
   public Geo latitude(@javax.annotation.Nullable BigDecimal latitude) {
     this.latitude = latitude;
@@ -294,7 +285,6 @@ public class Geo {
     this.latitude = latitude;
   }
 
-
   public Geo longitude(@javax.annotation.Nullable BigDecimal longitude) {
     this.longitude = longitude;
     return this;
@@ -312,7 +302,6 @@ public class Geo {
   public void setLongitude(@javax.annotation.Nullable BigDecimal longitude) {
     this.longitude = longitude;
   }
-
 
   public Geo postalCode(@javax.annotation.Nullable String postalCode) {
     this.postalCode = postalCode;
@@ -332,7 +321,6 @@ public class Geo {
     this.postalCode = postalCode;
   }
 
-
   public Geo phoneIntCode(@javax.annotation.Nullable String phoneIntCode) {
     this.phoneIntCode = phoneIntCode;
     return this;
@@ -350,7 +338,6 @@ public class Geo {
   public void setPhoneIntCode(@javax.annotation.Nullable String phoneIntCode) {
     this.phoneIntCode = phoneIntCode;
   }
-
 
   public Geo region(@javax.annotation.Nullable String region) {
     this.region = region;
@@ -370,7 +357,6 @@ public class Geo {
     this.region = region;
   }
 
-
   public Geo timezone(@javax.annotation.Nullable String timezone) {
     this.timezone = timezone;
     return this;
@@ -388,8 +374,6 @@ public class Geo {
   public void setTimezone(@javax.annotation.Nullable String timezone) {
     this.timezone = timezone;
   }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -453,7 +437,6 @@ public class Geo {
     }
     return o.toString().replace("\n", "\n    ");
   }
-
 
   public static HashSet<String> openapiFields;
   public static HashSet<String> openapiRequiredFields;
@@ -588,4 +571,3 @@ public class Geo {
     return JSON.getGson().toJson(this);
   }
 }
-

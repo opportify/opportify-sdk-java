@@ -5,7 +5,7 @@
     <artifactId>opportify-sdk-java</artifactId>
     <packaging>jar</packaging>
     <name>opportify-sdk-java</name>
-    <version>0.6.1</version>
+    <version>0.6.2</version>
     <url>https://github.com/opportify/opportify-sdk-java</url>
     <description>OpenAPI Java</description>
     <scm>
@@ -26,7 +26,7 @@
         <developer>
             <name>OpenAPI-Generator Contributors</name>
             <email>web@opportify.ai</email>
-            <organization>www.opportify.ai</organization>
+            <organization>https://www.opportify.ai</organization>
             <organizationUrl>https://www.opportify.ai</organizationUrl>
         </developer>
     </developers>

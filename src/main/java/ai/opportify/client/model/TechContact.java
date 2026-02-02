@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-
 package ai.opportify.client.model;
 
 import java.util.Objects;
@@ -50,7 +49,7 @@ import ai.opportify.client.JSON;
 /**
  * Tech contact details.
  */
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-01-31T14:35:15.553092-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-02-02T05:39:48.071489-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class TechContact {
   public static final String SERIALIZED_NAME_CONTACT_ID = "contactId";
   @SerializedName(SERIALIZED_NAME_CONTACT_ID)
@@ -108,7 +107,6 @@ public class TechContact {
     this.contactId = contactId;
   }
 
-
   public TechContact contactType(@javax.annotation.Nullable String contactType) {
     this.contactType = contactType;
     return this;
@@ -127,7 +125,6 @@ public class TechContact {
     this.contactType = contactType;
   }
 
-
   public TechContact name(@javax.annotation.Nullable String name) {
     this.name = name;
     return this;
@@ -145,7 +142,6 @@ public class TechContact {
   public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
   }
-
 
   public TechContact address(@javax.annotation.Nullable List<String> address) {
     this.address = address;
@@ -173,7 +169,6 @@ public class TechContact {
     this.address = address;
   }
 
-
   public TechContact phone(@javax.annotation.Nullable List<String> phone) {
     this.phone = phone;
     return this;
@@ -199,7 +194,6 @@ public class TechContact {
   public void setPhone(@javax.annotation.Nullable List<String> phone) {
     this.phone = phone;
   }
-
 
   public TechContact fax(@javax.annotation.Nullable List<String> fax) {
     this.fax = fax;
@@ -227,7 +221,6 @@ public class TechContact {
     this.fax = fax;
   }
 
-
   public TechContact email(@javax.annotation.Nullable List<String> email) {
     this.email = email;
     return this;
@@ -253,8 +246,6 @@ public class TechContact {
   public void setEmail(@javax.annotation.Nullable List<String> email) {
     this.email = email;
   }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -304,7 +295,6 @@ public class TechContact {
     }
     return o.toString().replace("\n", "\n    ");
   }
-
 
   public static HashSet<String> openapiFields;
   public static HashSet<String> openapiRequiredFields;
@@ -421,4 +411,3 @@ public class TechContact {
     return JSON.getGson().toJson(this);
   }
 }
-

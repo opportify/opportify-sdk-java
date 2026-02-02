@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-
 package ai.opportify.client.model;
 
 import java.util.Objects;
@@ -48,7 +47,7 @@ import ai.opportify.client.JSON;
 /**
  * Available download URLs for the batch job results. Only present when status is \&quot;COMPLETED\&quot;.
  */
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-01-31T14:35:15.553092-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-02-02T05:39:48.071489-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class GetEmailBatchStatus200ResponseDownloadUrls {
   public static final String SERIALIZED_NAME_CSV = "csv";
   @SerializedName(SERIALIZED_NAME_CSV)
@@ -91,7 +90,6 @@ public class GetEmailBatchStatus200ResponseDownloadUrls {
     this.csv = csv;
   }
 
-
   public GetEmailBatchStatus200ResponseDownloadUrls json(@javax.annotation.Nullable String json) {
     this.json = json;
     return this;
@@ -109,7 +107,6 @@ public class GetEmailBatchStatus200ResponseDownloadUrls {
   public void setJson(@javax.annotation.Nullable String json) {
     this.json = json;
   }
-
 
   public GetEmailBatchStatus200ResponseDownloadUrls csvCompressed(@javax.annotation.Nullable String csvCompressed) {
     this.csvCompressed = csvCompressed;
@@ -129,7 +126,6 @@ public class GetEmailBatchStatus200ResponseDownloadUrls {
     this.csvCompressed = csvCompressed;
   }
 
-
   public GetEmailBatchStatus200ResponseDownloadUrls jsonCompressed(@javax.annotation.Nullable String jsonCompressed) {
     this.jsonCompressed = jsonCompressed;
     return this;
@@ -147,8 +143,6 @@ public class GetEmailBatchStatus200ResponseDownloadUrls {
   public void setJsonCompressed(@javax.annotation.Nullable String jsonCompressed) {
     this.jsonCompressed = jsonCompressed;
   }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -192,7 +186,6 @@ public class GetEmailBatchStatus200ResponseDownloadUrls {
     }
     return o.toString().replace("\n", "\n    ");
   }
-
 
   public static HashSet<String> openapiFields;
   public static HashSet<String> openapiRequiredFields;
@@ -293,4 +286,3 @@ public class GetEmailBatchStatus200ResponseDownloadUrls {
     return JSON.getGson().toJson(this);
   }
 }
-
