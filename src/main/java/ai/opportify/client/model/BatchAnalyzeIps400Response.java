@@ -21,8 +21,8 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import ai.opportify.client.model.INVALIDDATA;
-import ai.opportify.client.model.MALFORMEDREQUEST;
+import ai.opportify.client.model.INVALIDDATA1;
+import ai.opportify.client.model.MALFORMEDREQUEST3;
 
 
 
@@ -59,7 +59,7 @@ import com.google.gson.JsonParseException;
 
 import ai.opportify.client.JSON;
 
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-01-31T14:35:15.553092-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-02-02T05:26:26.090347-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class BatchAnalyzeIps400Response extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(BatchAnalyzeIps400Response.class.getName());
 
@@ -71,8 +71,8 @@ public class BatchAnalyzeIps400Response extends AbstractOpenApiSchema {
                 return null; // this class only serializes 'BatchAnalyzeIps400Response' and its subtypes
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<MALFORMEDREQUEST> adapterMALFORMEDREQUEST = gson.getDelegateAdapter(this, TypeToken.get(MALFORMEDREQUEST.class));
-            final TypeAdapter<INVALIDDATA> adapterINVALIDDATA = gson.getDelegateAdapter(this, TypeToken.get(INVALIDDATA.class));
+            final TypeAdapter<MALFORMEDREQUEST3> adapterMALFORMEDREQUEST3 = gson.getDelegateAdapter(this, TypeToken.get(MALFORMEDREQUEST3.class));
+            final TypeAdapter<INVALIDDATA1> adapterINVALIDDATA1 = gson.getDelegateAdapter(this, TypeToken.get(INVALIDDATA1.class));
 
             return (TypeAdapter<T>) new TypeAdapter<BatchAnalyzeIps400Response>() {
                 @Override
@@ -82,19 +82,19 @@ public class BatchAnalyzeIps400Response extends AbstractOpenApiSchema {
                         return;
                     }
 
-                    // check if the actual instance is of the type `MALFORMEDREQUEST`
-                    if (value.getActualInstance() instanceof MALFORMEDREQUEST) {
-                        JsonElement element = adapterMALFORMEDREQUEST.toJsonTree((MALFORMEDREQUEST)value.getActualInstance());
+                    // check if the actual instance is of the type `MALFORMEDREQUEST3`
+                    if (value.getActualInstance() instanceof MALFORMEDREQUEST3) {
+                        JsonElement element = adapterMALFORMEDREQUEST3.toJsonTree((MALFORMEDREQUEST3)value.getActualInstance());
                         elementAdapter.write(out, element);
                         return;
                     }
-                    // check if the actual instance is of the type `INVALIDDATA`
-                    if (value.getActualInstance() instanceof INVALIDDATA) {
-                        JsonElement element = adapterINVALIDDATA.toJsonTree((INVALIDDATA)value.getActualInstance());
+                    // check if the actual instance is of the type `INVALIDDATA1`
+                    if (value.getActualInstance() instanceof INVALIDDATA1) {
+                        JsonElement element = adapterINVALIDDATA1.toJsonTree((INVALIDDATA1)value.getActualInstance());
                         elementAdapter.write(out, element);
                         return;
                     }
-                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: INVALIDDATA, MALFORMEDREQUEST");
+                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: INVALIDDATA1, MALFORMEDREQUEST3");
                 }
 
                 @Override
@@ -106,29 +106,29 @@ public class BatchAnalyzeIps400Response extends AbstractOpenApiSchema {
                     ArrayList<String> errorMessages = new ArrayList<>();
                     TypeAdapter actualAdapter = elementAdapter;
 
-                    // deserialize MALFORMEDREQUEST
+                    // deserialize MALFORMEDREQUEST3
                     try {
                         // validate the JSON object to see if any exception is thrown
-                        MALFORMEDREQUEST.validateJsonElement(jsonElement);
-                        actualAdapter = adapterMALFORMEDREQUEST;
+                        MALFORMEDREQUEST3.validateJsonElement(jsonElement);
+                        actualAdapter = adapterMALFORMEDREQUEST3;
                         match++;
-                        log.log(Level.FINER, "Input data matches schema 'MALFORMEDREQUEST'");
+                        log.log(Level.FINER, "Input data matches schema 'MALFORMEDREQUEST3'");
                     } catch (Exception e) {
                         // deserialization failed, continue
-                        errorMessages.add(String.format("Deserialization for MALFORMEDREQUEST failed with `%s`.", e.getMessage()));
-                        log.log(Level.FINER, "Input data does not match schema 'MALFORMEDREQUEST'", e);
+                        errorMessages.add(String.format("Deserialization for MALFORMEDREQUEST3 failed with `%s`.", e.getMessage()));
+                        log.log(Level.FINER, "Input data does not match schema 'MALFORMEDREQUEST3'", e);
                     }
-                    // deserialize INVALIDDATA
+                    // deserialize INVALIDDATA1
                     try {
                         // validate the JSON object to see if any exception is thrown
-                        INVALIDDATA.validateJsonElement(jsonElement);
-                        actualAdapter = adapterINVALIDDATA;
+                        INVALIDDATA1.validateJsonElement(jsonElement);
+                        actualAdapter = adapterINVALIDDATA1;
                         match++;
-                        log.log(Level.FINER, "Input data matches schema 'INVALIDDATA'");
+                        log.log(Level.FINER, "Input data matches schema 'INVALIDDATA1'");
                     } catch (Exception e) {
                         // deserialization failed, continue
-                        errorMessages.add(String.format("Deserialization for INVALIDDATA failed with `%s`.", e.getMessage()));
-                        log.log(Level.FINER, "Input data does not match schema 'INVALIDDATA'", e);
+                        errorMessages.add(String.format("Deserialization for INVALIDDATA1 failed with `%s`.", e.getMessage()));
+                        log.log(Level.FINER, "Input data does not match schema 'INVALIDDATA1'", e);
                     }
 
                     if (match == 1) {
@@ -156,8 +156,8 @@ public class BatchAnalyzeIps400Response extends AbstractOpenApiSchema {
     }
 
     static {
-        schemas.put("MALFORMEDREQUEST", MALFORMEDREQUEST.class);
-        schemas.put("INVALIDDATA", INVALIDDATA.class);
+        schemas.put("MALFORMEDREQUEST3", MALFORMEDREQUEST3.class);
+        schemas.put("INVALIDDATA1", INVALIDDATA1.class);
     }
 
     @Override
@@ -168,30 +168,30 @@ public class BatchAnalyzeIps400Response extends AbstractOpenApiSchema {
     /**
      * Set the instance that matches the oneOf child schema, check
      * the instance parameter is valid against the oneOf child schemas:
-     * INVALIDDATA, MALFORMEDREQUEST
+     * INVALIDDATA1, MALFORMEDREQUEST3
      *
      * It could be an instance of the 'oneOf' schemas.
      */
     @Override
     public void setActualInstance(Object instance) {
-        if (instance instanceof MALFORMEDREQUEST) {
+        if (instance instanceof MALFORMEDREQUEST3) {
             super.setActualInstance(instance);
             return;
         }
 
-        if (instance instanceof INVALIDDATA) {
+        if (instance instanceof INVALIDDATA1) {
             super.setActualInstance(instance);
             return;
         }
 
-        throw new RuntimeException("Invalid instance type. Must be INVALIDDATA, MALFORMEDREQUEST");
+        throw new RuntimeException("Invalid instance type. Must be INVALIDDATA1, MALFORMEDREQUEST3");
     }
 
     /**
      * Get the actual instance, which can be the following:
-     * INVALIDDATA, MALFORMEDREQUEST
+     * INVALIDDATA1, MALFORMEDREQUEST3
      *
-     * @return The actual instance (INVALIDDATA, MALFORMEDREQUEST)
+     * @return The actual instance (INVALIDDATA1, MALFORMEDREQUEST3)
      */
     @SuppressWarnings("unchecked")
     @Override
@@ -200,25 +200,25 @@ public class BatchAnalyzeIps400Response extends AbstractOpenApiSchema {
     }
 
     /**
-     * Get the actual instance of `MALFORMEDREQUEST`. If the actual instance is not `MALFORMEDREQUEST`,
+     * Get the actual instance of `MALFORMEDREQUEST3`. If the actual instance is not `MALFORMEDREQUEST3`,
      * the ClassCastException will be thrown.
      *
-     * @return The actual instance of `MALFORMEDREQUEST`
-     * @throws ClassCastException if the instance is not `MALFORMEDREQUEST`
+     * @return The actual instance of `MALFORMEDREQUEST3`
+     * @throws ClassCastException if the instance is not `MALFORMEDREQUEST3`
      */
-    public MALFORMEDREQUEST getMALFORMEDREQUEST() throws ClassCastException {
-        return (MALFORMEDREQUEST)super.getActualInstance();
+    public MALFORMEDREQUEST3 getMALFORMEDREQUEST3() throws ClassCastException {
+        return (MALFORMEDREQUEST3)super.getActualInstance();
     }
 
     /**
-     * Get the actual instance of `INVALIDDATA`. If the actual instance is not `INVALIDDATA`,
+     * Get the actual instance of `INVALIDDATA1`. If the actual instance is not `INVALIDDATA1`,
      * the ClassCastException will be thrown.
      *
-     * @return The actual instance of `INVALIDDATA`
-     * @throws ClassCastException if the instance is not `INVALIDDATA`
+     * @return The actual instance of `INVALIDDATA1`
+     * @throws ClassCastException if the instance is not `INVALIDDATA1`
      */
-    public INVALIDDATA getINVALIDDATA() throws ClassCastException {
-        return (INVALIDDATA)super.getActualInstance();
+    public INVALIDDATA1 getINVALIDDATA1() throws ClassCastException {
+        return (INVALIDDATA1)super.getActualInstance();
     }
 
     /**
@@ -231,24 +231,24 @@ public class BatchAnalyzeIps400Response extends AbstractOpenApiSchema {
         // validate oneOf schemas one by one
         int validCount = 0;
         ArrayList<String> errorMessages = new ArrayList<>();
-        // validate the json string with MALFORMEDREQUEST
+        // validate the json string with MALFORMEDREQUEST3
         try {
-            MALFORMEDREQUEST.validateJsonElement(jsonElement);
+            MALFORMEDREQUEST3.validateJsonElement(jsonElement);
             validCount++;
         } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for MALFORMEDREQUEST failed with `%s`.", e.getMessage()));
+            errorMessages.add(String.format("Deserialization for MALFORMEDREQUEST3 failed with `%s`.", e.getMessage()));
             // continue to the next one
         }
-        // validate the json string with INVALIDDATA
+        // validate the json string with INVALIDDATA1
         try {
-            INVALIDDATA.validateJsonElement(jsonElement);
+            INVALIDDATA1.validateJsonElement(jsonElement);
             validCount++;
         } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for INVALIDDATA failed with `%s`.", e.getMessage()));
+            errorMessages.add(String.format("Deserialization for INVALIDDATA1 failed with `%s`.", e.getMessage()));
             // continue to the next one
         }
         if (validCount != 1) {
-            throw new IOException(String.format("The JSON string is invalid for BatchAnalyzeIps400Response with oneOf schemas: INVALIDDATA, MALFORMEDREQUEST. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
+            throw new IOException(String.format("The JSON string is invalid for BatchAnalyzeIps400Response with oneOf schemas: INVALIDDATA1, MALFORMEDREQUEST3. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
         }
     }
 

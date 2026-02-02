@@ -52,7 +52,7 @@ import ai.opportify.client.JSON;
 /**
  * AnalyzeEmail200Response
  */
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-01-31T14:35:15.553092-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-02-02T05:26:26.090347-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class AnalyzeEmail200Response {
   public static final String SERIALIZED_NAME_EMAIL_ADDRESS = "emailAddress";
   @SerializedName(SERIALIZED_NAME_EMAIL_ADDRESS)

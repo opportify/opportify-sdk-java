@@ -22,7 +22,7 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
 import ai.opportify.client.model.IPVALIDATIONFAILED;
-import ai.opportify.client.model.MALFORMEDREQUEST;
+import ai.opportify.client.model.MALFORMEDREQUEST2;
 
 
 
@@ -59,7 +59,7 @@ import com.google.gson.JsonParseException;
 
 import ai.opportify.client.JSON;
 
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-01-31T14:35:15.553092-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-02-02T05:26:26.090347-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class AnalyzeIp400Response extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(AnalyzeIp400Response.class.getName());
 
@@ -72,7 +72,7 @@ public class AnalyzeIp400Response extends AbstractOpenApiSchema {
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
             final TypeAdapter<IPVALIDATIONFAILED> adapterIPVALIDATIONFAILED = gson.getDelegateAdapter(this, TypeToken.get(IPVALIDATIONFAILED.class));
-            final TypeAdapter<MALFORMEDREQUEST> adapterMALFORMEDREQUEST = gson.getDelegateAdapter(this, TypeToken.get(MALFORMEDREQUEST.class));
+            final TypeAdapter<MALFORMEDREQUEST2> adapterMALFORMEDREQUEST2 = gson.getDelegateAdapter(this, TypeToken.get(MALFORMEDREQUEST2.class));
 
             return (TypeAdapter<T>) new TypeAdapter<AnalyzeIp400Response>() {
                 @Override
@@ -88,13 +88,13 @@ public class AnalyzeIp400Response extends AbstractOpenApiSchema {
                         elementAdapter.write(out, element);
                         return;
                     }
-                    // check if the actual instance is of the type `MALFORMEDREQUEST`
-                    if (value.getActualInstance() instanceof MALFORMEDREQUEST) {
-                        JsonElement element = adapterMALFORMEDREQUEST.toJsonTree((MALFORMEDREQUEST)value.getActualInstance());
+                    // check if the actual instance is of the type `MALFORMEDREQUEST2`
+                    if (value.getActualInstance() instanceof MALFORMEDREQUEST2) {
+                        JsonElement element = adapterMALFORMEDREQUEST2.toJsonTree((MALFORMEDREQUEST2)value.getActualInstance());
                         elementAdapter.write(out, element);
                         return;
                     }
-                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: IPVALIDATIONFAILED, MALFORMEDREQUEST");
+                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: IPVALIDATIONFAILED, MALFORMEDREQUEST2");
                 }
 
                 @Override
@@ -118,17 +118,17 @@ public class AnalyzeIp400Response extends AbstractOpenApiSchema {
                         errorMessages.add(String.format("Deserialization for IPVALIDATIONFAILED failed with `%s`.", e.getMessage()));
                         log.log(Level.FINER, "Input data does not match schema 'IPVALIDATIONFAILED'", e);
                     }
-                    // deserialize MALFORMEDREQUEST
+                    // deserialize MALFORMEDREQUEST2
                     try {
                         // validate the JSON object to see if any exception is thrown
-                        MALFORMEDREQUEST.validateJsonElement(jsonElement);
-                        actualAdapter = adapterMALFORMEDREQUEST;
+                        MALFORMEDREQUEST2.validateJsonElement(jsonElement);
+                        actualAdapter = adapterMALFORMEDREQUEST2;
                         match++;
-                        log.log(Level.FINER, "Input data matches schema 'MALFORMEDREQUEST'");
+                        log.log(Level.FINER, "Input data matches schema 'MALFORMEDREQUEST2'");
                     } catch (Exception e) {
                         // deserialization failed, continue
-                        errorMessages.add(String.format("Deserialization for MALFORMEDREQUEST failed with `%s`.", e.getMessage()));
-                        log.log(Level.FINER, "Input data does not match schema 'MALFORMEDREQUEST'", e);
+                        errorMessages.add(String.format("Deserialization for MALFORMEDREQUEST2 failed with `%s`.", e.getMessage()));
+                        log.log(Level.FINER, "Input data does not match schema 'MALFORMEDREQUEST2'", e);
                     }
 
                     if (match == 1) {
@@ -157,7 +157,7 @@ public class AnalyzeIp400Response extends AbstractOpenApiSchema {
 
     static {
         schemas.put("IPVALIDATIONFAILED", IPVALIDATIONFAILED.class);
-        schemas.put("MALFORMEDREQUEST", MALFORMEDREQUEST.class);
+        schemas.put("MALFORMEDREQUEST2", MALFORMEDREQUEST2.class);
     }
 
     @Override
@@ -168,7 +168,7 @@ public class AnalyzeIp400Response extends AbstractOpenApiSchema {
     /**
      * Set the instance that matches the oneOf child schema, check
      * the instance parameter is valid against the oneOf child schemas:
-     * IPVALIDATIONFAILED, MALFORMEDREQUEST
+     * IPVALIDATIONFAILED, MALFORMEDREQUEST2
      *
      * It could be an instance of the 'oneOf' schemas.
      */
@@ -179,19 +179,19 @@ public class AnalyzeIp400Response extends AbstractOpenApiSchema {
             return;
         }
 
-        if (instance instanceof MALFORMEDREQUEST) {
+        if (instance instanceof MALFORMEDREQUEST2) {
             super.setActualInstance(instance);
             return;
         }
 
-        throw new RuntimeException("Invalid instance type. Must be IPVALIDATIONFAILED, MALFORMEDREQUEST");
+        throw new RuntimeException("Invalid instance type. Must be IPVALIDATIONFAILED, MALFORMEDREQUEST2");
     }
 
     /**
      * Get the actual instance, which can be the following:
-     * IPVALIDATIONFAILED, MALFORMEDREQUEST
+     * IPVALIDATIONFAILED, MALFORMEDREQUEST2
      *
-     * @return The actual instance (IPVALIDATIONFAILED, MALFORMEDREQUEST)
+     * @return The actual instance (IPVALIDATIONFAILED, MALFORMEDREQUEST2)
      */
     @SuppressWarnings("unchecked")
     @Override
@@ -211,14 +211,14 @@ public class AnalyzeIp400Response extends AbstractOpenApiSchema {
     }
 
     /**
-     * Get the actual instance of `MALFORMEDREQUEST`. If the actual instance is not `MALFORMEDREQUEST`,
+     * Get the actual instance of `MALFORMEDREQUEST2`. If the actual instance is not `MALFORMEDREQUEST2`,
      * the ClassCastException will be thrown.
      *
-     * @return The actual instance of `MALFORMEDREQUEST`
-     * @throws ClassCastException if the instance is not `MALFORMEDREQUEST`
+     * @return The actual instance of `MALFORMEDREQUEST2`
+     * @throws ClassCastException if the instance is not `MALFORMEDREQUEST2`
      */
-    public MALFORMEDREQUEST getMALFORMEDREQUEST() throws ClassCastException {
-        return (MALFORMEDREQUEST)super.getActualInstance();
+    public MALFORMEDREQUEST2 getMALFORMEDREQUEST2() throws ClassCastException {
+        return (MALFORMEDREQUEST2)super.getActualInstance();
     }
 
     /**
@@ -239,16 +239,16 @@ public class AnalyzeIp400Response extends AbstractOpenApiSchema {
             errorMessages.add(String.format("Deserialization for IPVALIDATIONFAILED failed with `%s`.", e.getMessage()));
             // continue to the next one
         }
-        // validate the json string with MALFORMEDREQUEST
+        // validate the json string with MALFORMEDREQUEST2
         try {
-            MALFORMEDREQUEST.validateJsonElement(jsonElement);
+            MALFORMEDREQUEST2.validateJsonElement(jsonElement);
             validCount++;
         } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for MALFORMEDREQUEST failed with `%s`.", e.getMessage()));
+            errorMessages.add(String.format("Deserialization for MALFORMEDREQUEST2 failed with `%s`.", e.getMessage()));
             // continue to the next one
         }
         if (validCount != 1) {
-            throw new IOException(String.format("The JSON string is invalid for AnalyzeIp400Response with oneOf schemas: IPVALIDATIONFAILED, MALFORMEDREQUEST. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
+            throw new IOException(String.format("The JSON string is invalid for AnalyzeIp400Response with oneOf schemas: IPVALIDATIONFAILED, MALFORMEDREQUEST2. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
         }
     }
 

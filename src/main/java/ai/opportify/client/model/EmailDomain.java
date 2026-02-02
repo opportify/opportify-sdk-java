@@ -48,7 +48,7 @@ import ai.opportify.client.JSON;
 /**
  * Summary of the domain-level enrichment returned when enrichment is available and not opted out via &#x60;enableDomainEnrichment&#x60;.  The &#x60;ageYears&#x60; value is sourced from stored enrichment data to keep responses deterministic across subsequent calls. 
  */
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-01-31T14:35:15.553092-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-02-02T05:26:26.090347-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class EmailDomain {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)

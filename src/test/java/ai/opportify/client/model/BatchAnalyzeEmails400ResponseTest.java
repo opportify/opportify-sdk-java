@@ -21,6 +21,7 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
 import ai.opportify.client.model.INVALIDDATA;
+import ai.opportify.client.model.MALFORMEDREQUEST3;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 

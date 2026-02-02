@@ -21,6 +21,7 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
 import ai.opportify.client.model.CreateEmailBatchExport400ResponseOneOf;
+import ai.opportify.client.model.CreateEmailBatchExport400ResponseOneOf1;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 

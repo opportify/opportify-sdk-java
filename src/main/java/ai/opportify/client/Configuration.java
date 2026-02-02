@@ -13,7 +13,7 @@
 
 package ai.opportify.client;
 
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-01-31T14:35:15.553092-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-02-02T05:26:26.090347-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class Configuration {
     public static final String VERSION = "1.0.0";
 

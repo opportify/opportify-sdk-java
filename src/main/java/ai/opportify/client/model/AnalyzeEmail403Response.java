@@ -25,7 +25,7 @@ import ai.opportify.client.model.FORBIDDEN;
 import ai.opportify.client.model.INTERNALERROR;
 import ai.opportify.client.model.INVALIDPLAN;
 import ai.opportify.client.model.INVALIDTOKEN;
-import ai.opportify.client.model.MALFORMEDREQUEST;
+import ai.opportify.client.model.MALFORMEDREQUEST1;
 import ai.opportify.client.model.QUOTAEXCEEDED;
 import ai.opportify.client.model.TOOMANYREQUESTS;
 
@@ -64,7 +64,7 @@ import com.google.gson.JsonParseException;
 
 import ai.opportify.client.JSON;
 
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-01-31T14:35:15.553092-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-02-02T05:26:26.090347-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class AnalyzeEmail403Response extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(AnalyzeEmail403Response.class.getName());
 
@@ -76,7 +76,7 @@ public class AnalyzeEmail403Response extends AbstractOpenApiSchema {
                 return null; // this class only serializes 'AnalyzeEmail403Response' and its subtypes
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<MALFORMEDREQUEST> adapterMALFORMEDREQUEST = gson.getDelegateAdapter(this, TypeToken.get(MALFORMEDREQUEST.class));
+            final TypeAdapter<MALFORMEDREQUEST1> adapterMALFORMEDREQUEST1 = gson.getDelegateAdapter(this, TypeToken.get(MALFORMEDREQUEST1.class));
             final TypeAdapter<INVALIDTOKEN> adapterINVALIDTOKEN = gson.getDelegateAdapter(this, TypeToken.get(INVALIDTOKEN.class));
             final TypeAdapter<INVALIDPLAN> adapterINVALIDPLAN = gson.getDelegateAdapter(this, TypeToken.get(INVALIDPLAN.class));
             final TypeAdapter<FORBIDDEN> adapterFORBIDDEN = gson.getDelegateAdapter(this, TypeToken.get(FORBIDDEN.class));
@@ -92,9 +92,9 @@ public class AnalyzeEmail403Response extends AbstractOpenApiSchema {
                         return;
                     }
 
-                    // check if the actual instance is of the type `MALFORMEDREQUEST`
-                    if (value.getActualInstance() instanceof MALFORMEDREQUEST) {
-                        JsonElement element = adapterMALFORMEDREQUEST.toJsonTree((MALFORMEDREQUEST)value.getActualInstance());
+                    // check if the actual instance is of the type `MALFORMEDREQUEST1`
+                    if (value.getActualInstance() instanceof MALFORMEDREQUEST1) {
+                        JsonElement element = adapterMALFORMEDREQUEST1.toJsonTree((MALFORMEDREQUEST1)value.getActualInstance());
                         elementAdapter.write(out, element);
                         return;
                     }
@@ -134,7 +134,7 @@ public class AnalyzeEmail403Response extends AbstractOpenApiSchema {
                         elementAdapter.write(out, element);
                         return;
                     }
-                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: FORBIDDEN, INTERNALERROR, INVALIDPLAN, INVALIDTOKEN, MALFORMEDREQUEST, QUOTAEXCEEDED, TOOMANYREQUESTS");
+                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: FORBIDDEN, INTERNALERROR, INVALIDPLAN, INVALIDTOKEN, MALFORMEDREQUEST1, QUOTAEXCEEDED, TOOMANYREQUESTS");
                 }
 
                 @Override
@@ -146,17 +146,17 @@ public class AnalyzeEmail403Response extends AbstractOpenApiSchema {
                     ArrayList<String> errorMessages = new ArrayList<>();
                     TypeAdapter actualAdapter = elementAdapter;
 
-                    // deserialize MALFORMEDREQUEST
+                    // deserialize MALFORMEDREQUEST1
                     try {
                         // validate the JSON object to see if any exception is thrown
-                        MALFORMEDREQUEST.validateJsonElement(jsonElement);
-                        actualAdapter = adapterMALFORMEDREQUEST;
+                        MALFORMEDREQUEST1.validateJsonElement(jsonElement);
+                        actualAdapter = adapterMALFORMEDREQUEST1;
                         match++;
-                        log.log(Level.FINER, "Input data matches schema 'MALFORMEDREQUEST'");
+                        log.log(Level.FINER, "Input data matches schema 'MALFORMEDREQUEST1'");
                     } catch (Exception e) {
                         // deserialization failed, continue
-                        errorMessages.add(String.format("Deserialization for MALFORMEDREQUEST failed with `%s`.", e.getMessage()));
-                        log.log(Level.FINER, "Input data does not match schema 'MALFORMEDREQUEST'", e);
+                        errorMessages.add(String.format("Deserialization for MALFORMEDREQUEST1 failed with `%s`.", e.getMessage()));
+                        log.log(Level.FINER, "Input data does not match schema 'MALFORMEDREQUEST1'", e);
                     }
                     // deserialize INVALIDTOKEN
                     try {
@@ -256,7 +256,7 @@ public class AnalyzeEmail403Response extends AbstractOpenApiSchema {
     }
 
     static {
-        schemas.put("MALFORMEDREQUEST", MALFORMEDREQUEST.class);
+        schemas.put("MALFORMEDREQUEST1", MALFORMEDREQUEST1.class);
         schemas.put("INVALIDTOKEN", INVALIDTOKEN.class);
         schemas.put("INVALIDPLAN", INVALIDPLAN.class);
         schemas.put("FORBIDDEN", FORBIDDEN.class);
@@ -273,13 +273,13 @@ public class AnalyzeEmail403Response extends AbstractOpenApiSchema {
     /**
      * Set the instance that matches the oneOf child schema, check
      * the instance parameter is valid against the oneOf child schemas:
-     * FORBIDDEN, INTERNALERROR, INVALIDPLAN, INVALIDTOKEN, MALFORMEDREQUEST, QUOTAEXCEEDED, TOOMANYREQUESTS
+     * FORBIDDEN, INTERNALERROR, INVALIDPLAN, INVALIDTOKEN, MALFORMEDREQUEST1, QUOTAEXCEEDED, TOOMANYREQUESTS
      *
      * It could be an instance of the 'oneOf' schemas.
      */
     @Override
     public void setActualInstance(Object instance) {
-        if (instance instanceof MALFORMEDREQUEST) {
+        if (instance instanceof MALFORMEDREQUEST1) {
             super.setActualInstance(instance);
             return;
         }
@@ -314,14 +314,14 @@ public class AnalyzeEmail403Response extends AbstractOpenApiSchema {
             return;
         }
 
-        throw new RuntimeException("Invalid instance type. Must be FORBIDDEN, INTERNALERROR, INVALIDPLAN, INVALIDTOKEN, MALFORMEDREQUEST, QUOTAEXCEEDED, TOOMANYREQUESTS");
+        throw new RuntimeException("Invalid instance type. Must be FORBIDDEN, INTERNALERROR, INVALIDPLAN, INVALIDTOKEN, MALFORMEDREQUEST1, QUOTAEXCEEDED, TOOMANYREQUESTS");
     }
 
     /**
      * Get the actual instance, which can be the following:
-     * FORBIDDEN, INTERNALERROR, INVALIDPLAN, INVALIDTOKEN, MALFORMEDREQUEST, QUOTAEXCEEDED, TOOMANYREQUESTS
+     * FORBIDDEN, INTERNALERROR, INVALIDPLAN, INVALIDTOKEN, MALFORMEDREQUEST1, QUOTAEXCEEDED, TOOMANYREQUESTS
      *
-     * @return The actual instance (FORBIDDEN, INTERNALERROR, INVALIDPLAN, INVALIDTOKEN, MALFORMEDREQUEST, QUOTAEXCEEDED, TOOMANYREQUESTS)
+     * @return The actual instance (FORBIDDEN, INTERNALERROR, INVALIDPLAN, INVALIDTOKEN, MALFORMEDREQUEST1, QUOTAEXCEEDED, TOOMANYREQUESTS)
      */
     @SuppressWarnings("unchecked")
     @Override
@@ -330,14 +330,14 @@ public class AnalyzeEmail403Response extends AbstractOpenApiSchema {
     }
 
     /**
-     * Get the actual instance of `MALFORMEDREQUEST`. If the actual instance is not `MALFORMEDREQUEST`,
+     * Get the actual instance of `MALFORMEDREQUEST1`. If the actual instance is not `MALFORMEDREQUEST1`,
      * the ClassCastException will be thrown.
      *
-     * @return The actual instance of `MALFORMEDREQUEST`
-     * @throws ClassCastException if the instance is not `MALFORMEDREQUEST`
+     * @return The actual instance of `MALFORMEDREQUEST1`
+     * @throws ClassCastException if the instance is not `MALFORMEDREQUEST1`
      */
-    public MALFORMEDREQUEST getMALFORMEDREQUEST() throws ClassCastException {
-        return (MALFORMEDREQUEST)super.getActualInstance();
+    public MALFORMEDREQUEST1 getMALFORMEDREQUEST1() throws ClassCastException {
+        return (MALFORMEDREQUEST1)super.getActualInstance();
     }
 
     /**
@@ -416,12 +416,12 @@ public class AnalyzeEmail403Response extends AbstractOpenApiSchema {
         // validate oneOf schemas one by one
         int validCount = 0;
         ArrayList<String> errorMessages = new ArrayList<>();
-        // validate the json string with MALFORMEDREQUEST
+        // validate the json string with MALFORMEDREQUEST1
         try {
-            MALFORMEDREQUEST.validateJsonElement(jsonElement);
+            MALFORMEDREQUEST1.validateJsonElement(jsonElement);
             validCount++;
         } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for MALFORMEDREQUEST failed with `%s`.", e.getMessage()));
+            errorMessages.add(String.format("Deserialization for MALFORMEDREQUEST1 failed with `%s`.", e.getMessage()));
             // continue to the next one
         }
         // validate the json string with INVALIDTOKEN
@@ -473,7 +473,7 @@ public class AnalyzeEmail403Response extends AbstractOpenApiSchema {
             // continue to the next one
         }
         if (validCount != 1) {
-            throw new IOException(String.format("The JSON string is invalid for AnalyzeEmail403Response with oneOf schemas: FORBIDDEN, INTERNALERROR, INVALIDPLAN, INVALIDTOKEN, MALFORMEDREQUEST, QUOTAEXCEEDED, TOOMANYREQUESTS. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
+            throw new IOException(String.format("The JSON string is invalid for AnalyzeEmail403Response with oneOf schemas: FORBIDDEN, INTERNALERROR, INVALIDPLAN, INVALIDTOKEN, MALFORMEDREQUEST1, QUOTAEXCEEDED, TOOMANYREQUESTS. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
         }
     }
 

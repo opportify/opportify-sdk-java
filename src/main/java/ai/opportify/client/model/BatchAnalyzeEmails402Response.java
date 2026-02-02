@@ -21,7 +21,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import ai.opportify.client.model.INVALIDPLAN;
+import ai.opportify.client.model.INVALIDPLAN1;
 import ai.opportify.client.model.QUOTAEXCEEDED;
 
 
@@ -59,7 +59,7 @@ import com.google.gson.JsonParseException;
 
 import ai.opportify.client.JSON;
 
-@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-01-31T14:35:15.553092-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "ai.opportify.codegen.languages.JavaClientCodegen", date = "2026-02-02T05:26:26.090347-08:00[America/Los_Angeles]", comments = "Generator version: 7.12.0")
 public class BatchAnalyzeEmails402Response extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(BatchAnalyzeEmails402Response.class.getName());
 
@@ -71,7 +71,7 @@ public class BatchAnalyzeEmails402Response extends AbstractOpenApiSchema {
                 return null; // this class only serializes 'BatchAnalyzeEmails402Response' and its subtypes
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<INVALIDPLAN> adapterINVALIDPLAN = gson.getDelegateAdapter(this, TypeToken.get(INVALIDPLAN.class));
+            final TypeAdapter<INVALIDPLAN1> adapterINVALIDPLAN1 = gson.getDelegateAdapter(this, TypeToken.get(INVALIDPLAN1.class));
             final TypeAdapter<QUOTAEXCEEDED> adapterQUOTAEXCEEDED = gson.getDelegateAdapter(this, TypeToken.get(QUOTAEXCEEDED.class));
 
             return (TypeAdapter<T>) new TypeAdapter<BatchAnalyzeEmails402Response>() {
@@ -82,9 +82,9 @@ public class BatchAnalyzeEmails402Response extends AbstractOpenApiSchema {
                         return;
                     }
 
-                    // check if the actual instance is of the type `INVALIDPLAN`
-                    if (value.getActualInstance() instanceof INVALIDPLAN) {
-                        JsonElement element = adapterINVALIDPLAN.toJsonTree((INVALIDPLAN)value.getActualInstance());
+                    // check if the actual instance is of the type `INVALIDPLAN1`
+                    if (value.getActualInstance() instanceof INVALIDPLAN1) {
+                        JsonElement element = adapterINVALIDPLAN1.toJsonTree((INVALIDPLAN1)value.getActualInstance());
                         elementAdapter.write(out, element);
                         return;
                     }
@@ -94,7 +94,7 @@ public class BatchAnalyzeEmails402Response extends AbstractOpenApiSchema {
                         elementAdapter.write(out, element);
                         return;
                     }
-                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: INVALIDPLAN, QUOTAEXCEEDED");
+                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: INVALIDPLAN1, QUOTAEXCEEDED");
                 }
 
                 @Override
@@ -106,17 +106,17 @@ public class BatchAnalyzeEmails402Response extends AbstractOpenApiSchema {
                     ArrayList<String> errorMessages = new ArrayList<>();
                     TypeAdapter actualAdapter = elementAdapter;
 
-                    // deserialize INVALIDPLAN
+                    // deserialize INVALIDPLAN1
                     try {
                         // validate the JSON object to see if any exception is thrown
-                        INVALIDPLAN.validateJsonElement(jsonElement);
-                        actualAdapter = adapterINVALIDPLAN;
+                        INVALIDPLAN1.validateJsonElement(jsonElement);
+                        actualAdapter = adapterINVALIDPLAN1;
                         match++;
-                        log.log(Level.FINER, "Input data matches schema 'INVALIDPLAN'");
+                        log.log(Level.FINER, "Input data matches schema 'INVALIDPLAN1'");
                     } catch (Exception e) {
                         // deserialization failed, continue
-                        errorMessages.add(String.format("Deserialization for INVALIDPLAN failed with `%s`.", e.getMessage()));
-                        log.log(Level.FINER, "Input data does not match schema 'INVALIDPLAN'", e);
+                        errorMessages.add(String.format("Deserialization for INVALIDPLAN1 failed with `%s`.", e.getMessage()));
+                        log.log(Level.FINER, "Input data does not match schema 'INVALIDPLAN1'", e);
                     }
                     // deserialize QUOTAEXCEEDED
                     try {
@@ -156,7 +156,7 @@ public class BatchAnalyzeEmails402Response extends AbstractOpenApiSchema {
     }
 
     static {
-        schemas.put("INVALIDPLAN", INVALIDPLAN.class);
+        schemas.put("INVALIDPLAN1", INVALIDPLAN1.class);
         schemas.put("QUOTAEXCEEDED", QUOTAEXCEEDED.class);
     }
 
@@ -168,13 +168,13 @@ public class BatchAnalyzeEmails402Response extends AbstractOpenApiSchema {
     /**
      * Set the instance that matches the oneOf child schema, check
      * the instance parameter is valid against the oneOf child schemas:
-     * INVALIDPLAN, QUOTAEXCEEDED
+     * INVALIDPLAN1, QUOTAEXCEEDED
      *
      * It could be an instance of the 'oneOf' schemas.
      */
     @Override
     public void setActualInstance(Object instance) {
-        if (instance instanceof INVALIDPLAN) {
+        if (instance instanceof INVALIDPLAN1) {
             super.setActualInstance(instance);
             return;
         }
@@ -184,14 +184,14 @@ public class BatchAnalyzeEmails402Response extends AbstractOpenApiSchema {
             return;
         }
 
-        throw new RuntimeException("Invalid instance type. Must be INVALIDPLAN, QUOTAEXCEEDED");
+        throw new RuntimeException("Invalid instance type. Must be INVALIDPLAN1, QUOTAEXCEEDED");
     }
 
     /**
      * Get the actual instance, which can be the following:
-     * INVALIDPLAN, QUOTAEXCEEDED
+     * INVALIDPLAN1, QUOTAEXCEEDED
      *
-     * @return The actual instance (INVALIDPLAN, QUOTAEXCEEDED)
+     * @return The actual instance (INVALIDPLAN1, QUOTAEXCEEDED)
      */
     @SuppressWarnings("unchecked")
     @Override
@@ -200,14 +200,14 @@ public class BatchAnalyzeEmails402Response extends AbstractOpenApiSchema {
     }
 
     /**
-     * Get the actual instance of `INVALIDPLAN`. If the actual instance is not `INVALIDPLAN`,
+     * Get the actual instance of `INVALIDPLAN1`. If the actual instance is not `INVALIDPLAN1`,
      * the ClassCastException will be thrown.
      *
-     * @return The actual instance of `INVALIDPLAN`
-     * @throws ClassCastException if the instance is not `INVALIDPLAN`
+     * @return The actual instance of `INVALIDPLAN1`
+     * @throws ClassCastException if the instance is not `INVALIDPLAN1`
      */
-    public INVALIDPLAN getINVALIDPLAN() throws ClassCastException {
-        return (INVALIDPLAN)super.getActualInstance();
+    public INVALIDPLAN1 getINVALIDPLAN1() throws ClassCastException {
+        return (INVALIDPLAN1)super.getActualInstance();
     }
 
     /**
@@ -231,12 +231,12 @@ public class BatchAnalyzeEmails402Response extends AbstractOpenApiSchema {
         // validate oneOf schemas one by one
         int validCount = 0;
         ArrayList<String> errorMessages = new ArrayList<>();
-        // validate the json string with INVALIDPLAN
+        // validate the json string with INVALIDPLAN1
         try {
-            INVALIDPLAN.validateJsonElement(jsonElement);
+            INVALIDPLAN1.validateJsonElement(jsonElement);
             validCount++;
         } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for INVALIDPLAN failed with `%s`.", e.getMessage()));
+            errorMessages.add(String.format("Deserialization for INVALIDPLAN1 failed with `%s`.", e.getMessage()));
             // continue to the next one
         }
         // validate the json string with QUOTAEXCEEDED
@@ -248,7 +248,7 @@ public class BatchAnalyzeEmails402Response extends AbstractOpenApiSchema {
             // continue to the next one
         }
         if (validCount != 1) {
-            throw new IOException(String.format("The JSON string is invalid for BatchAnalyzeEmails402Response with oneOf schemas: INVALIDPLAN, QUOTAEXCEEDED. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
+            throw new IOException(String.format("The JSON string is invalid for BatchAnalyzeEmails402Response with oneOf schemas: INVALIDPLAN1, QUOTAEXCEEDED. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
         }
     }
 

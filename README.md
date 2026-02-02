@@ -1,8 +1,8 @@
 # opportify-sdk-java
 
 Opportify Insights API
-- API version: 0.6.1
-  - Build date: 2026-01-31T14:35:15.553092-08:00[America/Los_Angeles]
+- API version: 0.6.2
+  - Build date: 2026-02-02T05:26:26.090347-08:00[America/Los_Angeles]
   - Generator version: 7.12.0
 
 ## Overview
@@ -79,7 +79,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>ai.opportify</groupId>
   <artifactId>opportify-sdk-java</artifactId>
-  <version>0.6.1</version>
+  <version>0.6.2</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -95,7 +95,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "ai.opportify:opportify-sdk-java:0.6.1"
+     implementation "ai.opportify:opportify-sdk-java:0.6.2"
   }
 ```
 
@@ -109,7 +109,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/opportify-sdk-java-0.6.1.jar`
+* `target/opportify-sdk-java-0.6.2.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -194,12 +194,15 @@ Class | Method | HTTP request | Description
  - [BatchAnalyzeEmails413Response](docs/BatchAnalyzeEmails413Response.md)
  - [BatchAnalyzeEmails429Response](docs/BatchAnalyzeEmails429Response.md)
  - [BatchAnalyzeEmailsRequest](docs/BatchAnalyzeEmailsRequest.md)
+ - [BatchAnalyzeEmailsRequest1](docs/BatchAnalyzeEmailsRequest1.md)
  - [BatchAnalyzeIps202Response](docs/BatchAnalyzeIps202Response.md)
  - [BatchAnalyzeIps400Response](docs/BatchAnalyzeIps400Response.md)
  - [BatchAnalyzeIpsRequest](docs/BatchAnalyzeIpsRequest.md)
+ - [BatchAnalyzeIpsRequest1](docs/BatchAnalyzeIpsRequest1.md)
  - [BlockListed](docs/BlockListed.md)
  - [CreateEmailBatchExport400Response](docs/CreateEmailBatchExport400Response.md)
  - [CreateEmailBatchExport400ResponseOneOf](docs/CreateEmailBatchExport400ResponseOneOf.md)
+ - [CreateEmailBatchExport400ResponseOneOf1](docs/CreateEmailBatchExport400ResponseOneOf1.md)
  - [CreateEmailBatchExport403Response](docs/CreateEmailBatchExport403Response.md)
  - [CreateEmailBatchExport404Response](docs/CreateEmailBatchExport404Response.md)
  - [CreateEmailBatchExport409Response](docs/CreateEmailBatchExport409Response.md)
@@ -219,14 +222,20 @@ Class | Method | HTTP request | Description
  - [GetEmailBatchStatus404Response](docs/GetEmailBatchStatus404Response.md)
  - [GetIpBatchStatus200Response](docs/GetIpBatchStatus200Response.md)
  - [INTERNALERROR](docs/INTERNALERROR.md)
+ - [INTERNALERROR1](docs/INTERNALERROR1.md)
  - [INVALIDDATA](docs/INVALIDDATA.md)
+ - [INVALIDDATA1](docs/INVALIDDATA1.md)
  - [INVALIDEMAIL](docs/INVALIDEMAIL.md)
  - [INVALIDPLAN](docs/INVALIDPLAN.md)
+ - [INVALIDPLAN1](docs/INVALIDPLAN1.md)
  - [INVALIDTOKEN](docs/INVALIDTOKEN.md)
  - [IPVALIDATIONFAILED](docs/IPVALIDATIONFAILED.md)
  - [JOBNOTFOUND](docs/JOBNOTFOUND.md)
  - [JOBNOTREADY](docs/JOBNOTREADY.md)
  - [MALFORMEDREQUEST](docs/MALFORMEDREQUEST.md)
+ - [MALFORMEDREQUEST1](docs/MALFORMEDREQUEST1.md)
+ - [MALFORMEDREQUEST2](docs/MALFORMEDREQUEST2.md)
+ - [MALFORMEDREQUEST3](docs/MALFORMEDREQUEST3.md)
  - [MANIFESTNOTAVAILABLE](docs/MANIFESTNOTAVAILABLE.md)
  - [NOTFOUND](docs/NOTFOUND.md)
  - [Organization](docs/Organization.md)
